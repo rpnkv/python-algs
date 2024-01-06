@@ -1,10 +1,12 @@
+import functools
+import sys
 from typing import List
 
 
 class Solution:
 
     @staticmethod
-    def longestCommonPrefix(strs: List[str]) -> str:
+    def longest_common_prefix_not_optimal(strs: List[str]) -> str:
         shortest_string = min(sorted(strs, key=len, reverse=True))
 
         while shortest_string != "":
@@ -15,10 +17,38 @@ class Solution:
 
         return ""
 
+    @staticmethod
+    def longest_common_prefix_optimal(strs: List[str]) -> str:
+        processing_row = 0
+
+        while (True):
+            prev_value = None
+            for i in range(0, len(strs)):
+                if len(strs[i]) <= processing_row:
+                    return strs[i][: processing_row]
+                else:
+                    if prev_value is None:
+                        prev_value = strs[i][processing_row]
+                    else:
+                        if prev_value != strs[i][processing_row]:
+                            return strs[0][: processing_row]
+            processing_row += 1
+
 
 def main():
-    assert Solution.longestCommonPrefix(["flight", "flower"]) == "fl"
+    assert Solution.longest_common_prefix_optimal(["fl", "flight", "flower", "flow"]) == "fl"
 
 
 if __name__ == "__main__":
+    pass
+    # print(ord("a") ^ ord("a"))
+    # print(min([1, 2, 3]))
+
     main()
+    # print(sys.getsizeof([1, 2, 3, 4]))
+    # print(sys.getsizeof([True, True, False, False]))
+    # print(sys.getsizeof(["aaa", "bbb", "ccc", "ddd"]))
+    # print(sys.getsizeof(["aaa", "aaa", "aaa", "aaa"]))
+    #
+    # for v in [True, True, False, False]:
+    #     print(id(v))
