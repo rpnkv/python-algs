@@ -34,9 +34,22 @@ class Solution:
                             return strs[0][: processing_row]
             processing_row += 1
 
+    @staticmethod
+    def longest_common_prefix_super_optimal(strs: List[str]) -> str:
+        for i, let in enumerate(strs[0]):
+            for j in range(1, len(strs)):
+                if len(strs[j]) <= i:
+                    return strs[0][:i]
+                if strs[j][i] != let:
+                    return strs[0][:i]
+
+        return strs[0]
+
 
 def main():
-    assert Solution.longest_common_prefix_optimal(["fl", "flight", "flower", "flow"]) == "fl"
+    # assert Solution.longest_common_prefix_super_optimal(["fl", "flight", "flower", "flow"]) == "fl"
+    # assert Solution.longest_common_prefix_super_optimal(["flight", "flower", "flow"]) == "fl"
+    assert Solution.longest_common_prefix_super_optimal(["flower", "flow"]) == "flow"
 
 
 if __name__ == "__main__":
