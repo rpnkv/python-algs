@@ -4,39 +4,38 @@ import math
 class Solution:
     @staticmethod
     def addStrings(num1: str, num2: str) -> str:
-        num1 = list(reversed(num1))
-        num2 = list(reversed(num2))
+        lower = num1
+        upper = num2
 
-        res = []
+        if len(lower) > len(upper):
+            lower = num2
+            upper = num1
 
-        if len(num1) < len(num2):
-            num1 = num1 + ["0" for _ in range(0, len(num2) - len(num1))]
-            pass
+        res = [0 for _ in range(0, len(upper))]
+        shift = len(upper) - 1
 
-        if len(num2) < len(num1):
-            num2 = num2 + ["0" for _ in range(0, len(num1) - len(num2))]
-            pass
-
-        if len(num2) == len(num1):
-            trans = 0
-            for index, letter in enumerate(num1):
-                sum = int(letter) * int(num2[index]) + (1 if trans else 0)
-                if sum >= 10:
-                    res.append(sum - 10)
-                    trans = True
+        for lower_index, lower_digit in enumerate(reversed(lower)):
+            transfer = False
+            for upper_index, upper_digit in enumerate(reversed(upper)):
+                temp_mul = int(lower_digit) * int(upper_digit)
+                res_index = shift - upper_index
+                temp_res = temp_mul + res[res_index] + (1 if transfer else 0)
+                if temp_res >= 10:
+                    transfer = True
+                    temp_res = temp_res - 10
                 else:
-                    res.append(sum)
-                    trans = False
-            if trans:
-                res.append("1")
+                    transfer = False
+
+                res[upper_index - shift] = temp_res
+                pass
 
         return ''.join(map(str, reversed(res)))
 
 
 def main():
-    assert Solution.addStrings(str(2), str(3)) == '6'  # simplest case
-    assert Solution.addStrings(str(3), str(6)) == '12'  # simplest case
-    assert Solution.addStrings(str(12), str(12)) == '144'  # simplest case
+    assert Solution.addStrings(str(123), str(2)) == '246'  # simplest case
+    assert Solution.addStrings(str(123), str(4)) == '492'  # simplest case
+    assert Solution.addStrings(str(123), str(34)) == '4182'  # simplest case
     assert Solution.addStrings(str(123), str(456)) == '56088'  # simplest case
 
 
