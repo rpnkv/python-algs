@@ -15,7 +15,9 @@ from typing import List
 # frame 5: if 3 not match method is over return to frame 1
 # frame 3: method is over
 class Solution:
-    res = []
+
+    def __init__(self):
+        self.res = []
 
     def generate(self, total: int, left: int, right: int, acc: list[str]) -> List[str]:
         # if 1
@@ -41,12 +43,9 @@ class Solution:
 
 
 def main():
-    s1 = Solution()
-    assert s1.generateParenthesis(1) == ["()"]
-    # assert Solution().generateParenthesis(2) == ["()()", "(())"]
-
-    s3 = Solution()
-    assert s3.generateParenthesis(3) == ["((()))", "(()())", "(())()", "()(())", "()()()"]
+    assert Solution().generateParenthesis(1) == ["()"]
+    assert Solution().generateParenthesis(2) == ["()()", "(())"]
+    assert Solution().generateParenthesis(3) == ["((()))", "(()())", "(())()", "()(())", "()()()"]
 
 
 if __name__ == '__main__':
