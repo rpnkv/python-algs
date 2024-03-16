@@ -46,11 +46,17 @@ class TreeNode:
 class PreOrder:
 
     def traverse(self, root: TreeNode):
-        print(root)
+        print(root.val, end=' ')
+        if root.left is not None:
+            PreOrder.traverse(self, root.left)
+        if root.right is not None:
+            PreOrder.traverse(self, root.right)
 
 
 def main():
-    print(PreOrder().traverse(TreeCatalogue.small()))
+    PreOrder().traverse(TreeCatalogue.small())
+    print()
+    PreOrder().traverse(TreeCatalogue.large())
 
 
 if __name__ == '__main__':
