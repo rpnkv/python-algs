@@ -4,8 +4,8 @@ def main():
 
     del arr2
 
-    for i in range(len(arr1), 0, -1):
-        print(i)
+    for i in range(len(arr1) - 1, -1, -1):
+        print(arr1[i])
 
 
 if __name__ == '__main__':
