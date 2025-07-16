@@ -3,32 +3,53 @@ import palindrome_number
 
 
 class TestAuxiliary(TestCase):
-    def test_threshold_odd(self):
-        self.assertEqual(
-            palindrome_number.threshold(5),
-            3,
-        )
-
-    def test_threshold_even(self):
+    def test_threshold_2(self):
         self.assertEqual(
             palindrome_number.threshold(2),
-            2
+            1,
         )
 
+    def test_threshold_3(self):
+        self.assertEqual(
+            palindrome_number.threshold(3),
+            1,
+        )
+
+    def test_threshold_4(self):
         self.assertEqual(
             palindrome_number.threshold(4),
-            3
+            2,
         )
 
+    def test_threshold_5(self):
         self.assertEqual(
-            palindrome_number.threshold(6),
+            palindrome_number.threshold(5),
+            2,
+        )
+
+    def test_mirror_index_odd_0(self):
+        self.assertEqual(
+            palindrome_number.mirror_index(0, 5),
+            4
+        )
+
+    def test_mirror_index_odd_1(self):
+        self.assertEqual(
+            palindrome_number.mirror_index(1, 5),
             3
         )
 
-    def test_threshold_zero(self):
-        self.fail()
+    def test_mirror_index_even_0(self):
+        self.assertEqual(
+            palindrome_number.mirror_index(0, 4),
+            3
+        )
 
-
+    def test_mirror_index_even_1(self):
+        self.assertEqual(
+            palindrome_number.mirror_index(1, 4),
+            2
+        )
 
 
 class TestFull(TestCase):
@@ -45,7 +66,7 @@ class TestFull(TestCase):
         )
 
     def test_sample_3(self):
-        self.assertTrue(
+        self.assertFalse(
             palindrome_number.is_palindrome(-121),
             "False expected for non-palindrome '-121'"
         )
