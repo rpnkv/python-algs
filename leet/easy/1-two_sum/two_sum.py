@@ -3,16 +3,13 @@ from typing import List
 
 class Solution:
     @staticmethod
-    def twoSum(nums: List[int], target: int) -> List[int]:
-        pairs = list()
-        visited = dict()
+    def twoSum(nums: List[int], target: int) -> List[int] | None:
+        tuples = dict(zip(nums, range(0, len(nums))))
 
-        for index, value in enumerate(nums):
-            if (target - value) in visited:
-                return [visited[target - value], index]
-
-            visited[value] = index
-
+        for num_index in range(0, len(nums)):
+            expected_pair = target - nums[num_index]
+            if expected_pair in tuples and tuples[expected_pair] != num_index:
+                return [num_index, tuples[target - nums[num_index]]]
 
 
 def main():
