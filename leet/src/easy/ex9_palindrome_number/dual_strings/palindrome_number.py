@@ -1,4 +1,4 @@
-from easy._9_palindrome_number.single_string.palindrome_number import threshold
+from src.easy.ex9_palindrome_number.single_string.palindrome_number import threshold
 
 
 def is_palindrome(x: int) -> bool:

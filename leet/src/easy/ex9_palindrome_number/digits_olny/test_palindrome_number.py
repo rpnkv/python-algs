@@ -1,6 +1,6 @@
 import pytest
 
-# from easy._9_palindrome_number.digits_olny import palindrome_number
+# from easy.ex9_palindrome_number.digits_olny import palindrome_number
 from palindrome_number import get_digit, is_palindrome, define_num_length
 
 
