@@ -4,8 +4,7 @@ from base.binary_search import search_while
 
 
 def test_empty():
-    # assert search_while([], 0) == -1
-    pass
+    assert search_while([], 0) == -1
 
 
 @pytest.mark.parametrize(
