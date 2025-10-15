@@ -3,14 +3,14 @@
 
 def _resolve_new_boundaries(arr, target, left: int, right: int) -> tuple[int, int]:
     """
-
+    Encapsulates boundaries shift logic.
     """
     mid = (left + right) // 2
     if arr[mid] == target:
         left = mid
         right = mid
     else:
-        if arr[mid] > target:
+        if arr[mid] > target:  # if searching el isn't eq to mid, then it's either gt or lt
             right = mid - 1
         else:
             left = mid + 1
@@ -19,6 +19,9 @@ def _resolve_new_boundaries(arr, target, left: int, right: int) -> tuple[int, in
 
 
 def search_while(arr, target) -> int:
+    """
+    Binary search implementation, using "while" loop.
+    """
     if len(arr) == 0:
         return -1
 
