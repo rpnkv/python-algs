@@ -6,16 +6,10 @@ def _narrow_boundaries(arr, target, left: int, right: int) -> tuple[int, int]:
         Encapsulates boundaries shift logic.
     """
     mid = (left + right) // 2
-    if arr[mid] == target:
-        left = mid
-        right = mid
+    if arr[mid] < target:
+        return mid + 1, right
     else:
-        if arr[mid] > target:  # if searching el isn't eq to mid, then it's either gt or lt
-            right = mid - 1
-        else:
-            left = mid + 1
-
-    return left, right
+        return left, mid
 
 
 def search_while(arr, target) -> int:
