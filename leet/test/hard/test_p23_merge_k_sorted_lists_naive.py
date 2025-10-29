@@ -1,4 +1,4 @@
-from common.ListNode import to_linked_list, ListNode
+from common.list_node import to_linked_list, ListNode
 from hard.p23_merge_k_sorted_lists_naive import Solution
 
 

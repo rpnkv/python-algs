@@ -1,7 +1,7 @@
 # Definition for singly-linked list.
 from typing import List, Optional
 
-from common.ListNode import ListNode
+from common.list_node import ListNode
 
 
 class Solution:
