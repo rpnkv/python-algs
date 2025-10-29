@@ -31,12 +31,19 @@ def test_another_day():
 
 
 def test_mock_custom_behavior():
-    dict = Mock()
+    def my_side_effect(gentle: bool = False):
+        if gentle:
+            return "Hello, sir!"
+        else:
+            return "I have absolutely no intention to communicate to you, rude!"
 
-    dict.side_effect(gentle=False).return_value = "I have absolutely no intention to communicate to you, rude!"
-    dict.some_function(gentle=True).return_value = "Hello, sir!"
+    dict = MagicMock()
 
-    print(dict.some_function(gentle=True))
+    dict.some_function.side_effect = my_side_effect
+
+    print()
+    print(f"Response to gentle communication: '{dict.some_function(gentle=True)}'")
+    print(f"Response to rude communication: '{dict.some_function(gentle=False)}'")
 
 
 def test_mock_call_no_return_value():
