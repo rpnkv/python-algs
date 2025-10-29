@@ -10,6 +10,9 @@ class ListNode:
         next_repr = "" if self.next is None else str(self.next)
         return f"{self.val} + {next_repr}"
 
+    def __repr__(self):
+        return f"ListNode(val={self.val}, next={repr(self.next)})"
+
     def __eq__(self, __value):
         return self.val == __value.val and self.next == __value.next
 
