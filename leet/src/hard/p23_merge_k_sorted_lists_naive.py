@@ -5,5 +5,6 @@ from common.ListNode import ListNode
 
 
 class Solution:
-    def mergeKLists(self, lists: List[Optional[ListNode]]) -> Optional[ListNode]:
-        pass
+    @staticmethod
+    def mergeKLists(lists: List[Optional[ListNode]]) -> Optional[ListNode]:
+        return ListNode()

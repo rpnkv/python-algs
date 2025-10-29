@@ -11,7 +11,20 @@ class ListNode:
         return f"{self.val} + {next_repr}"
 
     def __eq__(self, __value):
-        return super().__eq__(__value)
+        if self.val == __value.val:
+            # if self.next is None:
+            #     if __value.next is None:
+            #         return True
+            #     else:
+            #         return False
+            # else:
+            #     if __value.next
+            if self.next is None and __value.next is None:
+                return True
+            else:
+                return self.next.__eq__(__value.next)
+        else:
+            return False
 
 
 def to_linked_list(the_list: list[int]) -> Optional[ListNode]:
