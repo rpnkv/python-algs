@@ -1,9 +1,11 @@
+from typing import Optional, List
+
 from common.list_node import to_linked_list, ListNode
 from hard.p23_merge_k_sorted_lists_naive import Solution
 
 
 def test_something():
-    input = [
+    function_input: List[Optional[ListNode]] = [
         to_linked_list([1, 2, 3]),
         to_linked_list([1, 2, 3]),
         to_linked_list([2, 3, 4])
@@ -16,7 +18,23 @@ def test_something():
          4]
     )
 
+    sol = Solution()
+    assert sol.mergeKLists(function_input) == expected_output
 
 
-    #assert Solution.mergeKLists(input) == expected_output
-    assert Solution.mergeKLists(input) == ListNode()
+def test_empty():
+    function_input: List[Optional[ListNode]] = [[]]
+
+    expected_output = None
+
+    sol = Solution()
+    assert sol.mergeKLists(function_input) == expected_output
+
+
+def test_another_empty():
+    function_input: List[Optional[ListNode]] = []
+
+    expected_output = None
+
+    sol = Solution()
+    assert sol.mergeKLists(function_input) == expected_output
