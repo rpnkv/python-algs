@@ -19,6 +19,7 @@ class Solution:
             self.tail = new_tail
 
     def mergeKLists(self, lists: List[Optional[ListNode]]) -> Optional[ListNode]:
+        lists = [nested_list for nested_list in lists if type(nested_list) is ListNode]
         while len(lists) > 0:
             current_min = sys.maxsize
             for nested_list in lists:
