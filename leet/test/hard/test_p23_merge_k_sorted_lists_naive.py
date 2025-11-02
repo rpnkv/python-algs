@@ -23,7 +23,7 @@ def test_generic():
 
 
 def test_empty():
-    function_input: List[Optional[ListNode]] = [[]]
+    function_input: List[Optional[ListNode]] = [None]
 
     expected_output = None
 

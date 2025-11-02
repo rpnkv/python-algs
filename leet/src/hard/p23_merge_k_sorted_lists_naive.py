@@ -19,19 +19,22 @@ class Solution:
             self.tail = new_tail
 
     def mergeKLists(self, lists: List[Optional[ListNode]]) -> Optional[ListNode]:
-        lists = [nested_list for nested_list in lists if type(nested_list) is ListNode]
-        while len(lists) > 0:
+        has_non_empty_lists = True
+
+        while has_non_empty_lists:
             current_min = sys.maxsize
+            has_non_empty_lists = False
+
             for nested_list in lists:
                 if nested_list is not None:
+                    has_non_empty_lists = True
                     if nested_list.val < current_min:
                         current_min = nested_list.val
 
             for index, nested_list in enumerate(lists):
-                if nested_list.val == current_min:
-                    self._append_list_node(nested_list)
-                    lists[index] = nested_list.next
-
-            lists = [nested_list for nested_list in lists if type(nested_list) is ListNode]
+                if nested_list is not None:
+                    if nested_list.val == current_min:
+                        self._append_list_node(nested_list)
+                        lists[index] = nested_list.next
 
         return self.head
