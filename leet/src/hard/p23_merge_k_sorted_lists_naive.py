@@ -28,7 +28,7 @@ class Solution:
                         current_min = nested_list.val
 
             for index, nested_list in enumerate(lists):
-                if len(nested_list) > 0 and nested_list.val == current_min:
+                if nested_list.val == current_min:
                     self._append_list_node(nested_list)
                     lists[index] = nested_list.next
 
