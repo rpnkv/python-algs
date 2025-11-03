@@ -39,6 +39,22 @@ def test_nested_equality_various_depth():
     assert ln1_1 != ln1_2
 
 
+def test_make_arg_new_head():
+    """
+    Base plan:
+    - check if "tail" remains the same;
+    - check if "full list" is as expected.
+    """
+
+    tail = to_linked_list([2, 3, 4])
+    new_head = 1
+
+    expected_result = to_linked_list([1, 2, 3, 4])
+
+    assert tail.make_arg_value_new_head(new_head) == expected_result
+    assert tail != expected_result
+
+
 def test_list_node_from_array_construction():
     ln2 = ListNode(2)
     ln1 = ListNode(1, next=ln2)

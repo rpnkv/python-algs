@@ -1,10 +1,18 @@
-from typing import Optional
+from typing import Optional, Self
 
 
 class ListNode:
     def __init__(self, val=0, next=None):
         self.val = val
         self.next = next
+
+    def make_arg_value_new_head(self, new_head_value: int) -> Self:
+        """
+        Returns ListNode instance, containing "new_head_value" number, with current instance as a new ListNode.next
+        value.
+        """
+        new_head = ListNode(new_head_value, self)
+        return new_head
 
     def __str__(self):
         next_repr = "" if self.next is None else str(self.next)
