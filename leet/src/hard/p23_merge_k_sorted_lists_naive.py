@@ -1,4 +1,3 @@
-# Definition for singly-linked list.
 import sys
 from typing import List, Optional
 
@@ -6,6 +5,10 @@ from common.list_node import ListNode
 
 
 class Solution:
+    """
+    Naive solution for leetcode's task #23 "Merge K sorted lists".
+    """
+
     head: Optional[ListNode] = None
     tail: Optional[ListNode] = None
 
@@ -19,6 +22,15 @@ class Solution:
             self.tail = new_tail
 
     def mergeKLists(self, lists: List[Optional[ListNode]]) -> Optional[ListNode]:
+        """
+        Iterates over the whole list, until, at least, one sublist is not empty.
+
+        Each iteration involves two operations, iterating over whole list elements (2N):
+        - look for the smallest element value;
+        - fetch all smallest elements and append them to a final list.
+
+
+        """
         has_non_empty_lists = True
 
         while has_non_empty_lists:
