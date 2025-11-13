@@ -26,17 +26,20 @@ class Solution:
         """
 
         import heapq
+        from itertools import count
+        c = count()
         pq = []
 
         for head in [head for head in lists if head is not None]:
-            heapq.heappush(pq, head)
+            heapq.heappush(pq, (head.val, next(c), head))
 
         while len(pq) != 0:
-            current_smallest = heapq.heappop(pq)
-            self._append_list_node(current_smallest)
+            min_nodes_next = pq[0][2].next
 
-            if current_smallest.next is not None:
-                next_node = current_smallest.next
-                heapq.heappush(pq, next_node)
+            if min_nodes_next is not None:
+                replacing_tuple = (min_nodes_next.val, next(c), min_nodes_next)
+                self._append_list_node(heapq.heapreplace(pq, replacing_tuple)[2])
+            else:
+                self._append_list_node(heapq.heappop(pq)[2])
 
         return self.head
