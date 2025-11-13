@@ -3,26 +3,6 @@ from typing import Optional, List
 from common.list_node import to_linked_list, ListNode
 from hard.p23_merge_k_sorted_lists_heapq import Solution
 
-def test_heapq():
-    print()
-    import heapq
-
-    hq = []
-
-    heapq.heappush(hq, 2)
-    print(f"len: {len(hq)}")
-
-    heapq.heappush(hq, 3)
-    print(f"len: {len(hq)}")
-
-    heapq.heappush(hq, 3)
-    print(f"len: {len(hq)}")
-
-    print(f"pop: {heapq.heappop(hq)}")
-    print(f"len: {len(hq)}")
-
-
-
 def test_generic():
     function_input: List[Optional[ListNode]] = [
         to_linked_list([1, 2, 3]),

@@ -25,27 +25,18 @@ class Solution:
         Heapq-based solution, expected to work for MlogN.
         """
 
-        # initial setup
         import heapq
-        pq: list[(int, ListNode)] = []
-
-        to_tuple = lambda list_node: (list_node.val, list_node)
-        from_tuple = lambda tuple: tuple[1]
+        pq = []
 
         for head in [head for head in lists if head is not None]:
-            heapq.heappush(pq, to_tuple(head))
+            heapq.heappush(pq, head)
 
         while len(pq) != 0:
-            appending_list_node: ListNode = pq[0][1]
+            current_smallest = heapq.heappop(pq)
+            self._append_list_node(current_smallest)
 
-            if appending_list_node.next is not None:
-                next_tuple = to_tuple(appending_list_node.next)
-                #heapq.heapreplace(pq, next_tuple)
-                heapq.heappop(pq)
-                heapq.heappush(pq, next_tuple)
-            else:
-                heapq.heappop(pq)
-
-            self._append_list_node(appending_list_node)
+            if current_smallest.next is not None:
+                next_node = current_smallest.next
+                heapq.heappush(pq, next_node)
 
         return self.head

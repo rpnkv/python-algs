@@ -33,6 +33,10 @@ class ListNode:
 
         return self.next == __value.next
 
+    def __lt__(self, __value):
+        return self.val < __value.val
+
+
 
 def to_linked_list(the_list: list[int]) -> Optional[ListNode]:
     if len(the_list) == 1:
