@@ -22,7 +22,7 @@ def test_generic():
     assert sol.mergeKLists(function_input) == expected_output
 
 
-def test_empty():
+def test_internal_list_empty():
     function_input: List[Optional[ListNode]] = [None]
 
     expected_output = None
@@ -31,7 +31,7 @@ def test_empty():
     assert sol.mergeKLists(function_input) == expected_output
 
 
-def test_another_empty():
+def test_external_list_empty():
     function_input: List[Optional[ListNode]] = []
 
     expected_output = None
@@ -52,12 +52,10 @@ def test_repeating_nums():
 
 def test_heapq_behavior():
     import heapq
-
     class TestNode:
         def __init__(self, val):
             self.val = val
 
-    # Создаем ситуацию как в вашем алгоритме
     heap = []
     node1 = TestNode(5)
     node2 = TestNode(5)
@@ -66,7 +64,6 @@ def test_heapq_behavior():
     heapq.heappush(heap, (5, 0, node1))
     print("После первого push:", heap)
 
-    # Пытаемся сделать heapreplace как в вашем алгоритме
     try:
         heapq.heapreplace(heap, (5, 0, node2))
         print("heapreplace прошел успешно!")

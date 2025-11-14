@@ -5,7 +5,7 @@ from common.list_node import ListNode
 
 class Solution:
     """
-    Naive solution for leetcode's task #23 "Merge K sorted lists".
+    Heapq solution for leetcode's task #23 "Merge K sorted lists".
     """
 
     head: Optional[ListNode] = None
@@ -25,31 +25,33 @@ class Solution:
         Heapq-based solution, expected to work for MlogN.
         """
 
+        # PQ components
         import heapq
         pq = []
 
-        for index, head in enumerate([head for head in lists if head is not None]):
-            heapq.heappush(
-                pq, (
-                    head.val,
-                    #0,
-                    head
-                )
-            )
+        # list_nodes to tuple (PQ-supported elements) conversion methods so we won't make indexing etc mistakes
+        value_index = 1
+        wrap_tuple = lambda list_node: (list_node.val, list_node)
+        unwrap_tuple = lambda tuple_value: tuple_value[value_index]
+
+        # put all the heads into list before continue
+        for head in [head for head in lists if head is not None]:
+            heapq.heappush(pq, wrap_tuple(head))
 
         while len(pq) != 0:
-            #min_index = pq[0][1]
-            min_index = 0
-            min_nodes_next = pq[0][1].next
+            min_nodes_next = unwrap_tuple(pq[0]).next
+
+            next_tail_tuple: tuple
 
             if min_nodes_next is not None:
-                replacing_tuple = (
-                    min_nodes_next.val,
-                    #min_index,
-                    min_nodes_next
-                )
-                self._append_list_node(heapq.heapreplace(pq, replacing_tuple)[1])
+                # current linked_list isn't over so we
+                replacing_tuple = wrap_tuple(min_nodes_next)
+                next_tail_tuple = heapq.heapreplace(pq, replacing_tuple)
             else:
-                self._append_list_node(heapq.heappop(pq)[1])
+                # current linked_list has no more elements so we just pop its value
+                next_tail_tuple = heapq.heappop(pq)
+
+            next_tail_list_node = unwrap_tuple(next_tail_tuple)
+            self._append_list_node(next_tail_list_node)
 
         return self.head
