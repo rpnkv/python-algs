@@ -1,3 +1,5 @@
+import heapq
+import math
 from typing import List, Optional
 
 from common.list_node import ListNode
@@ -8,8 +10,10 @@ class Solution:
     Heapq solution for leetcode's task #23 "Merge K sorted lists".
     """
 
-    head: Optional[ListNode] = None
-    tail: Optional[ListNode] = None
+    def __init__(self):
+        self.head: Optional[ListNode] = ListNode(val=math.pow(10, 4) * -1 - 1, next=None)
+        self.tail: Optional[ListNode] = self.head
+        self.pq = []
 
     def _append_list_node(self, list_node: ListNode):
         if self.head is None:
@@ -20,38 +24,49 @@ class Solution:
             self.tail.next = new_tail
             self.tail = new_tail
 
+    @staticmethod
+    def _wrap_tuple(list_node) -> tuple:
+        return list_node.val, list_node
+
+    @staticmethod
+    def _unwrap_tuple(tuple_value: tuple) -> ListNode:
+        return tuple_value[1]
+
+    def _pq_has_more_elements(self) -> bool:
+        return len(self.pq) != 0
+
+    def _heappush(self, list_node: ListNode):
+        heapq.heappush(self.pq, self._wrap_tuple(list_node))
+
+    def _heappop(self) -> ListNode:
+        return self._unwrap_tuple(heapq.heappop(self.pq))
+
+    def _heapreplace(self, list_node: ListNode) -> ListNode:
+        returning_tuple = heapq.heapreplace(self.pq, self._wrap_tuple(list_node))
+        return self._unwrap_tuple(returning_tuple)
+
+    def _min_nodes_next(self) -> ListNode:
+        return self._unwrap_tuple(self.pq[0]).next
+
     def mergeKLists(self, lists: List[Optional[ListNode]]) -> Optional[ListNode]:
         """
         Heapq-based solution, expected to work for MlogN.
         """
 
-        # PQ components
-        import heapq
-        pq = []
-
-        # list_nodes to tuple (PQ-supported elements) conversion methods so we won't make indexing etc mistakes
-        value_index = 1
-        wrap_tuple = lambda list_node: (list_node.val, list_node)
-        unwrap_tuple = lambda tuple_value: tuple_value[value_index]
-
         # put all the heads into list before continue
         for head in [head for head in lists if head is not None]:
-            heapq.heappush(pq, wrap_tuple(head))
+            self._heappush(head)
 
-        while len(pq) != 0:
-            min_nodes_next = unwrap_tuple(pq[0]).next
-
-            next_tail_tuple: tuple
+        while self._pq_has_more_elements():
+            min_nodes_next = self._min_nodes_next()
 
             if min_nodes_next is not None:
                 # current linked_list isn't over so we
-                replacing_tuple = wrap_tuple(min_nodes_next)
-                next_tail_tuple = heapq.heapreplace(pq, replacing_tuple)
+                appending_node = self._heapreplace(min_nodes_next)
             else:
                 # current linked_list has no more elements so we just pop its value
-                next_tail_tuple = heapq.heappop(pq)
+                appending_node = self._heappop()
 
-            next_tail_list_node = unwrap_tuple(next_tail_tuple)
-            self._append_list_node(next_tail_list_node)
+            self._append_list_node(appending_node)
 
-        return self.head
+        return self.head.next

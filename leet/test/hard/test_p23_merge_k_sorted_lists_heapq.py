@@ -28,7 +28,9 @@ def test_internal_list_empty():
     expected_output = None
 
     sol = Solution()
-    assert sol.mergeKLists(function_input) == expected_output
+
+    actual_output = sol.mergeKLists(function_input)
+    assert actual_output == expected_output
 
 
 def test_external_list_empty():
@@ -48,25 +50,3 @@ def test_repeating_nums():
     expected_output = to_linked_list([1, 2, 2, 2, 3])
     sol = Solution()
     assert sol.mergeKLists(function_input) == expected_output
-
-
-def test_heapq_behavior():
-    import heapq
-    class TestNode:
-        def __init__(self, val):
-            self.val = val
-
-    heap = []
-    node1 = TestNode(5)
-    node2 = TestNode(5)
-    node3 = TestNode(5)
-
-    heapq.heappush(heap, (5, 0, node1))
-    print("После первого push:", heap)
-
-    try:
-        heapq.heapreplace(heap, (5, 0, node2))
-        print("heapreplace прошел успешно!")
-        print("После heapreplace:", heap)
-    except TypeError as e:
-        print("Ошибка:", e)
