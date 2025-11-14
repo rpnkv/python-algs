@@ -33,8 +33,8 @@ class ListNode:
 
         return self.next == __value.next
 
-    # def __lt__(self, __value):
-    #     return self.val < __value.val
+# def __lt__(self, __value):
+#     return self.val < __value.val
 
 
 

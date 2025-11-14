@@ -29,16 +29,27 @@ class Solution:
         pq = []
 
         for index, head in enumerate([head for head in lists if head is not None]):
-            heapq.heappush(pq, (head.val, index, head))
+            heapq.heappush(
+                pq, (
+                    head.val,
+                    #0,
+                    head
+                )
+            )
 
         while len(pq) != 0:
-            min_index = pq[0][1]
-            min_nodes_next = pq[0][2].next
+            #min_index = pq[0][1]
+            min_index = 0
+            min_nodes_next = pq[0][1].next
 
             if min_nodes_next is not None:
-                replacing_tuple = (min_nodes_next.val, min_index, min_nodes_next)
-                self._append_list_node(heapq.heapreplace(pq, replacing_tuple)[2])
+                replacing_tuple = (
+                    min_nodes_next.val,
+                    #min_index,
+                    min_nodes_next
+                )
+                self._append_list_node(heapq.heapreplace(pq, replacing_tuple)[1])
             else:
-                self._append_list_node(heapq.heappop(pq)[2])
+                self._append_list_node(heapq.heappop(pq)[1])
 
         return self.head
