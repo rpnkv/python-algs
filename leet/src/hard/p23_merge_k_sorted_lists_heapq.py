@@ -1,5 +1,6 @@
 import heapq
 import math
+from itertools import count
 from typing import List, Optional
 
 from common.list_node import ListNode
@@ -14,6 +15,7 @@ class Solution:
         self.head: Optional[ListNode] = ListNode(val=math.pow(10, 4) * -1 - 1, next=None)
         self.tail: Optional[ListNode] = self.head
         self.pq = []
+        self.count = count()
 
     def _append_list_node(self, list_node: ListNode):
         if self.head is None:
@@ -24,13 +26,12 @@ class Solution:
             self.tail.next = new_tail
             self.tail = new_tail
 
-    @staticmethod
-    def _wrap_tuple(list_node) -> tuple:
-        return list_node.val, list_node
+    def _wrap_tuple(self, list_node) -> tuple:
+        return list_node.val, next(self.count), list_node
 
     @staticmethod
     def _unwrap_tuple(tuple_value: tuple) -> ListNode:
-        return tuple_value[1]
+        return tuple_value[2]
 
     def _pq_has_more_elements(self) -> bool:
         return len(self.pq) != 0
