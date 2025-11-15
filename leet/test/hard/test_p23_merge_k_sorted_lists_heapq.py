@@ -2,6 +2,7 @@ from typing import Optional, List
 
 from common.list_node import to_linked_list, ListNode
 from hard.p23_merge_k_sorted_lists_heapq import Solution
+from hard.test_case_generator import produce_full
 
 
 def test_generic():
@@ -50,3 +51,18 @@ def test_repeating_nums():
     expected_output = to_linked_list([1, 2, 2, 2, 3])
     sol = Solution()
     assert sol.mergeKLists(function_input) == expected_output
+
+def test_load():
+    function_input = produce_full()
+
+    sol = Solution()
+    output = sol.mergeKLists(function_input)
+
+    output_length = 0
+
+    while output is not None:
+        output_length += 1
+        output = output.next
+
+    print()
+    print(f"output length: {output_length}")
