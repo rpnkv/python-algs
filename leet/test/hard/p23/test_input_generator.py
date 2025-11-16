@@ -1,5 +1,5 @@
 from common.list_node import to_linked_list
-from hard.input_generator import produce_full
+from hard.p23.input_generator import produce_full
 
 
 def test_test_data_generator_equal_lists_length():

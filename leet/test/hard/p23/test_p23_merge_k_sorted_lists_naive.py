@@ -1,7 +1,7 @@
 from typing import Optional, List
 
 from common.list_node import to_linked_list, ListNode
-from hard.p23_merge_k_sorted_lists_naive import Solution
+from hard.p23.p23_merge_k_sorted_lists_naive import Solution
 
 create_input = lambda: [
     to_linked_list([1, 2, 3]),
