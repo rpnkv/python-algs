@@ -11,9 +11,11 @@ class Solution:
     Heapq solution for leetcode's task #23 "Merge K sorted lists".
     """
 
-    def __init__(self):
+    def _reset_pointers(self):
         self.head: Optional[ListNode] = ListNode(val=math.pow(10, 4) * -1 - 1, next=None)
         self.tail: Optional[ListNode] = self.head
+
+    def __init__(self):
         self.pq = []
         self.count = count()
 
@@ -53,6 +55,7 @@ class Solution:
         """
         Heapq-based solution, expected to work for MlogN.
         """
+        self._reset_pointers()
 
         # put all the heads into list before continue
         for head in [head for head in lists if head is not None]:

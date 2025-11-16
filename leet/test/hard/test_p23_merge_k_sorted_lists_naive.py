@@ -23,7 +23,9 @@ def test_generic():
     sol = Solution()
     assert sol.mergeKLists(function_input) == expected_output
 
+    #checking if solution is idempotent
     assert function_input == create_input()
+    assert sol.mergeKLists(function_input) == expected_output
 
 
 def test_empty():
