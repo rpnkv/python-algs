@@ -5,11 +5,14 @@ from hard.p23_merge_k_sorted_lists_naive import Solution
 
 
 def test_generic():
-    function_input: List[Optional[ListNode]] = [
+    create_input = lambda : [
         to_linked_list([1, 2, 3]),
         to_linked_list([1, 2, 3]),
         to_linked_list([2, 3, 4])
     ]
+
+
+    function_input: List[Optional[ListNode]] = create_input()
 
     expected_output = to_linked_list(
         [1, 1,
@@ -20,6 +23,8 @@ def test_generic():
 
     sol = Solution()
     assert sol.mergeKLists(function_input) == expected_output
+
+    assert function_input == create_input()
 
 
 def test_empty():

@@ -21,7 +21,7 @@ class Solution:
             self.tail.next = new_tail
             self.tail = new_tail
 
-    def mergeKLists(self, lists: List[Optional[ListNode]]) -> Optional[ListNode]:
+    def mergeKLists(self, input_lists: List[Optional[ListNode]]) -> Optional[ListNode]:
         """
         Iterates over the whole list, until, at least, one sublist is not empty.
 
@@ -32,6 +32,9 @@ class Solution:
 
         """
         has_non_empty_lists = True
+        lists = [head for head in input_lists]
+        self.head = None
+        self.tail = None
 
         while has_non_empty_lists:
             current_min = sys.maxsize
