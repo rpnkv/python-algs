@@ -63,3 +63,14 @@ def test_list_node_from_array_construction():
     assert ln0 == to_linked_list([*range(3)])
     assert ln0 != to_linked_list([*range(2)])
     assert ln0 != to_linked_list([*range(4)])
+
+
+def test_list_node_length():
+    ll1 = ListNode(242)
+    ll2 = ListNode(5555, ll1)
+
+    ll5 = to_linked_list([*range(10, 15)])
+
+    assert len(ll1) == 1
+    assert len(ll2) == 2
+    assert len(ll5) == 5

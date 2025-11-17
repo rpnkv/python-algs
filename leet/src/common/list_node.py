@@ -1,7 +1,7 @@
-from typing import Optional, Self
+from typing import Optional, Self, Sized
 
 
-class ListNode:
+class ListNode(Sized):
     def __init__(self, val=0, next=None):
         self.val = val
         self.next = next
@@ -33,9 +33,17 @@ class ListNode:
 
         return self.next == __value.next
 
+    def __len__(self):
+        len = 1
+
+        next_node = self.next
+        while next_node is not None:
+            len += 1
+            next_node = next_node.next
+
+        return len
     # def __lt__(self, __value):
     #     return self.val < __value.val
-
 
 
 def to_linked_list(the_list: list[int]) -> Optional[ListNode]:
