@@ -1,3 +1,5 @@
+import math
+
 from common.list_node import to_linked_list
 from hard.p23.input_generator import produce_full
 
@@ -25,3 +27,35 @@ def test_test_data_generator_NOT_equal_lists_length():
     assert test_data[1] == expected_second_list
 
     assert (len(test_data) == 2)
+
+
+def test_produce_single_list_10k_els():
+    test_data = produce_full(elements_total=int(math.pow(10, 4)), elements_per_list=int(math.pow(10, 4)),
+                             start_value=1)
+
+    assert len(test_data) == 1
+    linked_list_head = test_data[0]
+
+    assert linked_list_head is not None
+    assert linked_list_head.val == 1
+
+    prev_value = 0
+    while linked_list_head is not None:
+        assert prev_value + 1 == linked_list_head.val
+
+        prev_value = linked_list_head.val
+        linked_list_head = linked_list_head.next
+
+    assert prev_value == math.pow(10, 4)
+
+
+def test_produce_two_lists_5k_els_each():
+    elements_total = int(math.pow(10, 4))
+    elements_per_list = int(elements_total / 2)
+
+    test_data = produce_full(
+        elements_total=elements_total, elements_per_list=elements_per_list, start_value=2
+    )
+
+    assert len(test_data) == 2
+
