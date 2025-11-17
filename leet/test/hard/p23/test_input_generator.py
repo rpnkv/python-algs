@@ -58,4 +58,7 @@ def test_produce_two_lists_5k_els_each():
     )
 
     assert len(test_data) == 2
+    assert len(test_data[0]) == elements_per_list
+    assert len(test_data[1]) == elements_per_list
+
 
