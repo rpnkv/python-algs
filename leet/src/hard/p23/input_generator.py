@@ -3,8 +3,8 @@ import math
 from common.list_node import to_linked_list, ListNode
 
 
-def produce_full(elements_total: int = math.pow(10, 4), elements_per_list: int = 500,
-                 start_value: int = math.pow(10, 3) * -1) -> list[ListNode]:
+def produce_full(elements_total: int = int(math.pow(10, 4)), elements_per_list: int = 500,
+                 start_value: int = int(math.pow(10, 3) * -1)) -> list[ListNode]:
     """
     Produces full set of input
     """
