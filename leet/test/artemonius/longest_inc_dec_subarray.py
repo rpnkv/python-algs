@@ -10,13 +10,13 @@
 
 
 def execute(input_arr: list[int]) -> (int, int):
-    right = 1
+    right = 2
 
     prev_relation: str = None
 
-    current_len = 0
+    current_len = 1
 
-    longest_results = {}
+    max_len, max_right_index = 1, 1
 
     while right < len(input_arr):
         current_relation: str
@@ -29,18 +29,20 @@ def execute(input_arr: list[int]) -> (int, int):
             current_relation = "equals"
 
         if ((current_relation == prev_relation) or (prev_relation is None)) and (current_relation != "equals"):
-            # state gets verified, increase subsequence length
+            # current right position has been confirmed as continuous subsequence, so increasing
             current_len += 1
         else:
-            # state is not verified, persist previous subsequence and reset current_length
-            longest_results[current_len] = (right - current_len - 1, right - 1)
+            # current right position hasn't been confirmed, so current element is 'the longest subsequence' for now
             current_len = 1
+
+        if max_len < current_len:
+            max_len = current_len
+            max_right_index = right
 
         prev_relation = current_relation
         right += 1
 
-    max_len = max(longest_results.keys())
-    return longest_results[max_len]
+    return (max_right_index - (max_len - 1)), max_right_index
 
 
 def test1():
@@ -57,4 +59,3 @@ def test2():
             actual_output == (0, 0) or
             actual_output == (1, 1)
     )
-
