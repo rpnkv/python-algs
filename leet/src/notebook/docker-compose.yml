@@ -1,0 +1,8 @@
+services:
+  jupyter:
+    image: jupyter/base-notebook
+    entrypoint: jupyter
+    command: "notebook --NotebookApp.token=''"
+    network_mode: host
+    volumes:
+      - ..:/home/jovyan/leet
