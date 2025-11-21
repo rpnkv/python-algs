@@ -7,16 +7,19 @@
 #
 # [2, 7, 5, 4, 4, 3] -> {1, 3}
 # [1, 1] -> {1, 1} // or {0, 0}
+#
+# [1,2,3] -> {0,2}
+from typing import Optional
 
 
 def execute(input_arr: list[int]) -> (int, int):
-    right = 2
+    left = 0
+    right = 1
 
-    prev_relation: str = None
-
+    prev_relation: Optional[str] = None
     current_len = 1
 
-    max_len, max_right_index = 1, 1
+    longest_results = {}
 
     while right < len(input_arr):
         current_relation: str
@@ -29,20 +32,19 @@ def execute(input_arr: list[int]) -> (int, int):
             current_relation = "equals"
 
         if ((current_relation == prev_relation) or (prev_relation is None)) and (current_relation != "equals"):
-            # current right position has been confirmed as continuous subsequence, so increasing
             current_len += 1
         else:
-            # current right position hasn't been confirmed, so current element is 'the longest subsequence' for now
+            longest_results[current_len] = (left, right - 1)
+            left = right
             current_len = 1
-
-        if max_len < current_len:
-            max_len = current_len
-            max_right_index = right
 
         prev_relation = current_relation
         right += 1
 
-    return (max_right_index - (max_len - 1)), max_right_index
+    longest_results[current_len] = (left, right - 1)
+
+    max_len = max(longest_results.keys())
+    return longest_results[max_len]
 
 
 def test1():

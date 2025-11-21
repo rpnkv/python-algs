@@ -1,8 +1,8 @@
 from typing import Optional, List
 
 from common.list_node import to_linked_list, ListNode
-from hard.p23.p23_merge_k_sorted_lists_heapq import Solution
-from hard.p23.test_p23_merge_k_sorted_lists_naive import create_input
+from problems.hard.p23.p23_merge_k_sorted_lists_heapq import Solution
+from problems.hard.p23.test_p23_merge_k_sorted_lists_naive import create_input
 
 
 def test_generic():
