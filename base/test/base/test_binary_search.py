@@ -1,6 +1,6 @@
 import pytest
 
-from base.binary_search import search_while
+from algs.binary_search import search_while
 
 
 def test_empty():

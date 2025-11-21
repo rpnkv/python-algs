@@ -1,6 +1,6 @@
 import pytest
 
-from base.binary_search import search_while
+from algs.binary_search import search_while
 
 small_test_len = 20
 testing_arr = [i for i in range(small_test_len)]
@@ -15,10 +15,11 @@ def test_search(arr: list[int], target: int) -> None:
 
 
 def _gen_test_data(limit: int):
-    limits=[*range(5)]
-    income_collections=[[*range(limit+1)]for limit in limits]
-    collections_with_indices=[[(income_collection, index) for index in income_collection] for income_collection in income_collections]
-    flattened=[inner_list_element for outer_list in collections_with_indices for inner_list_element in outer_list]
+    limits = [*range(5)]
+    income_collections = [[*range(limit + 1)] for limit in limits]
+    collections_with_indices = [[(income_collection, index) for index in income_collection] for income_collection in
+                                income_collections]
+    flattened = [inner_list_element for outer_list in collections_with_indices for inner_list_element in outer_list]
     return flattened
 
 
