@@ -28,19 +28,53 @@
 
 class Solution:
     def lengthOfLongestSubstring(self, s: str) -> int:
-        substr=set()
-        max_len=0
+        substr = set()
+        max_len = 0
         for index, character in enumerate(s):
             if character in substr:
                 j = index - len(substr)
-                while j < index:
+                while s[j] != character:
                     substr.remove(s[j])
-                    if s[j] == character:
-                        j = index
-                    j+=1
-
-            substr.add(character)
+                    j += 1
+            else:
+                substr.add(character)
             if len(substr) > max_len:
                 max_len = len(substr)
 
         return max_len
+
+# str: abcabcbb
+# idx: 01234567
+# 1:
+#   index/character: 0/a
+#   if cond: false
+#   ---
+#   set: {a}
+#   max_len: 0->1
+# 2:
+#   index/character: 1/b
+#   if cond: false
+#   ---
+#   set: {a,b}
+#   max_len: 1->2
+# 3:
+#   index/character: 3/c
+#   if cond: false
+#   ---
+#   set: {a,b,c}
+#   max_len: 2->3
+# 4:
+#   index/character: 4/a
+#   if cond: true
+#   j = 3-3=0
+#   inner while loop (s[j] != 'a'):
+#   1:
+#
+#
+#
+#
+#   ---
+#
+#
+#
+#
