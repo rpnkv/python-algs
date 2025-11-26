@@ -40,13 +40,32 @@ class Solution:
         result = []
         while more_nodes_exist:
             current_children_nodes = []
+            current_results = []
+            more_nodes_exist: bool = False
+
             for parent_index in range(int(math.pow(2, current_depth))):
                 local_parent = global_parents[parent_index]
                 if local_parent is not None:
-                    current_children_nodes.append(local_parent.left)
-                    current_children_nodes.append(local_parent.right)
+                    left_child = local_parent.left
+                    if left_child is not None:
+                        current_results.append(left_child.val)
+                        more_nodes_exist = True
+                    else:
+                        current_results.append(None)
 
-            more_nodes_exist = any(map(lambda node: node is not None, current_children_nodes))
-            result.append(map(lambda node: node.val, current_children_nodes))
+                    current_children_nodes.append(left_child)
 
-        return []
+                    right_child = local_parent.right
+                    if right_child is not None:
+                        current_results.append(right_child.val)
+                        more_nodes_exist = True
+                    else:
+                        current_results.append(None)
+                    current_children_nodes.append(right_child)
+
+            # more_nodes_exist = any(map(lambda node: node is not None, current_children_nodes))
+            result.append(current_results)
+            global_parents = current_children_nodes
+            current_depth += 1
+
+        return result

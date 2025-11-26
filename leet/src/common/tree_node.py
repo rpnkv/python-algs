@@ -7,6 +7,9 @@ class TreeNode:
         self.left = left
         self.right = right
 
+    def __repr__(self):
+        return f"TreeNode({self.val})"
+
     def __eq__(self, __value):
         current_level_equals = self.val == __value.val
 
