@@ -70,12 +70,8 @@ def test_equals_base(tn1, tn2, expected_result):
         assert tn1 != tn2
 
 
-def test_equals_fff():
-    assert not TreeNode(
-        2, left=TestingTreeNode(3), right=None
-    ) == TreeNode(
-        2, left=TestingTreeNode(3), right=TestingTreeNode(3))
-
-
 def test_from_array():
-    pass
+    array_repr = [1, 2, 3]
+    expected_tree = TreeNode(1, left=TreeNode(2), right=TreeNode(3))
+
+    assert TreeNode.fbacrom_array(array_repr) == expected_tree

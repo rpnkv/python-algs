@@ -20,5 +20,5 @@ class TreeNode:
         return current_level_equals and left_equals and right_equals
 
     @staticmethod
-    def from_array(values: list[int]) -> Self:
+    def from_array(array_repr: list[int]) -> Self:
         raise NotImplemented
