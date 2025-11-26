@@ -24,4 +24,26 @@ class TreeNode:
 
     @staticmethod
     def from_array(array_repr: list[int]) -> Self:
-        raise NotImplemented
+        if not array_repr or array_repr[0] is None:
+            return None
+
+        root = TreeNode(array_repr[0])
+        queue = [root]
+        i = 1
+
+        while queue and i < len(array_repr):
+            node = queue.pop(0)
+
+            # Left child
+            if i < len(array_repr) and array_repr[i] is not None:
+                node.left = TreeNode(array_repr[i])
+                queue.append(node.left)
+            i += 1
+
+            # Right child
+            if i < len(array_repr) and array_repr[i] is not None:
+                node.right = TreeNode(array_repr[i])
+                queue.append(node.right)
+            i += 1
+
+        return root

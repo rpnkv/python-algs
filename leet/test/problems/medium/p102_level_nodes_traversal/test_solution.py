@@ -1,6 +1,7 @@
 from common.tree_node import TreeNode
 from problems.medium.p102_level_nodes_traversal.solution import Solution
 
+sol = Solution()
 
 def test_1():
     sol = Solution()
@@ -30,3 +31,9 @@ def test_2():
     expected_output = [[1], [2]]
 
     assert sol.levelOrder(input_tree) == expected_output
+
+
+def test_3():
+    root = TreeNode.from_array([1, 2, None, 3, None, 4, None, 5])
+    output = sol.levelOrder(root)
+    print(output)
