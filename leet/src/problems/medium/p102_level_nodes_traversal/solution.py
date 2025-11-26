@@ -33,17 +33,22 @@ class Solution:
         4. If we do have, at least one child, we set up 'repeat condition flag' to 'true'.
         """
 
+        if root is None:
+            return []
+
         current_depth = 0
         global_parents = [root]
         more_nodes_exist = True
 
-        result = []
+        results = [[root.val]]
+
         while more_nodes_exist:
             current_children_nodes = []
-            current_results = []
+
             more_nodes_exist: bool = False
 
             for parent_index in range(int(math.pow(2, current_depth))):
+                current_results = []
                 local_parent = global_parents[parent_index]
                 if local_parent is not None:
                     left_child = local_parent.left
@@ -63,9 +68,10 @@ class Solution:
                         current_results.append(None)
                     current_children_nodes.append(right_child)
 
-            # more_nodes_exist = any(map(lambda node: node is not None, current_children_nodes))
-            result.append(current_results)
+                if len(current_results) != 0 and (current_results[0] is not None or current_results[1] is not None):
+                    results.append([current_result for current_result in current_results if current_result is not None])
+
             global_parents = current_children_nodes
             current_depth += 1
 
-        return result
+        return results
