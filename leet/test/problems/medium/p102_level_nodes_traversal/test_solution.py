@@ -34,6 +34,6 @@ def test_2():
 
 
 def test_3():
-    root = TreeNode.from_array([1, 2, None, 3, None, 4, None, 5])
+    root = TreeNode.from_level_order_array([1, 2, None, 3, None, 4, None, 5])
     output = sol.levelOrder(root)
     print(output)
