@@ -82,19 +82,34 @@ class TreeNode:
         if len(array_repr) == 0:
             return None
 
+        root = TreeNode(array_repr[0])
         if len(array_repr) == 1:
-            return TreeNode(array_repr[0])
+            return root
 
-        processing_depth = 2
-        current_depth_starting_index=1
-        while len(array_repr) > int(math.pow(2, processing_depth)):
+        parents = [root]
+        left_pointer = 1
+        while len(array_repr) > left_pointer:
+            pass
+            children = []
+
+            for parent_index in range(0, len(parents)):
+                # left child
+                left_value_index = left_pointer + parent_index * 2
+                left_value = array_repr[left_value_index]
+                if left_value is not None:
+                    left_leaf = TreeNode(left_value)
+                    parents[parent_index].left = left_leaf
+                    children.append(left_leaf)
+
+                right_value_index = left_pointer + parent_index * 2 + 1
+                right_value = array_repr[right_value_index]
+                if right_value is not None:
+                    right_leaf= TreeNode(right_value)
+                    parents[parent_index].right=right_leaf
+                    children.append(right_leaf)
 
 
-            processing_depth += 1
+            parents = children
+            left_pointer = int(math.pow(2, len(parents))) - 1
 
-        return TreeNode()
-
-
-
-
-
+        return root
