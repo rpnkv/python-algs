@@ -70,10 +70,18 @@ def test_equals_base(tn1, tn2, expected_result):
         assert tn1 != tn2
 
 
-def test_from_level_order_array():
-    array_repr = [1, 2, 3]
-    expected_tree = TreeNode(1, left=TreeNode(2), right=TreeNode(3))
+@pytest.mark.parametrize(
+    argnames=["array_repr", "expected_tree"],
+    argvalues=[
+        ([1, 2, 3], TreeNode(1, left=TreeNode(2), right=TreeNode(3))),
+        ([1, None, 2], TreeNode(val=1, right=2))
+    ]
+)
+def test_from_level_order_array(array_repr: list[int], expected_tree: TreeNode):
+    #array_repr = [1, 2, 3]
+    #expected_tree = TreeNode(1, left=TreeNode(2), right=TreeNode(3))
 
+    #assert TreeNode.from_level_order_array(array_repr) == expected_tree
     assert TreeNode.from_level_order_array(array_repr) == expected_tree
 
 
@@ -94,7 +102,7 @@ def test_to_level_order_array():
 
     assert TreeNode(12).to_level_order_array() == [12]
 
-    root.left=None
+    root.left = None
     root_right.left = None
 
-    assert root.to_level_order_array() == [3,None, 20, None, None, None, 7]
+    assert root.to_level_order_array() == [3, None, 20, None, None, None, 7]
