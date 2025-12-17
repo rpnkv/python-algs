@@ -75,3 +75,19 @@ def test_from_level_order_array():
     expected_tree = TreeNode(1, left=TreeNode(2), right=TreeNode(3))
 
     assert TreeNode.from_level_order_array(array_repr) == expected_tree
+
+
+def test_to_level_order_array():
+    root = TreeNode(3)
+
+    root.left = TreeNode(9)
+    root.right = TreeNode(20)
+
+    root_right = root.right
+
+    root_right.left = TreeNode(15)
+    root_right.right = TreeNode(7)
+
+    expected_array = [3, 9, 20, None, None, 15, 7]
+
+    assert root.to_level_order_array() == expected_array

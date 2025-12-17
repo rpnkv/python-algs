@@ -104,12 +104,58 @@ class TreeNode:
                 right_value_index = left_pointer + parent_index * 2 + 1
                 right_value = array_repr[right_value_index]
                 if right_value is not None:
-                    right_leaf= TreeNode(right_value)
-                    parents[parent_index].right=right_leaf
+                    right_leaf = TreeNode(right_value)
+                    parents[parent_index].right = right_leaf
                     children.append(right_leaf)
-
 
             parents = children
             left_pointer = int(math.pow(2, len(parents))) - 1
 
         return root
+
+    def to_level_order_array(self) -> list[int]:
+        """
+        Iterating the tree level-by level.
+
+        Loop algorithm.
+        Variables:
+            condition: while any of processing nodes isn't a null.
+            input:
+                - processing nodes list, start with root node.
+            expected product:
+                - current nodes siblings, appended as nodes to the intermediate list and values to output.
+            state switch:
+                - siblings become root nodes before switching to new iteration.
+
+        """
+
+        out = []
+        current_parent_nodes = [self]
+
+        while any(map(lambda node: node is not None, current_parent_nodes)):
+            current_children = []
+
+            for parent in current_parent_nodes:
+                if parent is not None:
+                    if parent.left is None:
+                        current_children.append(None)
+                        out.append(None)
+                    else:
+                        current_children.append(parent.left)
+                        out.append(parent.left.val)
+
+                    if parent.right is not None:
+                        current_children.append(parent.right)
+                        out.append(parent.right.val)
+                    else:
+                        current_children.append(None)
+                        out.append(None)
+                else:
+                    values = [None, None]
+                    out += values
+                    current_children += values
+
+            current_parent_nodes = current_children
+
+
+        return out
