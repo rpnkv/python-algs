@@ -88,8 +88,7 @@ class TreeNode:
 
         parents = [root]
         left_pointer = 1
-        while len(array_repr) > left_pointer:
-            pass
+        while left_pointer < len(array_repr):
             children = []
 
             for parent_index in range(0, len(parents)):
@@ -100,6 +99,8 @@ class TreeNode:
                     left_leaf = TreeNode(left_value)
                     parents[parent_index].left = left_leaf
                     children.append(left_leaf)
+                else:
+                    children.append(None)
 
                 right_value_index = left_pointer + parent_index * 2 + 1
                 right_value = array_repr[right_value_index]
@@ -107,6 +108,8 @@ class TreeNode:
                     right_leaf = TreeNode(right_value)
                     parents[parent_index].right = right_leaf
                     children.append(right_leaf)
+                else:
+                    children.append(None)
 
             parents = children
             left_pointer = int(math.pow(2, len(parents))) - 1
@@ -144,6 +147,5 @@ class TreeNode:
                     current_children += [None, None]
 
             current_parent_nodes = current_children
-
 
         return out
