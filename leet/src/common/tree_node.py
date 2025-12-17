@@ -137,23 +137,11 @@ class TreeNode:
 
             for parent in current_parent_nodes:
                 if parent is not None:
-                    if parent.left is None:
-                        current_children.append(None)
-                        out.append(None)
-                    else:
-                        current_children.append(parent.left)
-                        out.append(parent.left.val)
-
-                    if parent.right is not None:
-                        current_children.append(parent.right)
-                        out.append(parent.right.val)
-                    else:
-                        current_children.append(None)
-                        out.append(None)
+                    out.append(parent.val)
+                    current_children += [parent.left, parent.right]
                 else:
-                    values = [None, None]
-                    out += values
-                    current_children += values
+                    out.append(None)
+                    current_children += [None, None]
 
             current_parent_nodes = current_children
 

@@ -91,3 +91,10 @@ def test_to_level_order_array():
     expected_array = [3, 9, 20, None, None, 15, 7]
 
     assert root.to_level_order_array() == expected_array
+
+    assert TreeNode(12).to_level_order_array() == [12]
+
+    root.left=None
+    root_right.left = None
+
+    assert root.to_level_order_array() == [3,None, 20, None, None, None, 7]
