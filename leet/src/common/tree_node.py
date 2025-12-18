@@ -116,22 +116,21 @@ class TreeNode:
 
         return root
 
-    def to_level_order_array(self) -> list[int]:
+    def _to_level_order_as_arrays(self) -> list[list[int]]:
         """
-        Iterating the tree level-by level.
+            Iterating the tree level-by level.
 
-        Loop algorithm.
-        Variables:
-            condition: while any of processing nodes isn't a null.
-            input:
-                - processing nodes list, start with root node.
-            expected product:
-                - current nodes siblings, appended as nodes to the intermediate list and values to output.
-            state switch:
-                - siblings become root nodes before switching to new iteration.
+            Loop algorithm.
+            Variables:
+                condition: while any of processing nodes isn't a null.
+                input:
+                    - processing nodes list, start with root node.
+                expected product:
+                    - current nodes siblings, appended as nodes to the intermediate list and values to output.
+                state switch:
+                    - siblings become root nodes before switching to new iteration.
 
-        """
-
+       """
         out = []
         current_parent_nodes = [self]
 
@@ -140,12 +139,39 @@ class TreeNode:
 
             for parent in current_parent_nodes:
                 if parent is not None:
-                    out.append(parent.val)
                     current_children += [parent.left, parent.right]
                 else:
-                    out.append(None)
                     current_children += [None, None]
 
+            out.append([*map(lambda node: node.val if node is not None else None, current_parent_nodes)])
             current_parent_nodes = current_children
 
         return out
+
+
+
+    def to_level_order_array(self) -> list[int]:
+        """
+        Performs flattening of _to_level_order_as_arrays.
+        """
+        level_order_arrays = self._to_level_order_as_arrays()
+
+        out = []
+
+        for array in level_order_arrays:
+            out += array
+
+        return out
+
+    def to_string_tree(self) -> str:
+        level_order_arrays = self._to_level_order_as_arrays()
+
+        max_len = len(level_order_arrays[-1]) - 1
+
+        out = []
+
+        for array in level_order_arrays:
+            out.append(" ".join([*map(lambda x: str(x), array)]))
+
+        return "\n".join(out)
+
