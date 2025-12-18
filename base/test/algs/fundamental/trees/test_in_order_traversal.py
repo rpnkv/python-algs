@@ -27,6 +27,6 @@ def _init_test_tree() -> TreeNode:
     ],
     ids=["very basic case", "one more my case","example 1", ]
 )
-def test_parametrised(traversing_tree_as_array, expected_values):
+def test_recursive(traversing_tree_as_array, expected_values):
     root = TreeNode.from_level_order_array(traversing_tree_as_array)
     assert traverse_recursive(root) == expected_values
