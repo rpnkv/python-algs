@@ -19,7 +19,7 @@ def traverse_recursive(root: Optional[TreeNode]) -> list[int]:
         return traverse_recursive(root.left) + [root.val] + traverse_recursive(root.right)
 
 
-def traverse_iterative(root: Optional[TreeNode]) -> list[int]:
+def traverse_iterative_my_worse(root: Optional[TreeNode]) -> list[int]:
     if root is None:
         return []
 
@@ -51,3 +51,23 @@ def traverse_iterative(root: Optional[TreeNode]) -> list[int]:
             else:
                 nodes_ordered.append(current.val)
                 current = None
+
+    raise RuntimeError("Unexpected state")
+
+
+def traverse_iterative_perfect(root: Optional[TreeNode]) -> list[int]:
+    stack = []
+    current = root
+    result = []
+
+    while stack or current:
+        while current:
+            stack.append(current)
+            current = current.left
+
+        current = stack.pop()
+        result.append(current.val)
+
+        current = current.right
+
+    return result
