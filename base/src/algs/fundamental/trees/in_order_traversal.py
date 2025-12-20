@@ -20,27 +20,34 @@ def traverse_recursive(root: Optional[TreeNode]) -> list[int]:
 
 
 def traverse_iterative(root: Optional[TreeNode]) -> list[int]:
-    @dataclasses.dataclass
-    class TraversalLog:
-        node: TreeNode
-        left_visited = False
-        right_visited = False
+    if root is None:
+        return []
 
-    nodes_stack = []
-    result = []
-
-    current_node = root
-    node_popped = False
+    stack = []
+    current = root
+    nodes_ordered = []
 
     while True:
-        if current_node.left is None and current_node.right is None:
-            pass
+        if not current:
+            if len(stack) == 0:
+                return nodes_ordered
+            else:
+                current = stack.pop()
+                nodes_ordered.append(current.val)
+                if current.right is not None:
+                    current = current.right
+                else:
+                    current = None
+                continue
 
-        if current_node.left is not None:
-            nodes_stack.append(current_node)
+        if current.left is not None:
+            stack.append(current)
+            current = current.left
             continue
         else:
-            result.append(current_node.val)
-            current_node = nodes_stack.pop()
-
-    return result
+            if current.right is not None:
+                nodes_ordered.append(current.val)
+                current = current.right
+            else:
+                nodes_ordered.append(current.val)
+                current = None
