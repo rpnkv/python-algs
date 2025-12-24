@@ -3,7 +3,7 @@ from typing import List
 
 class Solution:
     def merge(self, nums1: List[int], m: int, nums2: List[int], n: int) -> None:
-        copy = nums1[0:m]
+        copy = nums1[:m]
 
         l1 = l2 = res = 0
 
@@ -16,12 +16,10 @@ class Solution:
                 l2 += 1
             res += 1
 
-        while l1 < m:
-            nums1[res] = copy[l1]
-            l1 += 1
+        for i in range(l1, m):
+            nums1[res] = copy[i]
             res += 1
 
-        while l2 < n:
-            nums1[res] = nums2[l2]
-            l2 += 1
+        for i in range(l2, n):
+            nums1[res] = nums2[i]
             res += 1
