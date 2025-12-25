@@ -8,7 +8,8 @@ TEST_VALUES = [
     pytest.param([], 5, 0, id="empty"),
     pytest.param([1], 2, 1, id="single non-equal"),
     pytest.param([1], 1, 0, id="single equal"),
-    pytest.param([1, 2, 2, 3, 4], 2, 3, id="regular"),
+    pytest.param([1, 2, 2, 3, 4], 2, 3, id="starts with non-removable"),
+    pytest.param([2, 1, 2, 3, 4], 2, 3, id="starts with removable"),
 ]
 
 
