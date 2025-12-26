@@ -74,7 +74,7 @@ def traverse_iterative_pre_check(root: Optional[TreeNode]) -> list[int]:
     If the node has left sibling, it 100% must be processed after it. We put current into stack and switch current to
     the left.
 
-    If the node has no left, it just commits itself. And switches to the right.
+    If the node has no left sibling, it just commits itself. And switches to the right.
 
     If node is stack-extracted, it commits itself.
 
@@ -92,25 +92,15 @@ def traverse_iterative_pre_check(root: Optional[TreeNode]) -> list[int]:
     stack_extracted = False
 
     while True:
-        if stack_extracted:
-            stack_extracted = False
-
-            traversal.append(current_node.left.val)
-            traversal.append(current_node.val)
-
-            current_node = current_node.right
+        if current_node.left is not None:
+            stack.append(current_node.val)
+            current_node = current_node.left
         else:
-            if not current_node:
-                if not stack:
-                    return traversal
-                else:
-                    current_node = stack.pop()
-                    stack_extracted = True
-            else:
-                if not current_node.left:
-                    stack_extracted = True
-                else:
-                    stack.append(current_node)
-                    current_node = current_node.left
+            traversal.append(current_node.val)
+            if current_node.right is not None:
+                current_node = current_node.right
+
+
+
 
     return traversal
