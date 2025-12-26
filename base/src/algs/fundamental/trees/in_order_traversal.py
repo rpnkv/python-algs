@@ -13,10 +13,24 @@ def traverse_recursive(root: Optional[TreeNode]) -> list[int]:
 
     """
 
-    if root is None:
+    if not root:
         return []
     else:
         return traverse_recursive(root.left) + [root.val] + traverse_recursive(root.right)
+
+
+def traverse_recursive_pre_check(root: Optional[TreeNode]) -> list[int]:
+    if root.left is not None:
+        left = traverse_recursive_pre_check(root.left)
+    else:
+        left = []
+
+    if root.right is not None:
+        right = traverse_recursive_pre_check(root.right)
+    else:
+        right = []
+
+    return left + [root.val] + right
 
 
 def traverse_iterative_my_worse(root: Optional[TreeNode]) -> list[int]:
@@ -55,19 +69,48 @@ def traverse_iterative_my_worse(root: Optional[TreeNode]) -> list[int]:
     raise RuntimeError("Unexpected state")
 
 
-def traverse_iterative_perfect(root: Optional[TreeNode]) -> list[int]:
-    stack = []
-    current = root
-    result = []
+def traverse_iterative_pre_check(root: Optional[TreeNode]) -> list[int]:
+    """
+    If the node has left sibling, it 100% must be processed after it. We put current into stack and switch current to
+    the left.
 
-    while stack or current:
-        while current:
-            stack.append(current)
-            current = current.left
+    If the node has no left, it just commits itself. And switches to the right.
 
-        current = stack.pop()
-        result.append(current.val)
+    If node is stack-extracted, it commits itself.
 
-        current = current.right
+    If the node was extracted from the stack, left and right values must be committed.
+    If the node is entered for the first time, then it's value may be commited only when there is no left sibling.
+    If left sibling exists, current node must be put in stack and switch to the left one.
+    So, if node is extracted from the stack, that it does have a left sibling.
 
-    return result
+    """
+    from typing import List
+    stack: List[TreeNode] = []
+    traversal: List[int] = []
+    current_node: Optional[TreeNode] = root
+
+    stack_extracted = False
+
+    while True:
+        if stack_extracted:
+            stack_extracted = False
+
+            traversal.append(current_node.left.val)
+            traversal.append(current_node.val)
+
+            current_node = current_node.right
+        else:
+            if not current_node:
+                if not stack:
+                    return traversal
+                else:
+                    current_node = stack.pop()
+                    stack_extracted = True
+            else:
+                if not current_node.left:
+                    stack_extracted = True
+                else:
+                    stack.append(current_node)
+                    current_node = current_node.left
+
+    return traversal
