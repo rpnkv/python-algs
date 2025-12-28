@@ -45,19 +45,19 @@ class ListNode(Sized):
     # def __lt__(self, __value):
     #     return self.val < __value.val
 
+    @staticmethod
+    def to_linked_list(the_list: list[int]) -> Optional[Self]:
+        if len(the_list) == 1:
+            return ListNode(val=the_list[0])
+        elif len(the_list) == 0:
+            return None
 
-def to_linked_list(the_list: list[int]) -> Optional[ListNode]:
-    if len(the_list) == 1:
-        return ListNode(val=the_list[0])
-    elif len(the_list) == 0:
-        return None
+        head = ListNode(val=the_list[0])
+        tail = head
 
-    head = ListNode(val=the_list[0])
-    tail = head
+        for value in the_list[1:]:
+            tail_new = ListNode(val=value, next=None)
+            tail.next = tail_new
+            tail = tail_new
 
-    for value in the_list[1:]:
-        tail_new = ListNode(val=value, next=None)
-        tail.next = tail_new
-        tail = tail_new
-
-    return head
+        return head
