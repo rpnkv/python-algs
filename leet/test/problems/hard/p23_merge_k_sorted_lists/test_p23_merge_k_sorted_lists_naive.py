@@ -1,8 +1,13 @@
 from typing import Optional, List
 
 from common.list_node import to_linked_list, ListNode
-from problems.hard.p23.p23_merge_k_sorted_lists_heapq import Solution
-from problems.hard.p23.test_p23_merge_k_sorted_lists_naive import create_input
+from problems.hard.p23_merge_k_sorted_lists.p23_merge_k_sorted_lists_naive import Solution
+
+create_input = lambda: [
+    to_linked_list([1, 2, 3]),
+    to_linked_list([1, 2, 3]),
+    to_linked_list([2, 3, 4])
+]
 
 
 def test_generic():
@@ -23,19 +28,8 @@ def test_generic():
     assert sol.mergeKLists(function_input) == expected_output
 
 
-def test_internal_list_empty():
+def test_empty():
     function_input: List[Optional[ListNode]] = [None]
-
-    expected_output = None
-
-    sol = Solution()
-
-    actual_output = sol.mergeKLists(function_input)
-    assert actual_output == expected_output
-
-
-def test_external_list_empty():
-    function_input: List[Optional[ListNode]] = []
 
     expected_output = None
 
@@ -43,11 +37,10 @@ def test_external_list_empty():
     assert sol.mergeKLists(function_input) == expected_output
 
 
-def test_repeating_nums():
-    function_input = [
-        to_linked_list([1, 2, 2, 2, 3])
-    ]
+def test_another_empty():
+    function_input: List[Optional[ListNode]] = []
 
-    expected_output = to_linked_list([1, 2, 2, 2, 3])
+    expected_output = None
+
     sol = Solution()
     assert sol.mergeKLists(function_input) == expected_output

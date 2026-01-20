@@ -1,8 +1,8 @@
 import timeit
 
 from common import bench_utils
-from problems.hard.p23.input_generator import produce_full
-from problems.hard.p23.p23_merge_k_sorted_lists_naive import Solution
+from problems.hard.p23_merge_k_sorted_lists.input_generator import produce_full
+from problems.hard.p23_merge_k_sorted_lists.p23_merge_k_sorted_lists_naive import Solution
 
 
 def benchmark(test_input, number: int, repeat: int) -> list[float]:
