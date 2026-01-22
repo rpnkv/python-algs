@@ -54,3 +54,9 @@ THOROUGH_TESTS = [
 def test_traverse_iterative_pre_check(traversing_tree_as_array, expected_values):
     root = TreeNode.from_level_order_array(traversing_tree_as_array)
     assert traverse_iterative_pre_check(root) == expected_values
+
+
+@pytest.mark.parametrize(["traversing_tree_as_array", "expected_values"], TEST_CASES)
+def test_traverse_iterative_one_more(traversing_tree_as_array, expected_values):
+    root = TreeNode.from_level_order_array(traversing_tree_as_array)
+    assert test_traverse_iterative_one_more(root) == expected_values

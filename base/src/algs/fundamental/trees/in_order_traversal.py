@@ -107,3 +107,10 @@ def traverse_iterative_pre_check(root: Optional[TreeNode]) -> list[int]:
 
 
     return traversal
+
+
+def traverse_iterative_one_more(root: Optional[TreeNode]) -> list[int]:
+    """
+    Lolissimo.
+    """
+    raise NotImplementedError
