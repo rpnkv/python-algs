@@ -84,6 +84,9 @@ def traverse_iterative_pre_check(root: Optional[TreeNode]) -> list[int]:
     So, if node is extracted from the stack, that it does have a left sibling.
 
     """
+
+    raise NotImplementedError
+
     from typing import List
     stack: List[TreeNode] = []
     traversal: List[int] = []
