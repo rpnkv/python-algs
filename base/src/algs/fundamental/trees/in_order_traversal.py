@@ -111,6 +111,22 @@ def traverse_iterative_pre_check(root: Optional[TreeNode]) -> list[int]:
 
 def traverse_iterative_one_more(root: Optional[TreeNode]) -> list[int]:
     """
-    Lolissimo.
+        Go deeper while node is null. Then pop from stack, process, and try to process right one.
+
+
     """
-    raise NotImplementedError
+    stack: list[TreeNode] = []
+    current = root
+    res = []
+
+    while stack or current:
+        if current:
+            stack.append(current)
+            current = current.left
+        else:
+            current = stack.pop()
+            res.append(current.val)
+            current= current.right
+
+    return res
+

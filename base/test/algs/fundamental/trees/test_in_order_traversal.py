@@ -1,7 +1,7 @@
 import pytest
 
 from algs.fundamental.trees.in_order_traversal import traverse_recursive, traverse_iterative_my_worse, \
-    traverse_iterative_pre_check
+    traverse_iterative_pre_check, traverse_iterative_one_more
 from common.tree_node import TreeNode
 
 
@@ -59,4 +59,4 @@ def test_traverse_iterative_pre_check(traversing_tree_as_array, expected_values)
 @pytest.mark.parametrize(["traversing_tree_as_array", "expected_values"], TEST_CASES)
 def test_traverse_iterative_one_more(traversing_tree_as_array, expected_values):
     root = TreeNode.from_level_order_array(traversing_tree_as_array)
-    assert test_traverse_iterative_one_more(root) == expected_values
+    assert traverse_iterative_one_more(root) == expected_values
