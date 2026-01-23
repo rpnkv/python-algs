@@ -17,10 +17,3 @@ class Solution:
 
         return max
 
-
-def main():
-    assert Solution.max_area(height=[1, 8, 6, 2, 5, 4, 8, 3, 7]) == 49
-
-
-if __name__ == "__main__":
-    main()
