@@ -8,8 +8,9 @@ sol = Solution()
 @pytest.mark.parametrize(
     argnames=["heights", "expected_square"],
     argvalues=[
-        ([1, 8, 6, 2, 5, 4, 8, 3, 7], 49)
+        ([1, 3, 1, 4], 6),
+        ([1, 8, 6, 2, 5, 4, 8, 3, 7], 49),
     ]
 )
 def test(heights, expected_square):
-    assert sol.max_area(heights) == expected_square
+    assert sol.maxArea(heights) == expected_square

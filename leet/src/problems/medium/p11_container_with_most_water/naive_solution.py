@@ -2,18 +2,21 @@ from typing import List
 
 
 class Solution:
-    @staticmethod
-    def max_area(height: List[int]) -> int:
-        max = 0
+    def maxArea(self, height: List[int]) -> int:
+        list_len = len(height)
 
-        for i, v in enumerate(height):
-            for ii in range(i, len(height)):
-                if ii != i:
-                    # current_values = list()
-                    lowest_side = height[i] if height[i] < height[ii] else height[ii]
-                    container = lowest_side * (ii - i)
-                    if container > max:
-                        max = container
+        max_area = 0
 
-        return max
+        for i in range(list_len):
+            for j in range(i + 1, list_len):
 
+                # current_area = min(height[i], height[j]) *
+                min_height = min(height[i], height[j])
+                current_width = abs(i - j)
+
+                current_area = min_height * current_width
+
+                if current_area > max_area:
+                    max_area = current_area
+
+        return max_area
