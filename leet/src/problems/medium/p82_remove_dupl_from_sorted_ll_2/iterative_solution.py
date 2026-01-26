@@ -15,17 +15,6 @@ class Solution:
         previous: ListNode = temp_head
         current: ListNode = head
 
-        while current and current.next:
-            if current.val == current.next.val:
-                temp_next = current.next.next
+        raise NotImplementedError
 
-                while temp_next and temp_next.val == current.val:
-                    temp_next = temp_next.next
 
-                previous.next = temp_next
-                current = temp_next
-            else:
-                previous = current
-                current = previous.next
-
-        return temp_head.next
