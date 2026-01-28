@@ -2,31 +2,27 @@ from typing import List
 
 
 class Solution:
-    def merge(self, nums1: List[int], m: int, nums2: List[int], n: int) -> None:
-        """
-        Two pointers, but in descending order, inserting into the end of the list.
+    def merge(self, nums1: List[int],  # [0,0,0]
+              m: int,  # 0
+              nums2: List[int],  # [1,2,3]
+              n: int  # 3
+              ) -> None:
+        # case 1 -- both empty: OK
+        # case 2 -- right is empty: OK
+        # case 3 -- left is empty: OK
 
-        """
-        i = len(nums1) - 1
-        m -= 1
-        n -= 1
+        p1, p2, p = m - 1, n - 1, len(nums1) - 1 # -1, 2, 2
 
-        while m >= 0 and n >= 0:
-            if nums1[m] > nums2[n]:
-                nums1[i] = nums1[m]
-                m -= 1
+        while p1 >= 0 and p2 >= 0:
+            if nums1[p1] > nums2[p2]:
+                nums1[p] = nums1[p1]
+                p1 -= 1
             else:
-                nums1[i] = nums2[n]
-                n -= 1
+                nums1[p] = nums2[p2]
+                p2 -= 1
 
-            i -= 1
+            p -= 1
 
-        while m >= 0:
-            nums1[i] = nums1[m]
-            m -= 1
-            i -= 1
-
-        while n >= 0:
-            nums1[i] = nums2[n]
-            n -= 1
-            i -= 1
+        if p1 < 0:
+            for i in range(p2 + 1): #[0,1,2]
+                nums1[i] = nums2[i]
