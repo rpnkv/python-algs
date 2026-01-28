@@ -7,6 +7,7 @@ from problems.medium.p82_remove_dupl_from_sorted_ll_2.recursive_solution import 
 TEST_CASES = [
     pytest.param([], []),
     pytest.param([1], [1]),
+    pytest.param([1, 2, 3], [1, 2, 3]),
     pytest.param([1, 1], []),
     pytest.param([1, 1, 2], [2, ]),
     pytest.param([1, 2, 3, 3, 4, 4, 5], [1, 2, 5]),
