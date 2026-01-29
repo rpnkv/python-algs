@@ -7,6 +7,10 @@ class Solution:
               nums2: List[int],  # [1,2,3]
               n: int  # 3
               ) -> None:
+        """
+        28.01.26 -- 13mins
+        """
+
         # case 1 -- both empty: OK
         # case 2 -- right is empty: OK
         # case 3 -- left is empty: OK
