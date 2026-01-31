@@ -1,6 +1,6 @@
 from typing import Optional
 
-from problems.easy.p141_linked_list_cycle.naive_solution import ListNode
+from problems.p141_linked_list_cycle.naive_solution import ListNode
 
 
 class Solution:

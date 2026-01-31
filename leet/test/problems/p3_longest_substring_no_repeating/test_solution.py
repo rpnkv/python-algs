@@ -1,6 +1,6 @@
 import pytest
 
-from problems.medium.p3_longest_substring_no_repeating.solution import Solution
+from problems.p3_longest_substring_no_repeating.solution import Solution
 
 
 @pytest.mark.parametrize(

@@ -1,14 +1,14 @@
 from typing import Optional, List
 
-from common.list_node import to_linked_list, ListNode
-from problems.hard.p23_merge_k_sorted_lists.p23_merge_k_sorted_lists_heapq import Solution
-from problems.hard.p23_merge_k_sorted_lists.test_p23_merge_k_sorted_lists_naive import create_input
+from common.list_node import ListNode
+from problems.p23_merge_k_sorted_lists.p23_merge_k_sorted_lists_heapq import Solution
+from problems.p23_merge_k_sorted_lists.test_p23_merge_k_sorted_lists_naive import create_input
 
 
 def test_generic():
     function_input: List[Optional[ListNode]] = create_input()
 
-    expected_output = to_linked_list(
+    expected_output = ListNode.to_linked_list(
         [1, 1,
          2, 2, 2,
          3, 3, 3,

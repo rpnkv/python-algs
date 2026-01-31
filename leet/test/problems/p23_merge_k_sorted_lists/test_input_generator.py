@@ -1,14 +1,14 @@
 import math
 
-from common.list_node import to_linked_list
-from problems.hard.p23_merge_k_sorted_lists.input_generator import produce_full
+from common.list_node import ListNode
+from problems.p23_merge_k_sorted_lists.input_generator import produce_full
 
 
 def test_test_data_generator_equal_lists_length():
     test_data = produce_full(30, 10, 0)
-    expected_first_list = to_linked_list([*range(0, 9 + 1)])
-    expected_second_list = to_linked_list([*range(10, 19 + 1)])
-    expected_third_list = to_linked_list([*range(20, 29 + 1)])
+    expected_first_list = ListNode.to_linked_list([*range(0, 9 + 1)])
+    expected_second_list = ListNode.to_linked_list([*range(10, 19 + 1)])
+    expected_third_list = ListNode.to_linked_list([*range(20, 29 + 1)])
 
     assert test_data[0] == expected_first_list
     assert test_data[1] == expected_second_list
@@ -20,8 +20,8 @@ def test_test_data_generator_equal_lists_length():
 def test_test_data_generator_NOT_equal_lists_length():
     test_data = produce_full(15, 10, 0)
 
-    expected_first_list = to_linked_list([*range(0, 9 + 1)])
-    expected_second_list = to_linked_list([*range(10, 15)])
+    expected_first_list = ListNode.to_linked_list([*range(0, 9 + 1)])
+    expected_second_list = ListNode.to_linked_list([*range(10, 15)])
 
     assert test_data[0] == expected_first_list
     assert test_data[1] == expected_second_list
