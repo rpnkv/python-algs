@@ -1,6 +1,6 @@
 import pytest
 
-from problems.easy.p27_remove_element.expected_solution import Solution
+from problems.p27_remove_element.expected_solution import Solution
 
 sol = Solution()
 

@@ -1,6 +1,6 @@
 import pytest
 
-from problems.easy.p27_remove_element.naive_solution_optimized import Solution
+from problems.p27_remove_element.naive_solution_optimized import Solution
 
 sol = Solution()
 
