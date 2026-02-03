@@ -12,4 +12,4 @@ class Node:
 
     @staticmethod
     def build(vertices: list[int], edges: list[Tuple[int, int]]) -> Self:
-        raise NotImplementedfiu
+        raise NotImplemented

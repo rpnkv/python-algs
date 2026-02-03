@@ -17,7 +17,10 @@ def test_not_hashable():
 @pytest.mark.parametrize(
     argnames=["graph1", "graph2", "are_equal"],
     argvalues=[
-
+        # test graph 1, acyclic
+        (
+                Node(1, [Node(2), Node(3)]), Node(1, [Node(2), Node(3)]), True
+        )
     ]
 )
 def test_equals(graph1: Node, graph2: Node, are_equal: bool):
