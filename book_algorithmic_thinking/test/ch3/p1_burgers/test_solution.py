@@ -26,3 +26,7 @@ def test_solution_simplified(m: int, n: int, t: int, expected_answer: int):
 )
 def test_solution(m: int, n: int, t: int, expected_answer: int):
     assert solve_t(m, n, t) == expected_answer
+
+
+def test_solution_large():
+    print(solve_t(4, 2, 88))
