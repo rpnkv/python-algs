@@ -1,7 +1,7 @@
 import pytest
 
-from problems.easy.p88_merge_sorted_array.solution_advanced import Solution as SolAdvanced
-from problems.easy.p88_merge_sorted_array.solution_expected import Solution as SolExpected
+from problems.p88_merge_sorted_array.solution_advanced import Solution as SolAdvanced
+from problems.p88_merge_sorted_array.solution_expected import Solution as SolExpected
 
 TEST_DATA = [
     pytest.param([], 0, [], [], id="both are empty"),
