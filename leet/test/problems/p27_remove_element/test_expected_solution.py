@@ -6,6 +6,7 @@ sol = Solution()
 
 TEST_CASES = [
     pytest.param([], 0, [], id="empty input"),
+    pytest.param([1, 2], 3, [1,2], id="full result"),
     pytest.param([2, 2], 2, [], id="empty result"),
     pytest.param([3, 2, 2], 3, [2, 2], id="removed from beginning"),
     pytest.param([3, 3, 2, 2], 3, [2, 2], id="removed two from beginning"),
