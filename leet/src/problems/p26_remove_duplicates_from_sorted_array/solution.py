@@ -3,30 +3,23 @@ from typing import List
 
 class Solution:
     def removeDuplicates(self, nums: List[int]) -> int:
-        """
-        Two cycles:
-            - external iterates left pointer;
-            - internal iterates right pointer over repeating values;
+        left: int = None
 
-        Left pointer, points to the last array's item, that all to the left, including it, are unique.
-        Shift condition: when right pointer is at the element which != left element or array is over and we put left's
-        element to right + 1 position
+        for i in range(len(nums) - 1):
+            if nums[i] == nums[i + 1]:
+                left = i
+                break
 
-        Right pointer, seeking for current range's end, moves forward, until non-equal to the left pointer's value is
-        met.
-        """
+        else:
+            return len(nums)
 
-        left = 0
-        right = 0
+        right = left + 1
 
-        while left < len(nums):
-            while right < len(nums):
-                if nums[right] != nums[left]:
-                    nums[right + 1] = nums[left]
-                    break
-                else:
-                    left += 1
+        while right < len(nums):
+            if nums[right] != nums[left]:
+                left += 1
+                nums[left] = nums[right]
 
             right += 1
 
-        return left
+        return left + 1
