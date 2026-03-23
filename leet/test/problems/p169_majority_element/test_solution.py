@@ -23,6 +23,6 @@ def test_naive_solution(input_list: list[int], expected_value: int):
         ([2, 2, 1, 1, 1, 2, 2], 2)
     ]
 )
-def test_naive_solution(input_list: list[int], expected_value: int):
+def test_expected_solution(input_list: list[int], expected_value: int):
     sol = ExpectedSolution()
     assert sol.majorityElement(input_list) == expected_value
