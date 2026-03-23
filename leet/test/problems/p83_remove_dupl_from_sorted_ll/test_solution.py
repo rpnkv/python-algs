@@ -1,7 +1,7 @@
 import pytest
 
 from common.list_node import ListNode
-from problems.easy.p83_remove_dupl_from_sorted_ll.solution import Solution
+from problems.p83_remove_dupl_from_sorted_ll.solution import Solution
 
 sol = Solution()
 
