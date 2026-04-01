@@ -5,20 +5,26 @@ from problems.p141_linked_list_cycle.naive_solution import ListNode
 
 class Solution:
     def hasCycle(self, head: Optional[ListNode]) -> bool:
-        """
-            Two iterators: slow and fast.
-
-        """
-        if not head or not head.next:
+        if not head:
             return False
 
-        slow = head
-        fast = head.next
 
-        while fast.next and fast.next.next:
-            fast = fast.next.next
+        if head.next == head:
+            return True
+
+        slow: ListNode = head
+
+        if not head.next:
+            return False
+
+        fast: ListNode = head.next.next
+
+        while fast and fast.next:
             if slow == fast:
                 return True
-            slow = slow.next
+            else:
+                slow = slow.next
+                fast = fast.next.next
 
         return False
+

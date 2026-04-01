@@ -3,7 +3,7 @@ from typing import Optional
 import pytest
 
 # from common.list_node import ListNode
-from problems.easy.p141_linked_list_cycle.expected_solution import Solution, ListNode
+from problems.p141_linked_list_cycle.expected_solution import Solution, ListNode
 
 sol = Solution()
 
