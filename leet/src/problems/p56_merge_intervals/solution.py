@@ -1,23 +1,32 @@
 from typing import List
 
-class Solution:
 
+class Solution:
     def merge(self, intervals: List[List[int]]) -> List[List[int]]:
         intervals.sort(key=lambda interval_list: interval_list[0])
 
         result = []
 
-        for i in range(len(intervals) - 1):
+        i = 0
+        while i != len(intervals):
+            if i == len(intervals) - 1:
+                result.append(intervals[i])
+                return result
+
             current_interval = intervals[i]
-            next_interval = intervals[i+1]
 
-            if current_interval[1] < next_interval[0]:
-                result.append(current_interval)
-            else:
-                raise NotImplementedError
+            current_max_bound = current_interval[1]
+            j = i + 1
+            next_interval = intervals[j]
 
+            while next_interval[0] <= current_max_bound:
+                current_max_bound = max(next_interval[1], current_max_bound)
+                j += 1
+                if j == len(intervals):
+                    break
+                next_interval = intervals[j]
 
-        result.append(intervals[-1])
+            result.append([current_interval[0], current_max_bound])
+            i = j
 
         return result
-
