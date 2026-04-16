@@ -1,6 +1,6 @@
 import pytest
 
-from algs.binary_search import search_while
+from algs.fundamental.search.binary_search import search as search_while
 
 
 def test_empty():
@@ -10,10 +10,11 @@ def test_empty():
 @pytest.mark.parametrize(
     argnames=["arr", "target", "index"],
     argvalues=[
+        ([1], 0, -1),
         ([1], 1, 0),
         ([1], 2, -1)
     ],
-    ids=["existing", "non-existing"]
+    #ids=["existing", "non-existing"]
 )
 def test_single(arr: list, target: int, index: int):
     assert search_while(arr, target) == index
@@ -22,11 +23,15 @@ def test_single(arr: list, target: int, index: int):
 @pytest.mark.parametrize(
     argnames=["arr", "target", "index"],
     argvalues=[
-        ([1, 2], 1, 0),
-        ([1, 2], 2, 1),
-        ([1, 2], 3, -1)
+        # ([1, 2], 1, 0),
+        # ([1, 2], 2, 1),
+        # ([1, 2], 3, -1),
+        ([0, 1], -1, -1),
+        ([0, 1], 0, 0),
+        ([0, 1], 1, 1),
+        ([0, 1], 2, -1)
     ],
-    ids=["existing 1", "existing 2", "non-existing"]
+    #ids=["existing 1", "existing 2", "non-existing"]
 )
 def test_two(arr: list, target: int, index: int):
     assert search_while(arr, target) == index
