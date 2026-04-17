@@ -1,21 +1,23 @@
 class StockSpanner:
-
     def __init__(self):
-        self.archive_prices=[]
+        self.stack = []
 
     def next(self, price: int) -> int:
-        archive_prices = self.archive_prices
+        stack = self.stack
 
-        if not archive_prices:
-            archive_prices.append(price)
+        if not stack:
+            stack.append((price, 1))
             return 1
 
-        if archive_prices[-1] <= price:
-            archive_prices.append(price)
-            return len(archive_prices)
+        if stack[-1][0] > price:
+            stack.append((price, 1))
+            return 1
         else:
-            archive_price = archive_prices.pop()
-            while archive_prices and archive_price > price:
+            len_sum = 0
+            while stack and stack[-1][0] <= price:
+                old_price, old_len = stack.pop()
+                len_sum+=old_len
 
+            stack.append((price, len_sum + 1))
 
-        raise NotImplementedError
+            return stack[-1][1]
