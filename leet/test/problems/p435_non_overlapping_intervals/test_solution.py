@@ -18,6 +18,6 @@ def test_solution(intervals: list[list[int]], expected_output: int):
 
 @pytest.mark.parametrize(["intervals", "expected_output"], TEST_CASES)
 def test_my_solution(intervals: list[list[int]], expected_output: int):
-    from problems.p435_non_overlapping_intervals.my_solution import Solution
+    from problems.p435_non_overlapping_intervals.greedy_sort import Solution
     sol = Solution()
     assert sol.eraseOverlapIntervals(intervals) == expected_output
