@@ -1,6 +1,6 @@
 import pytest
 
-from problems.p1493_longest_subarray_of_ones.solution_bruteforce import Solution
+from problems.p1493_longest_subarray_of_ones.solution import Solution
 
 TEST_CASES = [
     pytest.param([0], 0, id="My case 1"),

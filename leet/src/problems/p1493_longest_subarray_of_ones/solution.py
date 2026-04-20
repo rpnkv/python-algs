@@ -2,35 +2,23 @@ from typing import List
 
 
 class Solution:
-    def longestSubarray(self, nums: List[int]) -> int:
-        l, r = 0, 0
-        zeroes = 0
-        max_len = 0
+    def longestSubarray(self, nums: List[int]) -> int: # [1, 0, 1], 2
+        if len(nums) == 1:
+            return 0
 
-        while r < len(nums):
-            if l == r and nums[r] == 0:
-                l += 1
-                r += 1
-                continue
+        l = 0
+        zeroes = 0 if nums[0] else 1
+        max_len = 1
 
-            if l == r and nums[r] == 1:
-                r += 1
-                continue
-
+        for r in range(1, len(nums)):
             if nums[r] == 0:
                 if zeroes == 0:
                     zeroes = 1
-                    r += 1
                 else:
-                    while zeroes > 0 and r != l:
-                        if nums[l] == 0:
-                            zeroes = 0
-
+                    while nums[l] != 0 or l == r:
                         l += 1
-                    continue
-            else:
-                r += 1
+                    zeroes = 0 if nums[0] else 1
 
-            max_len = max(max_len, r - l - zeroes)
+            max_len = max(max_len, r - l + 1)
 
         return max_len
