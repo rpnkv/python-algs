@@ -20,19 +20,17 @@ class Solution:
             if nums[r] == 0:
                 if zeroes == 0:
                     zeroes = 1
-                    r+=1
+                    r += 1
                 else:
-                    while zeroes > 0 and r!=l:
+                    while zeroes > 0 and r != l:
                         if nums[l] == 0:
                             zeroes = 0
 
-                        l+=1
+                        l += 1
                     continue
             else:
-                r+=1
+                r += 1
 
-
-            max_len = max(max_len, r-l)
+            max_len = max(max_len, r - l - zeroes)
 
         return max_len
-
