@@ -15,12 +15,10 @@ class Solution:
                 if zeroes == 0:
                     zeroes = 1
                 else:
-                    while zeroes:
-                        if nums[l] == 0:
-                            zeroes -= 1
-
+                    while nums[l] != 0 or l == r:
                         l += 1
+                    zeroes = 0 if nums[0] else 1
 
-            max_len = max(max_len, r - l)
+            max_len = max(max_len, r - l + 1)
 
         return max_len

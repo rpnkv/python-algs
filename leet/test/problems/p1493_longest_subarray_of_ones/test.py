@@ -11,6 +11,7 @@ TEST_CASES = [
     pytest.param([1, 1, 0], 2, id="My case 6"),
     pytest.param([1, 0, 1], 2, id="My case 7"),
     pytest.param([1, 0, 1, 1], 3, id="My case 8"),
+    pytest.param([1, 1, 0, 0, 0, 1, 1, 1, 1], 4, id="My case 9"),
 
     pytest.param([1, 1, 0, 1], 3, id="Example 1"),
     pytest.param([0, 1, 1, 1, 0, 1, 1, 0, 1], 5, id="Example 2"),
