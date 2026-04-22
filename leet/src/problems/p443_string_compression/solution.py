@@ -11,6 +11,13 @@ class Solution:
         # in first case, we just iterate letters counter
         # in second (new letter discovered) -- commit prev count, shift left pointer, initialize new count
 
+        # improving my solution, pt1.
+        # итерируемся по списку символов. нужно хранить длинну текущей серии и начальный символ, чтобы не "потеряться"
+        # при итерировании.
+        # компактнее всего хранить позицию первого символа предыдущей серии на момент начала итерации
+        # в конце итерации мы решаем: или "сбрасываем" состояние, или "продолжаем"
+        #
+
         output_str = ""
         current_count = l = 0
 
