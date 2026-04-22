@@ -34,4 +34,10 @@ class Solution:
                 current_count = 1
                 l = r
 
+        if current_count == 1:
+            output_str += chars[l]
+        else:
+            output_str += chars[l]
+            output_str += str(current_count)
+
         return len(output_str)
