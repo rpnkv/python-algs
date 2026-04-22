@@ -28,7 +28,7 @@ class Solution:
 
         chars.clear()
         for char in output_str:
-            chars.append(str(char))
+            chars += (list(str(char)))
 
 
-        return len(output_str)
+        return len(chars)
