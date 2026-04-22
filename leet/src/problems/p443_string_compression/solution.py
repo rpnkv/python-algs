@@ -3,28 +3,32 @@ from typing import List
 
 class Solution:
 
-    def __init__(self):
-        self.output_str = ''
-        self.current_count = 0
-        self.l = 0
-
-    def commit(self, chars: List[str]) -> None:
-        if self.current_count == 1:
-            self.output_str += chars[self.l]
-        else:
-            self.output_str += chars[self.l]
-            self.output_str += str(self.current_count)
-
-        self.current_count = 1
-
     def compress(self, chars: List[str]) -> int:
-        for r, r_char in enumerate(chars):
-            if r_char == chars[self.l]:
-                self.current_count += 1
+        output_str: list[str|int] = [chars[0]]
+
+        for char in chars[1:]:
+            if isinstance(output_str[-1], str):
+                prev_char = output_str.pop()
+                if char == prev_char:
+                    output_str.append(char)
+                    output_str.append(2)
+                else:
+                    output_str.append(prev_char)
+                    output_str.append(char)
             else:
-                self.commit(chars)
-                self.l = r
+                curr_count = output_str.pop()
+                prev_char = output_str.pop()
+                if prev_char == char:
+                    output_str.append(prev_char)
+                    output_str.append(curr_count + 1)
+                else:
+                    output_str.append(prev_char)
+                    output_str.append(curr_count)
+                    output_str.append(char)
 
-        self.commit(chars)
+        chars.clear()
+        for char in output_str:
+            chars.append(str(char))
 
-        return len(self.output_str)
+
+        return len(output_str)
