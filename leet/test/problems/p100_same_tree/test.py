@@ -12,4 +12,4 @@ TEST_CASES = [
 def test_recursive(p_list: list[int], q_list: list[int], expected_answer: bool):
     p = TreeNode.from_level_order_array(p_list)
     q = TreeNode.from_level_order_array(q_list)
-    assert Solution().compare(p, q) == expected_answer
+    assert Solution().isSameTree(p, q) == expected_answer
