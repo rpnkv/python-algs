@@ -1,10 +1,10 @@
 import pytest
 
-from algs.fundamental.search.binary_search import search as search_while
+from algs.fundamental.search.binary_search import search
 
 
 def test_empty():
-    assert search_while([], 0) == -1
+    assert search([], 0) == -1
 
 
 @pytest.mark.parametrize(
@@ -17,7 +17,7 @@ def test_empty():
     #ids=["existing", "non-existing"]
 )
 def test_single(arr: list, target: int, index: int):
-    assert search_while(arr, target) == index
+    assert search(arr, target) == index
 
 
 @pytest.mark.parametrize(
@@ -34,7 +34,7 @@ def test_single(arr: list, target: int, index: int):
     #ids=["existing 1", "existing 2", "non-existing"]
 )
 def test_two(arr: list, target: int, index: int):
-    assert search_while(arr, target) == index
+    assert search(arr, target) == index
 
 
 @pytest.mark.parametrize(
@@ -48,7 +48,7 @@ def test_two(arr: list, target: int, index: int):
     ids=["existing 1", "existing 2", "existing 3", "non-existing"]
 )
 def test_three(arr: list, target: int, index: int):
-    assert search_while(arr, target) == index
+    assert search(arr, target) == index
 
 
 @pytest.mark.parametrize(
@@ -63,7 +63,7 @@ def test_three(arr: list, target: int, index: int):
     ids=["existing 1", "existing 2", "existing 3", "existing 4", "non-existing"]
 )
 def test_four(arr: list, target: int, index: int):
-    assert search_while(arr, target) == index
+    assert search(arr, target) == index
 
 
 @pytest.mark.parametrize(
@@ -79,7 +79,7 @@ def test_four(arr: list, target: int, index: int):
     ids=["existing 1", "existing 2", "existing 3", "existing 4", "existing 5", "non-existing"]
 )
 def test_five(arr: list, target: int, index: int):
-    assert search_while(arr, target) == index
+    assert search(arr, target) == index
 
 
 @pytest.mark.parametrize(
@@ -96,4 +96,4 @@ def test_five(arr: list, target: int, index: int):
     ids=["existing 1", "existing 2", "existing 3", "existing 4", "existing 5", "existing 6", "non-existing"]
 )
 def test_six(arr: list, target: int, index: int):
-    assert search_while(arr, target) == index
+    assert search(arr, target) == index
