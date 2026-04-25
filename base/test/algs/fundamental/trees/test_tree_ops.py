@@ -1,11 +1,57 @@
+from typing import Optional
+
 import pytest
 
 from algs.fundamental.trees import tree_ops
+from algs.fundamental.trees.tree_ops import are_equal
 from common.tree_node import TreeNode
 
 
-def test_are_equal():
-    raise NotImplementedError
+@pytest.mark.parametrize(
+    ["left", "right", "expected_result"],
+    [
+        pytest.param(None, None, True, id="both are None"),
+        pytest.param(None, TreeNode(), False, id="left is None"),
+        pytest.param(TreeNode(), None, False, id="right is None"),
+        pytest.param(TreeNode(), TreeNode(), True, id="both val is 0"),
+        pytest.param(TreeNode(), TreeNode(1), False, id="left val is 0, right val is 1"),
+    ]
+)
+def test_are_equal_single_level(left: Optional[TreeNode], right: Optional[TreeNode], expected_result: bool):
+    assert are_equal(left, right) == expected_result
+
+
+@pytest.mark.parametrize(
+    ["left", "right", "expected_result"],
+    [
+        pytest.param(
+            TreeNode(left=TreeNode(), right=TreeNode()),
+            TreeNode(left=TreeNode(), right=TreeNode()),
+            True,
+            id="children are eq"
+        ),
+        pytest.param(
+            TreeNode(left=TreeNode(1), right=TreeNode()),
+            TreeNode(left=TreeNode(), right=TreeNode()),
+            False,
+            id="left child diff"
+        ),
+        pytest.param(
+            TreeNode(left=TreeNode(), right=TreeNode(1)),
+            TreeNode(left=TreeNode(), right=TreeNode()),
+            False,
+            id="right child diff"
+        ),
+        pytest.param(
+            TreeNode(left=TreeNode(), right=TreeNode(1)),
+            TreeNode(left=TreeNode(1), right=TreeNode()),
+            False,
+            id="both children diff"
+        )
+    ]
+)
+def test_are_equal_two_levels(left: Optional[TreeNode], right: Optional[TreeNode], expected_result: bool):
+    assert are_equal(left, right) == expected_result
 
 
 def test_sum():

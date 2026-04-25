@@ -1,5 +1,7 @@
 import math
 
+from algs.fundamental.trees.tree_ops import are_equal
+
 
 class TreeNode:
     def __init__(self, val=0, left=None, right=None):
@@ -11,16 +13,7 @@ class TreeNode:
         return f"TreeNode({self.val})"
 
     def __eq__(self, __value):
-        current_level_equals = self.val == __value.val
-
-        left_equals = (self.left is None and __value.left is None
-                       ) or (
-                              self.left is not None and __value.left is not None and self.left == __value.left)
-
-        right_equals = (
-                               self.right is None and __value.right is None
-                       ) or (self.right is not None and __value.right is not None and self.right == __value.right)
-        return current_level_equals and left_equals and right_equals
+        are_equal(self, __value)
 
     @staticmethod
     def from_level_order_array(array_repr: list[int]):  # TODO add return value
@@ -148,8 +141,6 @@ class TreeNode:
 
         return out
 
-
-
     def to_level_order_array(self) -> list[int]:
         """
         Performs flattening of _to_level_order_as_arrays.
@@ -174,4 +165,3 @@ class TreeNode:
             out.append(" ".join([*map(lambda x: str(x), array)]))
 
         return "\n".join(out)
-
