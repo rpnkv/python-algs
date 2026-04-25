@@ -14,4 +14,8 @@ class Solution:
         if root.right is not None and (root.right.val <= root.val or root.right.val > ceil):
             return False
 
-        return self.isValidBST(root.left, ceil=root.val) and self.isValidBST(root.right, floor=root.val)
+        return (
+                self.isValidBST(root.left, floor = floor, ceil=min(root.val, ceil))
+                and
+                self.isValidBST(root.right, floor=max(root.val, floor), ceil=ceil)
+                )
