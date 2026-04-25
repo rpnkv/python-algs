@@ -9,6 +9,7 @@ from problems.p98_validate_binary_search_tree.solution import Solution
     [
         pytest.param([2, 1, 3], True, id="Example 1"),
         pytest.param([5, 4, 6, None, None, 3, 7], False, id="Example 2"),
+        pytest.param([-2147483648, None, 2147483647], True, id="Case 80"),
         pytest.param([45, 42, None, None, 44, 43, None, 41], False, id="Case 81"),
         pytest.param([3, 1, 5, 0, 2, 4, 6, None, None, None, 3], False, id="Case 84"),
     ]

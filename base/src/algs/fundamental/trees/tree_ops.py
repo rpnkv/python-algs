@@ -16,6 +16,23 @@ def are_equal(l: Optional[TreeNode], r: Optional[TreeNode]) -> bool:
     return are_equal(l.left, r.left) and are_equal(l.right, r.right)
 
 
+def is_valid(root: Optional[TreeNode], floor=float("-inf"), ceil=float("inf")) -> bool:
+    if root is None:
+        return True
+
+    if root.left is not None and (root.left.val >= root.val or root.left.val <= floor):
+        return False
+
+    if root.right is not None and (root.right.val <= root.val or root.right.val >= ceil):
+        return False
+
+    return (
+            is_valid(root.left, floor=floor, ceil=min(root.val, ceil))
+            and
+            is_valid(root.right, floor=max(root.val, floor), ceil=ceil)
+    )
+
+
 def get_tree_sum(root: TreeNode) -> int:
     if not root:
         return 0

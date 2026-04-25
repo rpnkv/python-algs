@@ -1,6 +1,6 @@
 import math
-
-from algs.fundamental.trees.tree_ops import are_equal
+from collections import deque
+from typing import Optional
 
 
 class TreeNode:
@@ -13,6 +13,7 @@ class TreeNode:
         return f"TreeNode({self.val})"
 
     def __eq__(self, __value):
+        from algs.fundamental.trees.tree_ops import are_equal
         are_equal(self, __value)
 
     @staticmethod
@@ -106,6 +107,31 @@ class TreeNode:
 
             parents = children
             left_pointer = int(math.pow(2, len(parents))) - 1
+
+        return root
+
+    @staticmethod
+    def from_leetcode_array(arr: list[Optional[int]]) -> Optional[TreeNode]:
+        if not arr or arr[0] is None:
+            return None
+
+        root = TreeNode(arr[0])
+        queue = deque([root])
+        i = 1
+        n = len(arr)
+
+        while queue and i < n:
+            node = queue.popleft()
+
+            if i < n and arr[i] is not None:
+                node.left = TreeNode(arr[i])
+                queue.append(node.left)
+            i += 1
+
+            if i < n and arr[i] is not None:
+                node.right = TreeNode(arr[i])
+                queue.append(node.right)
+            i += 1
 
         return root
 
