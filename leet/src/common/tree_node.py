@@ -14,7 +14,7 @@ class TreeNode:
 
     def __eq__(self, __value):
         from algs.fundamental.trees.tree_ops import are_equal
-        are_equal(self, __value)
+        return are_equal(self, __value)
 
     @staticmethod
     def from_level_order_array(array_repr: list[int]):  # TODO add return value
