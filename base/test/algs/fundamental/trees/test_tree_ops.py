@@ -4,6 +4,10 @@ from algs.fundamental.trees import tree_ops
 from common.tree_node import TreeNode
 
 
+def test_are_equal():
+    raise NotImplementedError
+
+
 def test_sum():
     input_tree = TreeNode.from_level_order_array([1, 2, 3, 4, 5, 6, 7])  # 28
 
@@ -31,16 +35,16 @@ def test_depth_recursive(tree_array: list[int], depth: int):
     argvalues=[
         ([], 0),
         ([1], 1),
-        ([1,2, None], 2),
-    #    ([1, 2, 3], 2),
-    #    ([1, 2, 3, 4, 5, 6, 7], 3),
+        ([1, 2, None], 2),
+        #    ([1, 2, 3], 2),
+        #    ([1, 2, 3, 4, 5, 6, 7], 3),
     ],
     ids=[
         "0",
         "1",
         "2",
-    #    "2",
-    #    "3"
+        #    "2",
+        #    "3"
     ]
 )
 def test_depth_iterative(tree_array: list[int], depth: int):

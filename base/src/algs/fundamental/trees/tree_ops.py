@@ -1,4 +1,19 @@
+from typing import Optional
+
 from common.tree_node import TreeNode
+
+
+def are_equal(l: Optional[TreeNode], r: Optional[TreeNode]) -> bool:
+    if not l and not r:
+        return True
+
+    if not l or not r:
+        return False
+
+    if l.val != r.val:
+        return False
+
+    return are_equal(l.left, r.left) and are_equal(l.right, r.right)
 
 
 def get_tree_sum(root: TreeNode) -> int:

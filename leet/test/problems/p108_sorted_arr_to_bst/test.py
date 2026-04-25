@@ -12,16 +12,16 @@ TEST_CASES = [
 @pytest.mark.parametrize(["input_sorted", "output_level_order"], TEST_CASES)
 def test_my_solution(input_sorted: list[int], output_level_order: list[int]):
     from problems.p108_sorted_arr_to_bst.solution import Solution
-    # assert (
-    #         Solution().sortedArrayToBST(input_sorted) ==
-    #         TreeNode.from_level_order_array(output_level_order)
-    # )
+    assert (
+            Solution().sortedArrayToBST(input_sorted) ==
+            TreeNode.from_level_order_array(output_level_order)
+    )
 
 
 
 @pytest.mark.parametrize(["input_sorted", "output_level_order"], TEST_CASES)
 def test_solution(input_sorted: list[int], output_level_order: list[int]):
-    from problems.p108_sorted_arr_to_bst.my_solution import Solution
+    from problems.p108_sorted_arr_to_bst.solution import Solution
     assert (
             Solution().sortedArrayToBST(input_sorted) ==
             TreeNode.from_level_order_array(output_level_order)
