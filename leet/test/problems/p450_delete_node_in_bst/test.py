@@ -11,8 +11,11 @@ TEST_CASES = [
     pytest.param([2, 1, 3], 1, [2, None, 3], [], id="3 nodes, remove left"),
     pytest.param([2, 1, 3], 3, [2, 1, None], [], id="3 nodes, remove right"),
     pytest.param([2, 1, 3], 3, [2, 1, None], [1, None, 2], id="3 nodes, remove parent"),
-
-
+    # pytest.param([8, 6, None, 4, 7, None, None, 3, 5, None, None, None, None, None, None],
+    #              6,
+    #              [],[], id="sophisticated case")
+    pytest.param([5, 3, 6, 2, 4, None, 7], 7, [5, 3, 6, 2, 4, None, None], [], id="Example 6"),
+    pytest.param([50, 30, 70, None, 40, 60, 80], 50, [60, 30, 70, None, 40, None, 80], [], id="Example 42")
 ]
 
 

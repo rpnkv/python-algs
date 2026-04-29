@@ -3,9 +3,10 @@ from typing import Optional
 from common.tree_node import TreeNode
 
 
+
 class Solution:
     def deleteNode(self, root: Optional[TreeNode], key: int) -> Optional[TreeNode]:
-        dummy = TreeNode(10, left=root)
+        dummy = TreeNode(pow(10,6), left=root)
 
         def find_parent(target: int):
             parent = dummy
@@ -30,17 +31,17 @@ class Solution:
             return dummy.left
 
 
-        # if removing node has no children
         if not target.left and not target.right:
-            if parent.left.val == key:
+            if parent.left and parent.left and parent.left.val == key:
                 parent.left = None
                 return dummy.left
-            elif parent.right.val == key:
+            elif parent.right and parent.right.val == key:
                 parent.right = None
                 return dummy.left
 
+
         def substitute(parent, target_val, target_node):
-            if parent.left.val == target_val:
+            if parent.left and parent.left.val == target_val:
                 parent.left = target_node
             else:
                 parent.right = target_node
@@ -54,4 +55,11 @@ class Solution:
                 substitute(parent, key, target.right)
                 return dummy.left
 
-        raise NotImplementedError
+        # if removing node has 2 children
+        lowest_node=target.right
+        while lowest_node.left:
+            lowest_node = lowest_node.left
+
+        self.deleteNode(target, lowest_node.val)
+        target.val=lowest_node.val
+        return dummy.left
