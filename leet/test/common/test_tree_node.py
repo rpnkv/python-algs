@@ -89,7 +89,12 @@ def test_equals_base(tn1, tn2, expected_result):
     argvalues=[
         ([1, 2, 3], TreeNode(1, left=TreeNode(2), right=TreeNode(3))),
         ([1, None, 2], TreeNode(val=1, right=TreeNode(2))),
-        ([1, None, 2, None, None, 3, None], TreeNode(val=1, right=TreeNode(2, left=TreeNode(3))))
+        ([1, None, 2, None, None, 3, None], TreeNode(val=1, right=TreeNode(2, left=TreeNode(3)))),
+        ([8, 6, None, 4, 7, None, None, 3, 5, None, None, None, None, None, None],
+         TreeNode(8, left=TreeNode(6,
+                                   left=TreeNode(4, left=TreeNode(3), right=TreeNode(5)),
+                                   right=TreeNode(7)
+                                   )))
     ]
 )
 def test_from_level_order_array(array_repr: list[int], expected_tree: TreeNode):

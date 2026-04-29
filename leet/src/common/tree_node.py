@@ -106,7 +106,7 @@ class TreeNode:
                     children.append(None)
 
             parents = children
-            left_pointer = int(math.pow(2, len(parents))) - 1
+            left_pointer = 2 * len(parents) - 1
 
         return root
 
