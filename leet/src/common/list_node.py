@@ -22,6 +22,9 @@ class ListNode(Sized):
         return f"ListNode(val={self.val}, next={repr(self.next)})"
 
     def __eq__(self, __value):
+        if not __value:
+            return False
+
         if self.val != __value.val:
             return False
 
