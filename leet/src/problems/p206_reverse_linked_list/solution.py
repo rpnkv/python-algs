@@ -17,9 +17,13 @@ class Solution:
             rev_head.next = head
             return rev_head
 
-        new_tail = head
-        switching = head.next
-        new_switching = head.next.next
+        prev = None
+        current = head
 
-        while True:
-            raise NotImplementedError
+        while current:
+            nxt = current.next
+            current.next = prev
+            prev = current
+            current = nxt
+
+        return prev
