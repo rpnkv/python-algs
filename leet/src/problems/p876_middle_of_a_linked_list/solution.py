@@ -5,13 +5,10 @@ from common.list_node import ListNode
 
 class Solution:
     def middleNode(self, head: Optional[ListNode]) -> Optional[ListNode]:
-        slowptr = head
-        fastptr = head
+        fast = slow = head
 
-        while fastptr is not None and fastptr.next is not None:
+        while fast and fast.next:
+            slow = slow.next
+            fast = fast.next.next
 
-            fastptr = fastptr.next.next
-
-            slowptr = slowptr.next
-
-        return slowptr
+        return slow
