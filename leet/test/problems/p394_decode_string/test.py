@@ -6,6 +6,7 @@ TEST_CASES = [
     pytest.param("3[a]2[bc]", "aaabcbc", id="Example 1"),
     pytest.param("3[a2[c]]", "accaccacc", id="Example 2"),
     pytest.param("2[abc]3[cd]ef", "abcabccdcdcdef", id="Example 3"),
+    pytest.param("100[leetcode]", "leetcode" * 100, id="Case 24"),
 ]
 
 
