@@ -4,6 +4,8 @@ from common.tree_node import TreeNode
 from problems.p1448_count_good_nodes_in_bt.solution import Solution
 
 TEST_CASES = [
+    pytest.param([3, 1, 2], 1, id="My case 1"),
+
     pytest.param([3, 1, 4, 3, None, 1, 5], 4, id="Example 1"),
     pytest.param([3, 3, None, 4, 2], 3, id="Example 2"),
     pytest.param([1], 1, id="Example 3"),
