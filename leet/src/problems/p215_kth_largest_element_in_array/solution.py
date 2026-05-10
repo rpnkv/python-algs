@@ -9,10 +9,12 @@ class Solution:
 
         for num in nums:
             heapq.heappush_max(h, num)
-            if len(h) > k:
-                h.pop()
 
-        return h.pop()
+        for _ in range(k - 1):
+            heapq.heappop_max(h)
+
+        return heapq.heappop_max(h)
+
 
 
 
