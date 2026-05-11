@@ -5,16 +5,13 @@ from typing import List
 
 class Solution:
     def findKthLargest(self, nums: List[int], k: int) -> int:
-        h = []
+        pq = nums[:k]
+        heapq.heapify(pq)
 
-        for num in nums:
-            heapq.heappush_max(h, num)
+        for val in nums[k:]:
+            heapq.heappush(pq, val)
 
-        for _ in range(k - 1):
-            heapq.heappop_max(h)
+            if len(pq) > k:
+                heapq.heappop(pq)
 
-        return heapq.heappop_max(h)
-
-
-
-
+        return pq[0]
