@@ -14,8 +14,12 @@ class Solution:
         odd = head
         even = even_head
 
-        while True:
+        while odd and even and even.next:
+            odd.next = even.next
+            even.next = even.next.next
 
+            odd = odd.next
+            even = even.next
 
 
         odd.next = even_head
