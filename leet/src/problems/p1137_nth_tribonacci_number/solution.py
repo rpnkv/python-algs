@@ -5,12 +5,7 @@ class Solution:
         if n < 3:
             return triplet[n]
 
-        s = 0
-
         for i in range(3, n + 1):
-            s = sum(triplet)
-            triplet.pop(0)
-            triplet.append(s)
+            triplet[0], triplet[1], triplet[2] = triplet[1], triplet[2], sum(triplet)
 
         return triplet[-1]
-
