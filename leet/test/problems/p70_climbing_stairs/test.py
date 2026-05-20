@@ -6,7 +6,11 @@ from problems.p70_climbing_stairs.solution_iterative import Solution as Solution
 TEST_CASES = [
     pytest.param(2, 2, id="Example 1"),
     pytest.param(3, 3, id="Example 2"),
-    pytest.param(5, 8, id="nc explanation example"),
+    pytest.param(1, 1, id="1 stair"),
+    pytest.param(2, 2, id="2 stairs"),
+    pytest.param(3, 3, id="3 stairs"),
+    pytest.param(4, 5, id="4 stairs"),
+    pytest.param(5, 8, id="5 stairs"),
 ]
 
 @pytest.mark.parametrize(["incoming", "expected_outcome"], TEST_CASES)
