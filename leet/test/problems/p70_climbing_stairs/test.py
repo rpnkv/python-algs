@@ -1,6 +1,7 @@
 import pytest
 
-from problems.p70_climbing_stairs.solution import Solution
+from problems.p70_climbing_stairs.solution_recursive_mem import Solution as SolutionRecursive
+from problems.p70_climbing_stairs.solution_iterative import Solution as SolutionIterative
 
 TEST_CASES = [
     pytest.param(2, 2, id="Example 1"),
@@ -9,5 +10,9 @@ TEST_CASES = [
 ]
 
 @pytest.mark.parametrize(["incoming", "expected_outcome"], TEST_CASES)
-def test(incoming: int, expected_outcome: int):
-    assert Solution().climbStairs(incoming) == expected_outcome
+def test_recursive_memo(incoming: int, expected_outcome: int):
+    assert SolutionRecursive().climbStairs(incoming) == expected_outcome
+
+@pytest.mark.parametrize(["incoming", "expected_outcome"], TEST_CASES)
+def test_iterative(incoming: int, expected_outcome: int):
+    assert SolutionIterative().climbStairs(incoming) == expected_outcome
