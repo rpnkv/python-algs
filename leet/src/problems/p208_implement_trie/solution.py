@@ -1,20 +1,41 @@
 class Node:
-    def __init__(self, ):
-        pass
+    def __init__(self):
+        self.children = dict()
+        self.word_end = False
 
 class Trie:
 
     def __init__(self):
-        pass
+        self.root = Node()
 
     def insert(self, word: str) -> None:
-        pass
+        node = self.root
+
+        for l in word:
+            if not l in node.children:
+                node.children[l] = Node()
+            node = node.children[l]
+
+        node.word_end = True
+
     def search(self, word: str) -> bool:
-        pass
+        node = self.root
+
+        for l in word:
+            if l in node.children:
+               node = node.children[l]
+            else:
+                return False
+
+        return node.word_end
+
     def startsWith(self, prefix: str) -> bool:
-        pass
-# Your Trie object will be instantiated and called as such:
-# obj = Trie()
-# obj.insert(word)
-# param_2 = obj.search(word)
-# param_3 = obj.startsWith(prefix)
+        node = self.root
+
+        for l in prefix:
+            if l in node.children:
+                node = node.children[l]
+            else:
+                return False
+
+        return True
