@@ -1,4 +1,4 @@
-from heapq import heapify, heappop, heappushpop
+from heapq import heapify, heappop, heappushpop, heappush
 from typing import List
 
 
@@ -8,9 +8,11 @@ class KthLargest:
         self.k = k
         heapify(self.h)
 
-        while len(self.h) > k:
-            heappop(self.h)
 
     def add(self, val: int) -> int:
-        heappushpop(self.h, val)
+        heappush(self.h, val)
+
+        while len(self.h) > self.k:
+            heappop(self.h)
+
         return self.h[0]
