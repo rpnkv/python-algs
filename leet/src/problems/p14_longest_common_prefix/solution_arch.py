@@ -3,7 +3,7 @@ import sys
 from typing import List
 
 
-class Solution:
+class SolutionArch:
 
     @staticmethod
     def longest_common_prefix_not_optimal(strs: List[str]) -> str:
@@ -46,22 +46,6 @@ class Solution:
         return strs[0]
 
 
-def main():
-    # assert Solution.longest_common_prefix_super_optimal(["fl", "flight", "flower", "flow"]) == "fl"
-    # assert Solution.longest_common_prefix_super_optimal(["flight", "flower", "flow"]) == "fl"
-    assert Solution.longest_common_prefix_super_optimal(["flower", "flow"]) == "flow"
-
-
-if __name__ == "__main__":
-    pass
-    # print(ord("a") ^ ord("a"))
-    # print(min([1, 2, 3]))
-
-    main()
-    # print(sys.getsizeof([1, 2, 3, 4]))
-    # print(sys.getsizeof([True, True, False, False]))
-    # print(sys.getsizeof(["aaa", "bbb", "ccc", "ddd"]))
-    # print(sys.getsizeof(["aaa", "aaa", "aaa", "aaa"]))
-    #
+    # print(sys.getsizeof(["aaa", "aaa", "aaa", "aaa"]))    #
     # for v in [True, True, False, False]:
     #     print(id(v))
