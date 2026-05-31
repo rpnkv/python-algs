@@ -11,9 +11,14 @@ class Solution:
 
             subseqs = []
 
+
             for n in range(1, len(nums)):
                 subseqs.append(dfs(nums[1:], nums[0]))
 
-            return max(subseqs) + curr
+            if subseqs:
+                return max(subseqs) + curr
+            else:
+                return curr
+
 
         return dfs(nums, -1001)
