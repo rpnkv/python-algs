@@ -7,7 +7,8 @@ TEST_CASES = [
     pytest.param("bbbbb", 1, id="Test case 2"),
     pytest.param("pwwkew", 3, id="Test case 3"),
     pytest.param("dvdf", 3, id="Test case 225"),
-    pytest.param("ohvhjdml", 3, id="Test case 590"),
+    pytest.param("ohvhjdml", 6, id="Test case 590"),
+    pytest.param("fabcax", 4, id="My test case"),
 ]
 
 
