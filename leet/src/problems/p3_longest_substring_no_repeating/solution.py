@@ -28,18 +28,20 @@
 
 class Solution:
     def lengthOfLongestSubstring(self, s: str) -> int:
-        substr = set()
-        max_len = 0
-        for index, character in enumerate(s):
-            if character in substr:
-                j = index - len(substr)
-                while s[j] != character:
-                    substr.remove(s[j])
-                    j += 1
-            else:
-                substr.add(character)
-            if len(substr) > max_len:
-                max_len = len(substr)
+        if len(s) < 2:
+            return len(s)
+
+        chars = set(s[0])
+        max_len = len(chars)
+
+        l = 0
+
+        for i, r in enumerate(s[1:]):
+            while r in chars:
+                chars.remove(s[l])
+                l += 1
+
+            max_len = max(max_len, i + 2 - l)
 
         return max_len
 
