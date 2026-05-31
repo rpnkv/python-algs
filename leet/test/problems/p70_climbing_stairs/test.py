@@ -4,8 +4,8 @@ from problems.p70_climbing_stairs.solution_recursive_mem import Solution as Solu
 from problems.p70_climbing_stairs.solution_iterative import Solution as SolutionIterative
 
 TEST_CASES = [
-    pytest.param(2, 2, id="Example 1"),
-    pytest.param(3, 3, id="Example 2"),
+    #pytest.param(2, 2, id="Example 1"),
+    #pytest.param(3, 3, id="Example 2"),
     pytest.param(1, 1, id="1 stair"),
     pytest.param(2, 2, id="2 stairs"),
     pytest.param(3, 3, id="3 stairs"),
