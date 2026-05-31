@@ -1,7 +1,5 @@
 class Solution:
-    def lengthOfLIS(self, nums: List[int]) -> int:
-        dp = [0] * len(nums)
-
+    def lengthOfLIS(self, nums: list[int]) -> int:
         def dfs(nums: list[int], prev: int) -> int:
             if not nums:
                 return 0

@@ -1,26 +1,22 @@
 class Solution:
     def lengthOfLIS(self, nums: List[int]) -> int:
-        dp = [0] * len(nums)
+        dp: list[None | int] = [None] * len(nums)
+        dp[0] = 1
 
-        def dfs(nums: list[int], prev: int) -> int:
-            if not nums:
+        def dfs(nums: list[int], prev_index: int, curr_index) -> int:
+            if curr_index >= len(nums):
                 return 0
 
-            if nums[0] > prev:
+            if nums[prev_index] < nums[curr_index]:
                 curr = 1
             else:
                 curr = 0
 
-            subseqs = []
+            curr_max = 0
 
-
-            for n in range(1, len(nums)):
-                subseqs.append(dfs(nums[1:], nums[0]))
-
-            if subseqs:
-                return max(subseqs) + curr
-            else:
+            if curr_index == len(nums) - 1:
                 return curr
+            else:
+                return max(nums[curr_index:]) + curr
 
-
-        return dfs(nums, -1001)
+        return dfs(nums, 0, 1)
