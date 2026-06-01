@@ -3,9 +3,9 @@ class Solution:
         steps = [0] * n
 
         for i in range(n):
-            if i in [0, 1]:
+            if i < 2:
                 steps[i] =i + 1
             else:
-                steps[i] = sum(steps[i - 2:i])
+                steps[i] = steps[i-1] + steps[i-2]
 
         return steps[-1]
