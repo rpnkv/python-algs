@@ -1,6 +1,6 @@
 import pytest
 
-from problems.medium.p128_longest_consecutive_sequence.solution import Solution
+from problems.p128_longest_consecutive_sequence.solution import Solution
 
 
 @pytest.mark.parametrize(
