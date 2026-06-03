@@ -2,47 +2,22 @@ from typing import Optional
 
 from common.list_node import ListNode
 
-
 class Solution:
-    def mergeTwoLists(self,
-                      list1: Optional[ListNode],
-                      list2: Optional[ListNode]) -> Optional[ListNode]:
-        if list1 is None and list2 is None:
-            return None
+    def mergeTwoLists(self, list1: Optional[ListNode], list2: Optional[ListNode]) -> Optional[ListNode]:
+        res = head = ListNode(val=-101)
 
-        if list1 is None:
-            return list2
-
-        if list2 is None:
-            return list1
-
-        head: ListNode
-
-        if list1.val < list2.val:
-            head = ListNode(list1.val)
-            list1 = list1.next
-        else:
-            head = ListNode(list2.val)
-            list2 = list2.next
-
-        tail = head
-
-        while list1 is not None and list2 is not None:
+        while list1 and list2:
             if list1.val < list2.val:
-                next_tail = ListNode(list1.val)
-                tail.next = next_tail
+                res.next = list1
                 list1 = list1.next
-                tail = next_tail
             else:
-                next_tail = ListNode(list2.val)
-                tail.next = next_tail
-                tail = next_tail
+                res.next = list2
                 list2 = list2.next
+            res = res.next
 
-        if list1 is None and list2 is not None:
-            tail.next = list2
+        if list1:
+            res.next = list1
+        elif list2:
+            res.next = list2
 
-        if list2 is None and list1 is not None:
-            tail.next = list1
-
-        return head
+        return head.next
