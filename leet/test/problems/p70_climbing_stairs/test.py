@@ -1,8 +1,8 @@
 import pytest
 
-from problems.p70_climbing_stairs.solution_recursive_mem import Solution as SolutionRecursiveMem
+from problems.p70_climbing_stairs.solution_dp_top_down import Solution as SolutionRecursiveMem
 from problems.p70_climbing_stairs.solution_recursive import Solution as SolutionRecursive
-from problems.p70_climbing_stairs.solution_iterative import Solution as SolutionIterative
+from problems.p70_climbing_stairs.solution_bottom_up import Solution as SolutionIterative
 
 TEST_CASES = [
     #pytest.param(2, 2, id="Example 1"),
@@ -23,5 +23,10 @@ def test_recursive(incoming: int, expected_outcome: int):
     assert SolutionRecursive().climbStairs(incoming) == expected_outcome
 
 @pytest.mark.parametrize(["incoming", "expected_outcome"], TEST_CASES)
-def test_iterative(incoming: int, expected_outcome: int):
+def test_bottom_up(incoming: int, expected_outcome: int):
     assert SolutionIterative().climbStairs(incoming) == expected_outcome
+
+@pytest.mark.parametrize(["incoming", "expected_outcome"], TEST_CASES)
+def test_bottom_up_optimized(incoming: int, expected_outcome: int):
+    from problems.p70_climbing_stairs.solution_bottom_up_optimized import Solution
+    assert Solution().climbStairs(incoming) == expected_outcome
