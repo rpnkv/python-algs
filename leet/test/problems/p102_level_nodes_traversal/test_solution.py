@@ -1,39 +1,16 @@
+import pytest
+
 from common.tree_node import TreeNode
-from problems.medium.p102_level_nodes_traversal.solution import Solution
+from problems.p102_level_order_traversal.solution import Solution
 
 sol = Solution()
 
-def test_1():
-    sol = Solution()
-    input_tree = TreeNode(
-        val=3,
-        left=TreeNode(9),
-        right=TreeNode(
-            val=20,
-            left=TreeNode(15),
-            right=TreeNode(7)
-        )
-    )
+TEST_CASES = [
+    pytest.param([3,9,20,None,None,15,7], [[3],[9,20],[15,7]], id="Example 1"),
+    pytest.param([1], [[1]], id="Example 2"),
+    pytest.param([], [], id="Example 3"),
+]
 
-    expected_output = [[3], [9, 20], [15, 7]]
-
-    assert sol.levelOrder(input_tree) == expected_output
-
-
-def test_2():
-    sol = Solution()
-    input_tree = TreeNode(
-        val=1,
-        left=TreeNode(2),
-        right=None
-    )
-
-    expected_output = [[1], [2]]
-
-    assert sol.levelOrder(input_tree) == expected_output
-
-
-def test_3():
-    root = TreeNode.from_level_order_array([1, 2, None, 3, None, 4, None, 5])
-    output = sol.levelOrder(root)
-    print(output)
+@pytest.mark.parametrize(["incoming_tree", "expected_outcome"], TEST_CASES)
+def test(incoming_tree: list[int], expected_outcome:list[list[int]]):
+    assert Solution().levelOrder(TreeNode.from_leetcode_array(incoming_tree)) == expected_outcome
