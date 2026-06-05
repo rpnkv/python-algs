@@ -1,16 +1,18 @@
-from typing import List
-
-
 class Solution:
     def eraseOverlapIntervals(self, intervals: List[List[int]]) -> int:
-        intervals.sort(key=lambda x:x[0])
-        res = 0
-        prevEnd = intervals[0][1]
+        intervals.sort(key=lambda i: i[0])
 
-        for start, end in intervals[1:]:
-            if start >= prevEnd:
-                prevEnd = end
+        removed = 0
+        prev_end = intervals[0][1]
+
+        for curr_start, curr_end in intervals[1:]:
+            if curr_start < prev_end:
+                removed += 1
+                prev_end = min(curr_end, prev_end)
             else:
-                res += 1
-                prevEnd = min(end, prevEnd)
-        return res
+                prev_end = curr_end
+
+
+
+        return removed
+

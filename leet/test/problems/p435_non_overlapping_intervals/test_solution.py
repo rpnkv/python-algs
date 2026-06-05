@@ -6,6 +6,7 @@ TEST_CASES = [
     pytest.param([[1, 2], [2, 3]], 0, id="example 3"),
     pytest.param([[1, 2], [2, 3], [3, 4]], 0, id="non-overlapping"),
     pytest.param([[1,100],[11,22],[1,11],[2,12]], 2, id="case 5"),
+    pytest.param([[0,2],[1,3],[2,4],[3,5],[4,6]], 2, id="case 15"),
 ]
 
 
