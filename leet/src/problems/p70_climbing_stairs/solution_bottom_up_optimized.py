@@ -1,6 +1,9 @@
 class Solution:
     def climbStairs(self, n: int) -> int:
-        prev_sub_1, prev_sub_2 = 2, 1
+        prev, curr = 0,1
 
-        for i in range(3, n):
+        for _ in range(n):
+            prev, curr = curr, (prev + curr)
 
+
+        return curr
