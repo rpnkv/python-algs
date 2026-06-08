@@ -1,5 +1,5 @@
 class Solution:
-    def lengthOfLIS(self, nums: List[int]) -> int:
+    def lengthOconLIS(self, nums: List[int]) -> int:
         dp: list[None | int] = [None] * len(nums)
         dp[0] = 1
 
