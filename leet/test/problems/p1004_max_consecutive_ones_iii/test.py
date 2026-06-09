@@ -1,9 +1,5 @@
 import pytest
 
-from problems.p1004_max_consecutive_nums.solution import Solution
-
-sol = Solution()
-
 TEST_CASES = [
     #pytest.param([], 0, 0, id="empty input"),
     pytest.param([1, 1, 1, 1], 0, 4, id="only 4 '1'"),
@@ -16,4 +12,13 @@ TEST_CASES = [
 
 @pytest.mark.parametrize(["nums", "k", "expected_max"], TEST_CASES)
 def test(nums: list[int], k: int, expected_max: int):
+    from problems.p1004_max_consecutive_ones_iii.solution import Solution
+    sol = Solution()
+    assert sol.longestOnes(nums, k) == expected_max
+
+
+@pytest.mark.parametrize(["nums", "k", "expected_max"], TEST_CASES)
+def test_old(nums: list[int], k: int, expected_max: int):
+    from problems.p1004_max_consecutive_ones_iii.solution import Solution
+    sol = Solution()
     assert sol.longestOnes(nums, k) == expected_max
