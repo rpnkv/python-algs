@@ -8,23 +8,19 @@ class Solution:
             # - signs not match: new one is positive, stack non-empty and is negative
             # collision conditions:
             # - signs not match: new one is negative, stack non-empty and is positive
-            if a < 0 and stack and stack[-1] > 0:
-                new: int | None = a
+            new: int | None = a
 
-                while (new and stack  and stack[-1] > 0):
-                    if abs(new) == abs(stack[-1]):
+            while new and stack and new < 0 and stack[-1] > 0:  # collision is possible
+                if abs(new) == abs(stack[-1]):  # mutual destruction
+                    stack.pop()  # remove old, destroyed
+                    new = None  # destroy new
+                else:
+                    if abs(new) > abs(stack[-1]):  # new destroys old
                         stack.pop()
-                        new = None
                     else:
-                        if abs(new) > abs(stack[-1]):
-                            stack.pop()
-                        else:
-                            new = None
+                        new = None  # old destroys new
 
-                if new:
-                    stack.append(new)
-
-            else:
-                stack.append(a)
+            if new:
+                stack.append(new)
 
         return stack
