@@ -1,36 +1,30 @@
-from typing import List
-
 class Solution:
     def asteroidCollision(self, asteroids: List[int]) -> List[int]:
         stack = asteroids[:1]
 
-        def will_collide(i: int) -> bool:
-            return i < 0 < stack[-1]
-
         for a in asteroids[1:]:
-            if not stack:
+            # no collision conditions:
+            # - signs match
+            # - signs not match: new one is positive, stack non-empty and is negative
+            # collision conditions:
+            # - signs not match: new one is negative, stack non-empty and is positive
+            if a < 0 and stack and stack[-1] > 0:
+                new: int | None = a
+
+                while (new and stack  and stack[-1] > 0):
+                    if abs(new) == abs(stack[-1]):
+                        stack.pop()
+                        new = None
+                    else:
+                        if abs(new) > abs(stack[-1]):
+                            stack.pop()
+                        else:
+                            new = None
+
+                if new:
+                    stack.append(new)
+
+            else:
                 stack.append(a)
-                continue
-
-            if not will_collide(a):
-                stack.append(a)
-                continue
-
-            while stack and will_collide(a):
-                if abs(stack[-1]) == abs(a): #mutual destruction
-                    stack.pop()
-                    break
-
-                if abs(a) > abs(stack[-1]):  # new asteroid wins
-                    stack.pop()                     # keep colliding
-                    if not stack or not will_collide(a):                   # add element if stack
-                        stack.append(a)             # got empty while this loop
-                        break
-                else:
-                    break
 
         return stack
-
-
-
-
