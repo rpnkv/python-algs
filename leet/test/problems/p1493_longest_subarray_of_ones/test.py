@@ -1,6 +1,6 @@
 import pytest
 
-from problems.p1493_longest_subarray_of_ones.solution import Solution
+from problems.p1493_longest_subarray_of_ones.solution_prefix_sum import Solution
 
 TEST_CASES = [
     pytest.param([0], 0, id="My case 1"),
@@ -11,7 +11,8 @@ TEST_CASES = [
     pytest.param([1, 1, 0], 2, id="My case 6"),
     pytest.param([1, 0, 1], 2, id="My case 7"),
     pytest.param([1, 0, 1, 1], 3, id="My case 8"),
-    pytest.param([1, 1, 0, 0, 0, 1, 1, 1, 1], 4, id="My case 9"),
+    pytest.param([1, 0, 0, 1], 1, id="My case 9"),
+    pytest.param([1, 1, 0, 0, 0, 1, 1, 1, 1], 4, id="My case 10"),
 
     pytest.param([1, 1, 0, 1], 3, id="Example 1"),
     pytest.param([0, 1, 1, 1, 0, 1, 1, 0, 1], 5, id="Example 2"),
