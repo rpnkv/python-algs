@@ -2,8 +2,9 @@ from typing import Optional
 
 import pytest
 
+from common.list_node import ListNode
 # from common.list_node import ListNode
-from problems.p141_linked_list_cycle.expected_solution import Solution, ListNode
+from problems.p141_linked_list_cycle.solution import Solution
 
 sol = Solution()
 
