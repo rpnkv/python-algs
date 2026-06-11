@@ -1,26 +1,25 @@
 class Solution:
     def asteroidCollision(self, asteroids: List[int]) -> List[int]:
-        stack = asteroids[:1]
+        stack = [asteroids[0]]
 
         for a in asteroids[1:]:
-            # no collision conditions:
-            # - signs match
-            # - signs not match: new one is positive, stack non-empty and is negative
-            # collision conditions:
-            # - signs not match: new one is negative, stack non-empty and is positive
-            new: int | None = a
+            # when asteroids collide?
+            # - positive in stack and negative 'a'
+            # - or negative 'a' and positive stack
 
-            while new and stack and new < 0 and stack[-1] > 0:  # collision is possible
-                if abs(new) == abs(stack[-1]):  # mutual destruction
-                    stack.pop()  # remove old, destroyed
-                    new = None  # destroy new
-                else:
-                    if abs(new) > abs(stack[-1]):  # new destroys old
+            while stack and (a < 0 and stack[-1] > 0):
+                c = a + stack[-1]
+
+                match c:
+                    case 0:
                         stack.pop()
-                    else:
-                        new = None  # old destroys new
+                        a = 0
+                    case x if x < 0:
+                        stack.pop()
+                    case x if x > 0:
+                        a = 0
 
-            if new:
-                stack.append(new)
+            if a != 0:
+                stack.append(a)
 
         return stack
