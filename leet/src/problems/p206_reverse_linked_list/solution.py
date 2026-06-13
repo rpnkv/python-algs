@@ -5,12 +5,12 @@ from common.list_node import ListNode
 
 class Solution:
     def reverseList(self, head: Optional[ListNode]) -> Optional[ListNode]:
-        nxt = None
+        reversed_head = None
 
         while head:
-            cache = head.next
-            head.next = nxt
-            nxt = head
-            head = cache
+            mem = head.next
+            head.next = reversed_head
+            reversed_head = head
+            head = mem
 
-        return nxt
+        return reversed_head
