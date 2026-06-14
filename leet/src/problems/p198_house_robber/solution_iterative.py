@@ -3,21 +3,16 @@ from typing import List
 
 class Solution:
     def rob(self, nums: List[int]) -> int:
-
-        results = []
-        # ex_X: 0(2)=2; 1(1)=1; 2(1)=3; 3(2)=4
+        res = [0] * len(nums)
 
         for i in range(len(nums)):
-            prev_1 = prev_2 = 0
+            prev = res[i - 2] if i - 2 >= 0 else 0
+            prev_2 = res[i - 3] if i - 3 >= 0 else 0
 
-            if i - 2 >= 0:
-                prev_1 = results[i-2]
+            res[i] = nums[i] + max(prev, prev_2)
+            print(i, res)
 
-            if i - 3 >= 0:
-                prev_2 = results[i-3]
-
-            results.append(max(prev_1, prev_2) + nums[i])
-        return max(results[-1], results[-2]) if len(results) > 1 else results[0]
+        return max(res[-1], res[-2])
 
 
 
@@ -34,5 +29,6 @@ if __name__ == '__main__':
         actual_outcome = s.rob(incoming)
 
         assert actual_outcome == expected_outcome, "case '" + case_id + "' failed: '" + str(actual_outcome) + "'"
+        print()
 
     print("--------- SUCCESS ---------")

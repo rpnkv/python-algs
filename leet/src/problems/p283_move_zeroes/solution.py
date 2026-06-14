@@ -1,39 +1,45 @@
-from typing import List
-
-
 class Solution:
     def moveZeroes(self, nums: List[int]) -> None:
-        l = 0
+        z = n = 0
 
-        for i, n in enumerate(nums):
-            if n != 0:
-                n_p = i
-                break
-        else:
-            # no zeroes found
-            return
+        #while z < len(nums) and n < len(nums):
+        while True:
+            while nums[z] != 0:
+                z += 1
+                if z >= len(nums):
+                    return
 
-        for r in range(n_p, len(nums)):
-            if nums[r] != 0:
-                nums[r], nums[l] = nums[l], nums[r]
-                l += 1
+            while nums[n] == 0:
+                n +=1
+                if n >= len(nums):
+                    return
+
+            nums[n], nums[z] = nums[z], nums[n]
+
+
 
 
 
 if __name__ == "__main__":
     cases = [
-        ([0, 0, 1, 2], [1, 2, 0, 0], "my example 1"),
-        ([1, 0, 0, 2], [1, 2, 0, 0], "my example 2"),
-        ([1, 2, 0, 0], [1, 2, 0, 0], "my example 3"),
-        ([1, 0, 0, 3, 12], [1, 3, 12, 0, 0], "my example 2"),
-        ([0, 1, 0, 3, 12], [1, 3, 12, 0, 0], "example 1"),
-        ([0], [0], "example 2"),
+        ([0], [0], "single zero"),
+        ([1], [1], "single num"),
+        ([0, 1], [1, 0], "2 nums leading zero"),
+        ([1, 0], [1, 0], "2 nums leading num"),
+        ([1, 1, 0], [1, 1, 0], "2 nums, 1 zero, leading num"),
+        ([1, 0, 1], [1, 0, 1], "2 nums, 1 zero, middle zero"),
+        ([0, 1, 1], [0, 1, 1], "2 nums, 1 zero, middle zero"),
+        ([0, 1, 1, 0], [1, 2, 0, 0], "2 nums, 2 zeroes, nums middle"),
+        ([1, 2, 0, 0], [1, 2, 0, 0], "2 nums, 2 zeroes, nums left"),
+        ([0, 0, 1, 2], [1, 2, 0, 0], "2 nums, 2 zeroes, nums right"),
+        ([0, 1, 2, 0], [1, 2, 0, 0], "2 nums, 2 zeroes, zeroes middle"),
     ]
 
     sol = Solution()
 
-    for incoming, expected_outcome, case_id in cases:
+    for incoming, exp_outcome, case_id in cases:
         sol.moveZeroes(incoming)
-        assert incoming == expected_outcome, f"failed '{case_id}' + {incoming}"
+
+        assert incoming == exp_outcome, f"failed for {case_id}: {incoming}"
 
     print("-- SUCCESS")
