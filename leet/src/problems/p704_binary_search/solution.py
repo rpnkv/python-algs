@@ -3,17 +3,14 @@ class Solution:
         l, r = 0, len(nums) - 1
 
         while l <= r:
-            if l == r:
-                return r if nums[l] == target else -1
-
             mid_index = l + ((r - l) // 2)
+            mid_num = nums[mid_index]
 
-            match nums[mid_index]:
-                case num if target < num:
-                    r = mid_index - 1
-                case num if target > num:
-                    l = mid_index + 1
-                case num if num == target:
-                    return mid_index
+            if mid_num == target:
+                return mid_index
+            elif mid_num < target:
+                l = mid_index + 1
+            else:
+                r = mid_index - 1
 
         return -1
