@@ -1,7 +1,5 @@
 class Solution:
     def threeSum(self, nums: list[int]) -> list[list[int]]:
-        nums = list(set(nums))
-
         results = []
         nums.sort()
 
@@ -10,15 +8,29 @@ class Solution:
 
         for l in range(len(nums) - 2):
             m, r = l + 1, len(nums) - 1
-
             while m < r:
-                s = sum(result())
-                if s == 0:
-                    results.append(result())
-                    m += 1
-                    continue
+                n_l = nums[l]
+                n_m = nums[m]
+                n_r = nums[r]
 
-                if s > 0:
+                curr_sum = n_l + n_m + n_r
+                if curr_sum == 0:
+                    duplicate = False
+
+                    for prev_l, prev_m, prev_r in reversed(results):
+                        if prev_l != n_l:
+                            break
+
+                        if prev_m == n_m:
+                            duplicate = True
+                            break
+
+                    if not duplicate:
+                        results.append(result())
+
+                    m += 1
+
+                if sum(result()) > 0:
                     r -= 1
                 else:
                     m += 1
@@ -34,6 +46,7 @@ if __name__ == "__main__":
         # ([0, 1, 1], [], "example 2"),
         # ([0, 0, 0], [], "example 3"),
         # ([0, 0, 0, 0], [[0, 0, 0]], "case 12"),
+        ([-1, 0, 1, 0], [[-1, 0, 1]], "case 17"),
     ]
 
     sol = Solution()
@@ -44,7 +57,7 @@ if __name__ == "__main__":
 
         actual_outcome = sol.threeSum(incoming)
 
-        if len(actual_outcome) != len(expected_outcome):
+        if actual_outcome != expected_outcome:
             raise Exception(f"Actual {actual_outcome} don't match expected: {expected_outcome} in {case_id}")
 
         print("\tsucceeded: '" + case_id + "'\n")
