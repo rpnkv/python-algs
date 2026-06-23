@@ -4,39 +4,50 @@ class Solution:
         res = []
 
 
-        for l in range(len(nums) - 2):
-            m, r = l + 1, len(nums) - 1
-            while m < r:
-                curr_sum = nums[l] + nums[m] + nums[r]
+        for i_l in range(len(nums) - 2):
+            if i_l != 0 and nums[i_l] == nums[i_l-1]:
+                continue
+
+            i_m, i_r = i_l + 1, len(nums) - 1
+            while i_m < i_r:
+                n_l = nums[i_l]
+                n_m = nums[i_m]
+                n_r = nums[i_r]
+
+                curr_sum = n_l + n_m + n_r
                 match curr_sum:
                     case x if x == 0:
-                        if (
-                            not res
-                                or
-                            not (res[-1][0] == nums[l] and res[-1][1] == nums[m])
-                        ):
-                            res.append([nums[l], nums[m], nums[r]])
+                        res.append([n_l, n_m, n_r])
+                        i_m += 1
+                        while i_m < i_r and nums[i_m] == res[-1][1]:
+                            i_m += 1
+                        while i_m < i_r and nums[i_r] == res[-1][2]:
+                            i_r -= 1
 
-                        m += 1
                     case x if x < 0:
-                        m += 1
+                        i_m += 1
                     case x if x > 0:
-                        r -= 1
+                        i_r -= 1
 
         return res
 
 
 if __name__ == "__main__":
-    cases = [
-        # ([-1, 0, 1], [[-1, 0, 1]], "my 1"),
-        # ([-2, -1, 0, 3], [[-2, -1, 3]], "my 2"),
-        ([-4, -1, -1, 0, 1, 2], [[-1, -1, 2], [-1, 0, 1]], "example 1"),  # sorted
-        # ([0, 1, 1], [], "example 2"),
-        # ([0, 0, 0], [], "example 3"),
-        # ([0, 0, 0, 0], [[0, 0, 0]], "case 12"),
-        ([-1, 0, 1, 0], [[-1, 0, 1]], "case 17"),
-    ]
 
+    cases = [
+        ([-4, -1, -1, 0, 1, 2], [[-1, -1, 2], [-1, 0, 1]], "example 1"),  # sorted
+
+        ([-1, 0, 1], [[-1, 0, 1]], "my 1"),
+        ([-2, -1, 0, 3], [[-2, -1, 3]], "my 2"),
+
+        ([0, 0, 0, 0], [[0, 0, 0]], "case 12"),
+        ([-1, 0, 1, 0], [[-1, 0, 1]], "case 17"),
+
+
+        ([0, 1, 1], [], "example 2"),
+        ([0, 0, 0], [[0,0,0]], "example 3"),
+
+    ]
     sol = Solution()
 
     print()
