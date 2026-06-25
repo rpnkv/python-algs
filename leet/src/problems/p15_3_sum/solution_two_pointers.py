@@ -18,7 +18,6 @@ class Solution:
                 match curr_sum:
                     case x if x == 0:
                         res.append([n_l, n_m, n_r])
-                        i_m += 1
                         while i_m < i_r and nums[i_m] == res[-1][1]:
                             i_m += 1
                         while i_m < i_r and nums[i_r] == res[-1][2]:

@@ -11,6 +11,50 @@
 import pytest
 
 
+def split4(input_nums: list[int]) -> str:
+    s = set(input_nums)
+
+    res = []
+
+    for n in input_nums:
+        if (n - 1) in s:
+            continue
+        else:
+            val_0 = n
+            val_1 = n
+            while val_1 + 1 in s:
+                val_1 += 1
+
+            res.append((val_0, val_1) if val_0 != val_1 else (val_1,))
+
+    return ",".join([str(val[0]) if len(val) == 1 else f"{val[0]}-{val[1]}" for val in res])
+
+
+def split3(input_nums: list[int]) -> str:
+    s = {num: True for num in input_nums}
+
+    res = ""
+
+    for n in input_nums:
+        prev = n - 1
+        if prev in s:
+            continue
+        else:
+            s[n] = False
+            s_tmp = str(n)
+            n_tmp = n
+            while n_tmp + 1 in s:
+                n_tmp += 1
+                s[n_tmp] = False
+
+            if n_tmp != n:
+                res += s_tmp + f"-{n_tmp},"
+            else:
+                res += s_tmp + ","
+
+    return res[:-1]
+
+
 def split(input_nums: list[int]) -> str:
     input_set = {*input_nums}
 
@@ -61,7 +105,6 @@ def split_2(input_nums: list[int]) -> str:
     #         seqs.append((input_sorted[current_start], input_sorted[index - 1]))
     #         current_start = index
     #         current_len = 0
-
     seqs = []
     current_start = 0
     for index, num in enumerate(input_sorted):
@@ -113,3 +156,35 @@ def test_1(input_nums, expected_output):
 )
 def test_2(input_nums, expected_output):
     assert split_2(input_nums) == expected_output
+
+
+TEST_CASES = [
+    pytest.param([1, 4, 5, 2, 3, 9, 8, 11, 0], "0-5,8-9,11"),
+    pytest.param([1, 4, 3, 2], "1-4"),
+    pytest.param([1, 4], "1,4"),
+    pytest.param([3, 2, 1], "1-3"),
+]
+
+
+@pytest.mark.parametrize(
+    ["input_nums", "expected_output"], TEST_CASES
+)
+def test_3(input_nums, expected_output):
+    actual_output = split3(input_nums)
+
+    assert len(actual_output) == len(expected_output)
+
+    for e in expected_output:
+        assert e in actual_output
+
+
+@pytest.mark.parametrize(
+    ["input_nums", "expected_output"], TEST_CASES
+)
+def test_4(input_nums, expected_output):
+    actual_output = split4(input_nums)
+
+    assert len(actual_output.split(",")) == len(expected_output.split(","))
+
+    for e in expected_output.split(","):
+        assert e in actual_output.split(",")

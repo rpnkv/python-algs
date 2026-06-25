@@ -4,6 +4,7 @@ TEST_CASES = [
     pytest.param([9, 1, 4, 2, 3, 3, 7], 4, id="Example 1"),
     pytest.param([0, 3, 1, 3, 2, 3], 4, id="Example 2"),
     pytest.param([4, 10, 4, 3, 8, 9], 3, id="Case 16"),
+    pytest.param([0, 1, 0, 3, 2, 3], 4, id="Case 4"),
     pytest.param([1, 1], 1, id="My case 1"),
     pytest.param([1, 2], 2, id="My case 2"),
     pytest.param([1, 1, 1], 1, id="My case 3"),

@@ -1,22 +1,17 @@
+from typing import List
+
+
 class Solution:
-    def lengthOconLIS(self, nums: List[int]) -> int:
-        dp: list[None | int] = [None] * len(nums)
-        dp[0] = 1
+    def lengthOfLIS(self, nums: List[int]) -> int:
+        lengths = [[1] for _ in range(len(nums))]
 
-        def dfs(nums: list[int], prev_index: int, curr_index) -> int:
-            if curr_index >= len(nums):
-                return 0
+        for i, n in enumerate(nums):
+            max_len = max(lengths[i])
+            for j in range(i + 1, len(nums)):
+                o = nums[j]
 
-            if nums[prev_index] < nums[curr_index]:
-                curr = 1
-            else:
-                curr = 0
+                if o > n:
+                    lengths[j].append(max_len + 1)
 
-            curr_max = 0
+        return max([max(len) for len in lengths])
 
-            if curr_index == len(nums) - 1:
-                return curr
-            else:
-                return max(nums[curr_index:]) + curr
-
-        return dfs(nums, 0, 1)
