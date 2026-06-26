@@ -17,7 +17,7 @@ def test_iterative(incoming: list[int], expected_outcome: int):
 
 @pytest.mark.parametrize(["incoming", "expected_outcome"], TEST_CASES)
 def test_recursive(incoming: list[int], expected_outcome: int):
-    from problems.p198_house_robber.solution_iterative import Solution
+    from problems.p198_house_robber.solution_iterative_const import Solution
     assert Solution().rob(incoming) == expected_outcome
 
 

@@ -3,23 +3,25 @@ class Solution:
         l, r = 0, len(s) - 1
         s = s.upper()
 
-        def check_letter(i: int) -> bool:
-            if not s[i].isalpha() and not s[i].isdigit():
+        def is_valid_char(i: int) -> bool:
+            if s[i].isdigit() or s[i].isalpha():
+                return True
+            else:
                 return False
-            return True
 
         while l < r:
-            while not check_letter(l):
-                l+=1
+            while l < r and not is_valid_char(l):
+                l += 1
 
-            while not check_letter(r):
-                r-=1
+            while r > l and not is_valid_char(r):
+                r -= 1
 
             if s[l] != s[r]:
                 return False
 
-            l+=1
-            r-=1
+            l += 1
+            r -=1
+
 
         return True
 
