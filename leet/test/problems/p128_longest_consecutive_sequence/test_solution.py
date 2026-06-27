@@ -1,6 +1,6 @@
 import pytest
 
-from problems.p128_longest_consecutive_sequence.solution import Solution
+from problems.p128_longest_consecutive_sequence.solution_no_extra_mem import Solution
 
 
 @pytest.mark.parametrize(

@@ -31,3 +31,11 @@ def test_recursive(incoming: list[int], expected_outcome: int):
 def test_bottom_up_dp(incoming: list[int], expected_outcome: int):
     from problems.p300_longest_increasing_subsequence.bottom_up_dp_solution import Solution
     assert Solution().lengthOfLIS(incoming) == expected_outcome
+
+
+@pytest.mark.parametrize(["incoming", "expected_outcome"], TEST_CASES)
+def test_greedy(incoming: list[int], expected_outcome: int):
+    from problems.p300_longest_increasing_subsequence.greedy_solution import Solution
+    assert Solution().lengthOfLIS(incoming) == expected_outcome
+
+

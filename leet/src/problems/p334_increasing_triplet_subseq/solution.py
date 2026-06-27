@@ -3,16 +3,17 @@ from typing import List
 
 class Solution:
     def increasingTriplet(self, nums: List[int]) -> bool:
-        smallest = float('inf')
-        middle = float('inf')
+        a = b = c = pow(2,32)
 
-        for current_num in nums:
-            if current_num > middle:
-                return True
+        for n in nums:
+            if n < c:
+                if n < b:
+                    if n < a:
+                        a = n
+                    else:
+                        b = n
+                else:
+                    return True
 
-            if current_num < smallest:
-                smallest = current_num
-            elif current_num < middle and current_num > smallest:
-                middle = current_num
 
         return False
