@@ -10,8 +10,30 @@
 #
 import pytest
 
-
 def split4(input_nums: list[int]) -> str:
+    s = set(input_nums)
+
+    res = []
+
+    for n in input_nums:
+        if n - 1 in s:
+            continue
+
+        n_2 = n
+        while n_2 + 1 in s:
+            n_2 += 1
+
+        if n == n_2:
+            res.append((n,))
+        else:
+            res.append((n, n_2))
+
+    return ",".join([str(r[0]) if len(r) == 1 else f"{r[0]}-{r[1]}" for r in res])
+
+
+
+
+def splitX(input_nums: list[int]) -> str:
     s = set(input_nums)
 
     res = []

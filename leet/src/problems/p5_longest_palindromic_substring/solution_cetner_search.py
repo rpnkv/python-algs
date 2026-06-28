@@ -43,37 +43,62 @@
 #
 #         return m
 
+# class Solution:
+#     def longestPalindrome(self, s: str) -> str:
+#         max_pal = (0, -1)  # когда такое не проканает?
+#
+#         def check_for_pal(l, r) -> tuple[bool, int, int]:
+#             l_pal, r_pal = l, r
+#             is_pal = l == r
+#
+#             while l >= 0 and r <= len(s) - 1:
+#                 if s[l] == s[r]:
+#                     is_pal = True
+#                     l_pal, r_pal = l, r
+#                 else:
+#                     break
+#
+#                 l -= 1
+#                 r += 1
+#
+#             return (is_pal, l_pal, r_pal)
+#
+#         for i, _ in enumerate(s):
+#             is_pal, l_even, r_even = check_for_pal(i, i)
+#             if is_pal and (max_pal[1] - max_pal[0]) < (r_even - l_even):
+#                 max_pal = (l_even, r_even)
+#
+#             is_pal, l_odd, r_odd = check_for_pal(i, i + 1)
+#             if is_pal and (max_pal[1] - max_pal[0]) < (r_odd - l_odd):
+#                 max_pal = (l_odd, r_odd)
+#
+#         return s[max_pal[0]: max_pal[1] + 1]
+
+
 class Solution:
     def longestPalindrome(self, s: str) -> str:
-        max_pal = (0, -1)  # когда такое не проканает?
+        p_l, p_r = 0, -1
 
-        def check_for_pal(l, r) -> tuple[bool, int, int]:
-            l_pal, r_pal = l, r
-            is_pal = l == r
-
-            while l >= 0 and r <= len(s) - 1:
-                if s[l] == s[r]:
-                    is_pal = True
-                    l_pal, r_pal = l, r
-                else:
-                    break
-
+        def check_pal(l:int, r:int) -> tuple[int,int]:
+            while l >= 0 and r < len(s) and s[l] == s[r]:
                 l -= 1
                 r += 1
 
-            return (is_pal, l_pal, r_pal)
+            return (l + 1, r - 1)
+
 
         for i, _ in enumerate(s):
-            is_pal, l_even, r_even = check_for_pal(i, i)
-            if is_pal and (max_pal[1] - max_pal[0]) < (r_even - l_even):
-                max_pal = (l_even, r_even)
+            # check odd
+            o_l, o_r = check_pal(i, i + 1)
+            if p_r - p_l < o_r - o_l:
+                p_l, p_r = o_l, o_r
 
-            is_pal, l_odd, r_odd = check_for_pal(i, i + 1)
-            if is_pal and (max_pal[1] - max_pal[0]) < (r_odd - l_odd):
-                max_pal = (l_odd, r_odd)
+            # check even
+            e_l, e_r = check_pal(i, i)
+            if p_r - p_l < e_r - e_l:
+                p_l, p_r = e_l, e_r
 
-        return s[max_pal[0]: max_pal[1] + 1]
-
+        return s[p_l: p_r + 1]
 
 if __name__ == "__main__":
     cases = [

@@ -3,32 +3,33 @@ class Solution:
         nums.sort()
         res = []
 
-
-        for i_l in range(len(nums) - 2):
-            if i_l != 0 and nums[i_l] == nums[i_l-1]:
+        for l in range(len(nums) - 2):
+            if l > 0 and nums[l - 1] == nums[l]:
                 continue
 
-            i_m, i_r = i_l + 1, len(nums) - 1
-            while i_m < i_r:
-                n_l = nums[i_l]
-                n_m = nums[i_m]
-                n_r = nums[i_r]
+            if nums[l] > 0:
+                break
 
-                curr_sum = n_l + n_m + n_r
-                match curr_sum:
-                    case x if x == 0:
-                        res.append([n_l, n_m, n_r])
-                        while i_m < i_r and nums[i_m] == res[-1][1]:
-                            i_m += 1
-                        while i_m < i_r and nums[i_r] == res[-1][2]:
-                            i_r -= 1
+            m, r = l + 1, len(nums) - 1
 
-                    case x if x < 0:
-                        i_m += 1
-                    case x if x > 0:
-                        i_r -= 1
+            while m < r:
+                match nums[l] + nums[m] + nums[r]:
+                    case s if s == 0:
+                        res.append([nums[l], nums[m], nums[r]])
+                        while m < r and nums[m] == res[-1][1]:
+                            m += 1
+
+                        while m < r and nums[r] == res[-1][2]:
+                            r -= 1
+
+                    case s if s < 0:
+                        m += 1
+                    case s if s > 0:
+                        r -= 1
+
 
         return res
+
 
 
 if __name__ == "__main__":
