@@ -6,26 +6,23 @@ from common.list_node import ListNode
 
 class Solution:
     def mergeKLists(self, lists: List[Optional[ListNode]]) -> Optional[ListNode]:
-        heads = {head.val: head for head in lists if head}
-
-        h = [*heads.keys()]  # ошибка -- без звёздочки
+        h = [(l.val, i, l) for i, l in enumerate(lists)]
 
         heapq.heapify(h)
 
         res = tail = ListNode(val=-1001)
 
         while h:
-            min_v = heapq.heappop(h)
-            min_h = heads[min_v]
+            min_v, i, min_h = heapq.heappop(h)
 
             tail.next = min_h
             tail = tail.next
 
             if not min_h.next:
-                del heads[min_v]
+                pass
             else:
-                heads[min_v] = min_h.next
-                heapq.heappush(h, heads[min_v].val)
+                v_next, h_next = min_h.next.val, min_h.next
+                heapq.heappush(h, (v_next, i, h_next))
 
         return res.next
 
