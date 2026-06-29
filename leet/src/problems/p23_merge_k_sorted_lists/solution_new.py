@@ -1,42 +1,54 @@
-# Definition for singly-linked list.
-# class ListNode:
-#     def __init__(self, val=0, next=None):
-#         self.val = val
-#         self.next = next
-
 import heapq
-from functools import reduce
-from typing import List, Optional
+from typing import Optional, List
 
 from common.list_node import ListNode
 
 
 class Solution:
-    @staticmethod
-    def linked_list_generator(head):
-        current = head
-        while current is not None:
-            yield current
-            current = current.next
-
     def mergeKLists(self, lists: List[Optional[ListNode]]) -> Optional[ListNode]:
-        merged = heapq.merge(*[Solution.linked_list_generator(l) for l in lists], key=lambda k: k.val)
+        heads = {head.val: head for head in lists if head}
 
-        head = tail = ListNode()
+        h = [*heads.keys()]  # ошибка -- без звёздочки
 
-        for node in merged:
-            tail.next = node
+        heapq.heapify(h)
+
+        res = tail = ListNode(val=-1001)
+
+        while h:
+            min_v = heapq.heappop(h)
+            min_h = heads[min_v]
+
+            tail.next = min_h
             tail = tail.next
 
-        return head.next
+            if not min_h.next:
+                del heads[min_v]
+            else:
+                heads[min_v] = min_h.next
+                heapq.heappush(h, heads[min_v].val)
 
-        #return reduce(lambda acc, new: ListNode(new, acc), i, ListNode())
+        return res.next
 
 
 if __name__ == "__main__":
     cases = [
         (
-            [ListNode(1), ListNode(2), ListNode(3)], ListNode.to_linked_list([1, 2, 3]), "case 1"
+            [
+                ListNode.to_linked_list([1]),
+                ListNode.to_linked_list([2]),
+                ListNode.to_linked_list([3])
+            ],
+            ListNode.to_linked_list([1, 2, 3]),
+            "my case 1"
+        ),
+        (
+            [
+                ListNode.to_linked_list([1, 2, 4]),
+                ListNode.to_linked_list([1, 3, 5]),
+                ListNode.to_linked_list([3, 6])
+            ],
+            ListNode.to_linked_list([1, 1, 2, 3, 3, 4, 5, 6]),
+            "case 1"
         )
     ]
 
