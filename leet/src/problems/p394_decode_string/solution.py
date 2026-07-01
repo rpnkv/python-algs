@@ -3,23 +3,24 @@ class Solution:
         stack = []
 
         for c in s:
-            if c != "]":
+            if c != ']':
                 stack.append(c)
-            else:
-                operand = []
-                while stack and not stack[-1].isdigit():
-                    operand.append(stack.pop())
+                continue
 
-                operand = "".join(reversed(operand[:-1]))
+            operand = []
+            while stack and stack[-1].isalnum():
+                operand.append(stack.pop())
 
-                multiplier = []
+            stack.pop() # remove '['
+            operand.reverse()
 
-                while stack and stack[-1].isdigit():
-                    multiplier.append(stack.pop())
+            multiplier = []
+            while stack and stack[-1].isdigit():
+                multiplier.append(stack.pop())
 
-                multiplier = "".join(multiplier.reverse())
+            multiplier = int("".join(reversed(multiplier)))
 
-                stack.extend(operand * int(multiplier))
+            stack.extend(operand * multiplier)
 
 
         return "".join(stack)

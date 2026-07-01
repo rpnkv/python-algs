@@ -3,19 +3,11 @@ from typing import List
 
 class Solution:
     def findMaxAverage(self, nums: List[int], k: int) -> float:
-        # [1, 12, -5, -6, 50, 3]; 4
-        l = curr_sum = 0
-        max_avg = -10001
+        s = max_s = sum(nums[:k])
 
-        for r in range(len(nums)):
-            curr_sum += nums[r]
-
-            if (r - l + 1) > k:
-                curr_sum -= nums[l]
-                l+=1
-
-            if (r - l + 1) == k:
-                max_avg = max(max_avg, curr_sum / k)
+        for i in range(k, len(nums)):
+            s += nums[i] - nums[i - k]
+            max_s = max(max_s, s)
 
 
-        return max_avg
+        return max_s / k

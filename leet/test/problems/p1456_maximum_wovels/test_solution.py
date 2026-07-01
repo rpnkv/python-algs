@@ -1,6 +1,6 @@
 import pytest
 
-from problems.p1456_maximum_wovels.solution import Solution
+from problems.p1456_maximum_number_of_wovels.solution import Solution
 
 TEST_CASES = [
     pytest.param("abciiidef", 3, 3),
