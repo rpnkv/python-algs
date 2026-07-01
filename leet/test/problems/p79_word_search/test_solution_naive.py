@@ -2,9 +2,8 @@ from typing import List
 
 import pytest
 
-from problems.medium.p79_word_search.solution_naive import Solution
+from problems.p79_word_search.solution_naive import Solution
 
-sol = Solution()
 
 
 @pytest.mark.parametrize(
@@ -20,5 +19,8 @@ sol = Solution()
         ([["A","B","C","E"],["S","F","E","S"],["A","D","E","E"]], "ABCESEEEFS", True),
     ]
 )
-def test_solution(board: List[List[str]], word: str, expected_output: bool):
+def test_solution_naive(board: List[List[str]], word: str, expected_output: bool):
+    sol = Solution()
     assert sol.exist(board, word) == expected_output
+
+
