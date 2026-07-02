@@ -1,32 +1,19 @@
+
 class Solution:
+    # rev2
     def maxOperations(self, nums: List[int], k: int) -> int:
-        d = {}
-        pairs = 0
+        s = set()
+        count = 0
 
         for n in nums:
-            if not n in d:
-                d[n] = 1
+            target = k - n
+            if target in s:
+                count += 1
+                s.remove(target)
             else:
-                d[n] = d[n] + 1
+                s.add(n)
 
-        for n in nums:
-            if n in d:
-                if k / n == 2.0:
-                    if d[n] >= 2:
-                        pairs += 1
-                        d[n] = d[n] - 2
-                else:
-                    if k - n in d:
-                        d[n] = d[n] - 1
-                        d[k - n] = d[k - n] - 1
+        return count
 
-                        pairs += 1
-
-                        if d[n] <= 0:
-                            del d[n]
-
-                        if d[k - n] <= 0:
-                            del d[k - n]
-
-        return pairs
-
+if __name__ == "__main__":
+    assert Solution().maxOperations([2,5,4,4,1,3,4,4,1,4,4,1,2,1,2,2,3,2,4,2], 3) == 4
