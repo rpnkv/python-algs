@@ -1,4 +1,5 @@
 class Solution:
+    # v2
     def exist(self, board: List[List[str]], word: str) -> bool:
         cols, rows = len(board), len(board[0])
 
