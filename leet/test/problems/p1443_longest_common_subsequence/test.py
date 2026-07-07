@@ -1,6 +1,6 @@
 import pytest
 
-from problems.p1443_longest_common_subsequence.solution_bruteforce import Solution
+from problems.p1143_longest_common_subsequence.solution_bruteforce import Solution
 
 TEST_CASES = [
     pytest.param("abcde", "ace", 3, id="Example 1"),
