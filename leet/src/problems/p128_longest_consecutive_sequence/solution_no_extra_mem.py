@@ -1,68 +1,25 @@
 from typing import List
 
 
-# class Solution:
-#     def longestConsecutive(self, nums: List[int]) -> int:
-#         nums.sort()
-#
-#         curr_len = max_len = 1
-#         l = 0
-#
-#         for r in range(1, len(nums)):
-#             if nums[r] == nums[l]:
-#                 continue
-#             else:
-#                 if nums[l] + 1 == nums[r]:
-#                     curr_len += 1
-#                 else:
-#                     curr_len = 1
-#                 l = r
-#
-#                 max_len = max(max_len, curr_len)
-#
-#         return max_len
-
-
-# class Solution:
-#     def longestConsecutive(self, nums: List[int]) -> int:
-#         nums.sort()
-#
-#         l = 0
-#         curr_len = max_len = 1 if nums else 0
-#
-#         for r, num in enumerate(nums):
-#             match num - nums[l]:
-#                 case diff if diff == 0:
-#                     pass
-#                 case diff if diff == 1:
-#                     curr_len += 1
-#                     max_len = max(max_len, curr_len)
-#                     l = r
-#                 case diff if diff > 1:
-#                     curr_len = 1
-#                     l = r
-#
-#         return max_len
-
 class Solution:
     def longestConsecutive(self, nums: List[int]) -> int:
         nums.sort()
 
-        max_len = 1 if nums else 0
+        l = 0
+        ln = ln_max = 0 if not nums else 1
 
-        l, ln = 0, 1
+        for r, num in enumerate(nums):
+            if num != nums[l]:
+                if num == nums[l] + 1:
+                    ln += 1
+                else:
+                    ln = 1
 
-        for r, n in enumerate(nums):
-            if nums[l] == n:
-                continue
-            elif nums[l] == n - 1:
-                ln += 1
                 l = r
-                max_len = max(ln, max_len)
-            else:
-                l = r
-                ln = 1
-        return max_len
+
+            ln_max = max(ln_max, ln)
+
+        return ln_max
 
 if __name__ == "__main__":
     cases = [
