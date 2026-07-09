@@ -22,9 +22,12 @@ if __name__ == "__main__":
         ("aebc", "adbc", 3, "my 2"),
         ("abec", "adbc", 3, "my 2"),
         ("cat", "crabt", 3, "ex 1"),
+        ("crabt", "cat", 3, "ex 1 rev"),
+        ("crabt", "car", 2, "case 4"),
+
     ]
 
-    for inc1, inc2, exp, case_id in cases:
+    for inc1, inc2, exp, case_id in cases[5:]:
         act = Solution().longestCommonSubsequence(inc1, inc2)
 
         assert exp == act, f"failed case {case_id}: a/e:{act}/{exp}"
