@@ -1,20 +1,12 @@
-from typing import List
-
 class Solution:
     def removeElement(self, nums: List[int], val: int) -> int:
-        left = len(nums)
+        nums.sort()
 
-        for i in range(len(nums)):
-            if nums[i] == val:
-                left = i
-                break
+        l = 0
 
-        else:
-            return left
+        for r, n in enumerate(nums):
+            if n != val:
+                nums[l], nums[r] = nums[r], nums[l]
+                l += 1
 
-        for right in range(left + 1, len(nums)):
-            if nums[right] != val:
-                nums[left] = nums[right]
-                left += 1
-
-        return left
+        return l

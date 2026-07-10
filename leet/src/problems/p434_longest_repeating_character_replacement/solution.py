@@ -1,57 +1,50 @@
-class Freq:
+# v2
+
+class Counter:
     def __init__(self):
-        self.d = {}
-        self.total = 0
+        self.counts = {}
+        self.total_count = 0
 
-    def append(self, c: str):
-        if c not in self.d:
-            self.d[c] = 0
+    def add(self, char:str) -> None:
+        cnt = self.counts
+        if char not in cnt:
+            cnt[char] = 0
 
-        self.d[c] += 1
-        self.total += 1
+        cnt[char] += 1
+        self.total_count += 1
 
-    def remove(self, c: str):
-        if self.d[c] < 2:
-            del self.d[c]
-        else:
-            self.d[c] -= 1
-
-        self.total -= 1
-
-    def count_others(self) -> int:
-        d = self.d
-
-        if len(d) == 1:
+    def count_infrequents(self) -> int:
+        cnt = self.counts
+        if len(cnt) < 2:
             return 0
         else:
-            char, freq = "", 0
-            for c1, f1 in d.items():
-                if f1 > freq:
-                    char, freq = c1, f1
+            return self.total_count - max(cnt.values())
 
-            return self.total - freq
-
-    def count_all(self) -> int:
-        return self.total
+    def remove(self, char: str) -> None:
+        cnt = self.counts
+        if cnt[char] < 1:
+            del cnt[char]
+        else:
+            cnt[char] -= 1
+        self.total_count -= 1
 
 
 class Solution:
     def characterReplacement(self, s: str, k: int) -> int:
-        l = 0
-        ln_max = 0
+        l = max_len = 0
+        cnt = Counter()
 
-        freq = Freq()
+        for r, char in enumerate(s):
+            cnt.add(char)
 
-        for r, c in enumerate(s):
-            freq.append(c)
-
-            while freq.count_others() > k:
-                freq.remove(s[l])
+            while cnt.count_infrequents() > k:
+                cnt.remove(s[l])
                 l += 1
 
-            ln_max = max(ln_max, freq.count_all())
+            max_len = max(max_len, cnt.total_count)
 
-        return ln_max
+        return max_len
+
 
 
 if __name__ == "__main__":
