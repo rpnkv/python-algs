@@ -3,30 +3,32 @@ class Solution:
         res = 0
         mask = 0b01
 
-        transfer = 0b00
+        carry = 0
 
-        while a or b or transfer:
-            res = res << 1
-            a_mask = a & mask
-            b_mask = b & mask
+        while a or b or carry:
+            #res = res << 1
+            a_bit = a & mask
+            b_bit = b & mask
 
-            if a_mask & b_mask & transfer:
-                transfer = 0b01
+            if a_bit & b_bit & carry:
+                carry = 0b01
                 res_mask = 0b01
-            elif a_mask & b_mask:
-                transfer = 0b01
+            elif a_bit & b_bit:
+                carry = 0b01
                 res_mask = 0b00
-            elif (a_mask | b_mask) & transfer:
-                transfer = 0b01
+            elif (a_bit | b_bit) & carry:
+                carry = 0b01
                 res_mask = 0b00
-            elif a_mask | b_mask | transfer:
-                transfer = 0b00
+            elif a | b_bit | carry:
+                carry = 0b00
                 res_mask = 0b01
             else:
-                transfer = 0b00
+                carry = 0b00
                 res_mask = 0b00
 
-            res = res | res_mask
+            #res = res | res_mask
+            res |= (1 << i)
+
             a = a >> 1
             b = b >> 1
 
