@@ -3,35 +3,25 @@ class Solution:
         res = 0
         mask = 0b01
 
-        carry = place = 0
+        carry = 0
 
-        while a or b or carry:
+        for pos in range(32):
             a_bit = a & mask
             b_bit = b & mask
 
-            if a_bit & b_bit & carry:
-                carry = 0b01
-                res_mask = 0b01
-            elif a_bit & b_bit:
-                carry = 0b01
-                res_mask = 0b00
-            elif (a_bit | b_bit) & carry:
-                carry = 0b01
-                res_mask = 0b00
-            elif a_bit | b_bit | carry:
-                carry = 0b00
-                res_mask = 0b01
-            else:
-                carry = 0b00
-                res_mask = 0b00
+            if not (a | b | carry):
+                break
 
-            res_mask <<= place
+            x = a_bit ^ b_bit ^ carry
+            carry = (a_bit & b_bit) | (a_bit & carry) | (b_bit & carry)
 
-            res |= res_mask
-
+            x <<= pos
             a >>= 1
             b >>= 1
-            place += 1
+            res |= x
+
+        if res & 0x80000000:
+            return ~(res ^ 0xFFFFFFFF)
 
         return res
 
@@ -45,7 +35,7 @@ if __name__ == "__main__":
         (4, 5, 9, "cs 6L"),
     ]
 
-    for i1, i2, e, case_id in cases[4:]:
+    for i1, i2, e, case_id in cases:
         a = Solution().getSum(i1, i2)
 
         assert a == e, f"failed case {case_id}; a/e: {a}/{e}"
