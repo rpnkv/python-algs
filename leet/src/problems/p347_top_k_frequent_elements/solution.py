@@ -1,20 +1,11 @@
-import heapq
-
-import heapq
-
 class Solution:
     def topKFrequent(self, nums: List[int], k: int) -> List[int]:
-        freqs = {}
-        for n in nums:
-            freqs[n] = freqs.get(n, 0) + 1
+        import heapq
+        from collections import Counter
 
-        h = []
-        for n, freq in freqs.items():
-            heapq.heappush(h, (freq, n))
-            if len(h) > k:
-                heapq.heappop(h) 
+        counts = Counter(nums)
 
-        return [el[1] for el in h]
+        return [key for key, value in heapq.nlargest(k, counts.items(), key=lambda x: x[1])]
 
 if __name__ == "__main__":
     cases = [
@@ -25,6 +16,6 @@ if __name__ == "__main__":
         actual = Solution().topKFrequent(inc,k)
 
         if actual != expected:
-            print(f"case {case_id} failed")
+            print(f"case {case_id} failed; a/e:{actual}/{expected}")
         else:
             print(f"case {case_id} succeeded")

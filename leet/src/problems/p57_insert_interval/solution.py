@@ -8,7 +8,8 @@ class Solution:
             res.append(intervals[i])
             i+=1
 
-        while i < len(intervals) and new_end >= intervals[i][0]:
+        #while i < len(intervals) and new_end >= intervals[i][0]:
+        while i < len(intervals) and intervals[i][0] <= new_end:
             new_start = min(new_start, intervals[i][0])
             new_end = max(new_end, intervals[i][1])
             i+=1
