@@ -10,23 +10,22 @@
 #
 import pytest
 
+
 def split(input_nums: list[int]) -> str:
     s = set(input_nums)
-
     res = []
 
     for n in input_nums:
         if n - 1 in s:
             continue
-        start, end = n,n
+        else:
+            start, end = n, n
+            while end + 1 in s:
+                end += 1
 
-        while n + 1 in s:
-            end = n + 1
-            n += 1
+            res.append((start, end, end != start))
 
-        res.append([start, end])
-
-    return ",".join(f"{start}-{end}" if start != end else f"{start}" for start,end in res)
+    return ",".join(f"{t[0]}-{t[1]}" if t[2] else f"{t[0]}" for t in res)
 
 
 TEST_CASES = [

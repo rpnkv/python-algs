@@ -1,7 +1,7 @@
 import pytest
 from typing import List
 
-from problems.p215_kth_largest_element_in_array.solution import Solution
+from problems.p215_kth_largest_element_in_array.solution_oldest import Solution
 
 TEST_CASES = [
     pytest.param([*range(0, 6)], 3, 3, id="My case 1"),

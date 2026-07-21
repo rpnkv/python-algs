@@ -1,14 +1,18 @@
-class SolutionBruteforce:
+class Solution:
     def maxSubArray(self, nums: List[int]) -> int:
-        max_sum = max(nums)
+        max_sub = nums[0]
 
-        for i, n in enumerate(nums):
-            curr_sum = n
-            for k in range(i+1, len(nums)):
-                curr_sum += nums[k]
-                max_sum = max(max_sum, curr_sum)
+        for i, n  in enumerate(nums):
+            curr_sub = None
+            for j in range(i, len(nums)):
+                if not curr_sub:
+                    curr_sub = nums[j]
+                else:
+                    curr_sub += nums[j]
 
-        return max_sum
+                max_sub = max(max_sub, curr_sub)
+
+        return max_sub
 
 
 if __name__ == "__main__":
@@ -20,7 +24,7 @@ if __name__ == "__main__":
     ]
 
     for inc, exp, case in cases:
-        act = SolutionBruteforce().maxSubArray(inc)
+        act = Solution().maxSubArray(inc)
 
         if act != exp:
             print(f"failed {case}, exp: {exp}, act: {act}")
