@@ -1,7 +1,5 @@
 import pytest
 
-from problems.p704_binary_search.solution import Solution
-
 TEST_CASES = [
     pytest.param([-1, 0, 3, 5, 9, 12], 9, 4, id="Example 1"),
     pytest.param([-1, 0, 3, 5, 9, 12], 2, -1, id="Example 2"),
@@ -12,6 +10,14 @@ TEST_CASES = [
 
 @pytest.mark.parametrize(["incoming", "target", "expected_outcome"], TEST_CASES)
 def test(incoming: list[int], target: int, expected_outcome: int):
+    from problems.p704_binary_search.solution import Solution
+    sol = Solution()
+
+    assert sol.search(incoming, target) == expected_outcome
+
+@pytest.mark.parametrize(["incoming", "target", "expected_outcome"], TEST_CASES)
+def test(incoming: list[int], target: int, expected_outcome: int):
+    from problems.p704_binary_search.bisect_solution import Solution
     sol = Solution()
 
     assert sol.search(incoming, target) == expected_outcome
