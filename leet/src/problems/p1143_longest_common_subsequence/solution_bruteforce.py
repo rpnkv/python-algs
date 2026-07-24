@@ -20,6 +20,36 @@
 #
 #         return max(max_lens)
 
+# class Solution:
+#     def longestCommonSubsequence(self, text1: str, text2: str) -> int:
+#         if len(text1) < len(text2):
+#             pass
+#         else:
+#             text1, text2 = text2, text1
+#
+#         ln_max = 0
+#         max_lens = [0] * len(text1)
+#         paths = []
+#
+#
+#         for j, chr2 in enumerate(text2):
+#              if text2[j] == text1[0]:
+#                  paths.append(j)
+#
+#         for i in range(1, len(text1)):
+#             for
+#
+#         # for i, chr1 in enumerate(text1):
+#         #     for j, chr2 in enumerate(text2):
+#         #         if chr1 == chr2:
+#         #             paths[i].append(j)
+#         #             if i == 0:
+#         #                 max_lens[i] = 1
+#         #             else:
+#         #                 max_lens[i] = max(max_lens[:i]) + 1
+#
+#         return max(max_lens)
+
 class Solution:
     def longestCommonSubsequence(self, text1: str, text2: str) -> int:
         if len(text1) < len(text2):
@@ -27,28 +57,14 @@ class Solution:
         else:
             text1, text2 = text2, text1
 
-        ln_max = 0
-        max_lens = [0] * len(text1)
-        paths = []
+        next_paths = [[]] * len(text1)
+
+        for i, c in enumerate(text2):
+            if c == text1[0]:
+                next_paths[0].append(i)
 
 
-        for j, chr2 in enumerate(text2):
-             if text2[j] == text1[0]:
-                 paths.append(j)
 
-        for i in range(1, len(text1)):
-            for
-
-        # for i, chr1 in enumerate(text1):
-        #     for j, chr2 in enumerate(text2):
-        #         if chr1 == chr2:
-        #             paths[i].append(j)
-        #             if i == 0:
-        #                 max_lens[i] = 1
-        #             else:
-        #                 max_lens[i] = max(max_lens[:i]) + 1
-
-        return max(max_lens)
 
 if __name__ == "__main__":
     cases = [
