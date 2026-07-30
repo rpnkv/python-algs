@@ -1,25 +1,47 @@
 from typing import List
 
+# class Solution:
+#     def longestConsecutive(self, nums: List[int]) -> int:
+#         nums.sort()
+#
+#         l = 0
+#         ln = ln_max = 0 if not nums else 1
+#
+#         for r, num in enumerate(nums):
+#             if num != nums[l]:
+#                 if num == nums[l] + 1:
+#                     ln += 1
+#                 else:
+#                     ln = 1
+#
+#                 l = r
+#
+#             ln_max = max(ln_max, ln)
+#
+#         return ln_max
 
 class Solution:
     def longestConsecutive(self, nums: List[int]) -> int:
+        if not nums:
+            return 0
+
         nums.sort()
 
-        l = 0
-        ln = ln_max = 0 if not nums else 1
+        l, max_len, curr_len = 0, 1, 1
+        for r, n in enumerate(nums):
+            match n - nums[l]:
+                case diff if diff == 0:
+                    pass
+                case diff if diff == 1:
+                    curr_len += 1
+                    l = r
+                case _:
+                    curr_len = 1
+                    l = r
+            max_len = max(max_len, curr_len)
 
-        for r, num in enumerate(nums):
-            if num != nums[l]:
-                if num == nums[l] + 1:
-                    ln += 1
-                else:
-                    ln = 1
+        return max_len
 
-                l = r
-
-            ln_max = max(ln_max, ln)
-
-        return ln_max
 
 if __name__ == "__main__":
     cases = [

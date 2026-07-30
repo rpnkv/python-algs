@@ -22,4 +22,4 @@ class Solution:
 
 
 
-        while q and p
+

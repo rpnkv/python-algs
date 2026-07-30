@@ -1,30 +1,33 @@
 class Solution:
     def combinationSum(self, nums: List[int], target: int) -> List[List[int]]:
         res = []
+        nums.sort()
 
-        def dfs(curr_target: int, prev:list[int]) -> bool:
-            for num in nums:
-                if curr_target - num == 0:
-                    res.append(prev + [num])
-                    continue
+        def dfs(i:int, curr: list[int], total: int) -> None:
+            if total == target:
+                res.append(curr.copy())
 
-                if curr_target - num < 0:
-                    continue
+            for j in range(i, len(nums)):
+                if total + nums[j] > target:
+                    break
+                else:
+                    curr.append(nums[j])
+                    dfs(j, curr, total + nums[j])
+                    curr.pop()
 
-                dfs(curr_target - num, prev + [num])
 
-
-        dfs(target, [])
+        dfs(0, [], 0)
 
         return res
+
 
 if __name__ == "__main__":
     cases = [
         ([3], 5, [], "example 3N"),
-        ([2,5,6,9], 9, [[2,2,5],[9]], "example1")
+        ([2, 5, 6, 9], 9, [[2, 2, 5], [9]], "example 1")
     ]
 
     for i1, i2, e, c in cases[1:]:
-        a = Solution().combinationSum(i1,i2)
+        a = Solution().combinationSum(i1, i2)
 
         assert a == e, f"failed case {c}"
