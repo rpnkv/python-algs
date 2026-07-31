@@ -1,7 +1,8 @@
 import pytest
 
 cases = [
-    pytest.param("ababababc", ["abababa", "bababab"], id="manacher example case"),
+    pytest.param("ababd", ["bab", "aba"], id="nc example 1"),
+    # pytest.param("ababababc", ["abababa", "bababab"], id="manacher example case"),
     # pytest.param("aacabdkacaa", ["aca"], id="case 17"),
     # pytest.param("abbc", ["bb"], id="case 1"),
     # pytest.param("a", ["a"], id="case 3"),
