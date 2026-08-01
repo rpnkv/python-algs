@@ -1,7 +1,7 @@
 import pytest
 
 from common.tree_node import TreeNode
-from problems.p102_level_order_traversal.solution import Solution
+from problems.p102_level_order_traversal.solution_lists import Solution
 
 sol = Solution()
 
