@@ -27,6 +27,19 @@ def test_expand_around_center(inc: str, exp: list[str]):
 
     raise AssertionError(f"Res {act} doesn't match any of expected: {exp}")
 
+@pytest.mark.parametrize(["inc", "exp"], cases)
+def test_expand_around_improved(inc: str, exp: list[str]):
+    from problems.p5_longest_palindromic_substring.solution_cetner_search_improved import Solution
+    sol = Solution()
+
+    act = sol.longestPalindrome(inc)
+
+    for appropriate in exp:
+        if appropriate == act:
+            return
+
+    raise AssertionError(f"Res {act} doesn't match any of expected: {exp}")
+
 
 @pytest.mark.parametrize(["inc", "exp"], cases)
 def test_expand_manacher(inc: str, exp: list[str]):
