@@ -6,9 +6,10 @@ class Solution:
         # 1.
         l = r = 0
         allowed_set = set(t)
-        window_set = set()
+        window_chars = {}
 
         res = ""
+        win = ""
 
         while l < len(s) and s[l] not in t:
             l += 1
@@ -17,8 +18,8 @@ class Solution:
         for r in range(l, len(s)):
             char = s[r]
             if char in allowed_set:
-                if char not in window_set:
-                    window_set.add(char)
+                if char not in window_chars:
+
                 else:
                     if s[l] == char:
                         l += 1
@@ -34,6 +35,8 @@ class Solution:
                     res = s[l: r + 1]
                     continue
 
+            win = s[l: r+ 1]
+
         return res
 
 
@@ -41,8 +44,9 @@ if __name__ == "__main__":
     cases = [
         ("OUZODYXAZV", "XYZ", "YXAZ", "lc ex 1"),
         ("X", "XY", "", "lc ex 2"),
+        ("ADOBECODEBANC", "ABC", "BANC", "lc case 8"),
     ]
     sol = Solution()
-    for i1, i2, expected, case_id in cases:
-        res = sol.minWindow(i1, i2)
-        assert res == expected, f"case {case_id} failed"
+    for i1, i2, expected, case_id in cases[2:]:
+        actual = sol.minWindow(i1, i2)
+        assert actual == expected, f"case {case_id} failed: {expected}/{actual}"

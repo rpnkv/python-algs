@@ -1,24 +1,28 @@
 class Solution:
     def longestPalindrome(self, s: str) -> str:
-        def manacher(s):
-            t = '#' + '#'.join(s) + '#'
-            n = len(t)
-            p = [0] * n
-            # l, r = 0, 0
+        best_center, best_radius = 0, 0
+        t = "#" + "#".join(s) + "#"
+        radii = [0] * len(t)
+        best_l, best_r = 0, 0
 
-            for i in range(n):
-                # if i < r:
-                #     p[i] = min(r - i, p[l + (r - i)])
+        for center, _ in enumerate(t):
+            if center < best_r:
+                radii[center] =
 
-                while ((i + p[i] + 1 < n and i - p[i] - 1 >= 0) # while we're still inside the str
-                        and t[i + p[i] + 1] == t[i - p[i] - 1]): # and inside the pal
-                    p[i] += 1
+            radius = radii[center]
+            l = r = center
 
-                #if i + p[i] > r: # update boundaries
-                #    l, r = i - p[i], i + p[i]
-            return p
+            while (l >= 0 and r < len(t) and
+                   t[l] == t[r]):
+                radius += 1
+                l, r = l - 1, r + 1
 
-        pals = manacher(s)
-        resLen, center_idx = max((v, i) for i, v in enumerate(pals))
-        resIdx = (center_idx - resLen) // 2
-        return s[resIdx: resIdx + resLen]
+            radius -= 1
+
+            if radius > best_radius:
+                best_center, best_radius = center, radius
+
+        start = (best_center - best_radius) // 2
+        length = best_radius
+
+        return s[start:start + length]
