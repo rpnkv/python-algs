@@ -1,23 +1,18 @@
 class Solution:
     def longestPalindrome(self, s: str) -> str:
-        best_center, best_radius = 0, 0
         t = "#" + "#".join(s) + "#"
+        best_center, best_radius = 0, 0
 
-        for center, _ in enumerate(t):
+        for i in range(len(t)):
             radius = 0
-            l = r = center
-
-            while (l >= 0 and r < len(t) and
-                   t[l] == t[r]):
+            l = r = i
+            while l >= 0 and r < len(t) and t[l] == t[r]:
                 radius += 1
-                l, r = l - 1, r + 1
-
+                l, r = i - radius, i + radius
             radius -= 1
 
-            if radius > best_radius:
-                best_center, best_radius = center, radius
+            if best_radius < radius:
+                best_center, best_radius = i, radius
 
         start = (best_center - best_radius) // 2
-        length = best_radius
-
-        return s[start:start + length]
+        return s[start: start + best_radius]
