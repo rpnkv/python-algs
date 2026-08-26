@@ -1,16 +1,16 @@
 import pytest
 
 cases = [
-    # pytest.param("ababd", ["bab", "aba"], id="nc example 1"),
-    # pytest.param("ababababc", ["abababa", "bababab"], id="manacher example case"),
-    # pytest.param("aacabdkacaa", ["aca"], id="case 17"),
+    pytest.param("ababd", ["bab", "aba"], id="nc example 1"),
+    pytest.param("ababababc", ["abababa", "bababab"], id="manacher example case"),
+    pytest.param("aacabdkacaa", ["aca"], id="case 17"),
     pytest.param("abbc", ["bb"], id="case 1"),
-    # pytest.param("a", ["a"], id="case 3"),
-    # pytest.param("abcba", ["abcba"], id="full centered"),
-    # pytest.param("abcde", [c for c in "abcde"], id="no palindromes"),
-    # pytest.param("abade", ["aba"], id="1-started"),
-    # pytest.param("acded", ["ded"], id="3-started"),
-    # pytest.param("abbc", ["bb"], id="example 2"),
+    pytest.param("a", ["a"], id="case 3"),
+    pytest.param("abcba", ["abcba"], id="full centered"),
+    pytest.param("abcde", [c for c in "abcde"], id="no palindromes"),
+    pytest.param("abade", ["aba"], id="1-started"),
+    pytest.param("acded", ["ded"], id="3-started"),
+    pytest.param("abbc", ["bb"], id="example 2"),
 ]
 
 

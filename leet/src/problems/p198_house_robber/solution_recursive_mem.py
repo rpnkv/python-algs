@@ -3,40 +3,24 @@ from typing import List
 
 class Solution:
     def rob(self, nums: List[int]) -> int:
-        def dfs(n: int, dp) -> int:
-            if n >= len(nums):
+        dp = {}
+
+        def dfs(i: int) -> int:
+            if i < 0:
                 return 0
-            else:
-                if not dp[n]:
-                    dp[n] = nums[n] + max(
-                        dfs(n + 2, dp), dfs(n+3, dp)
-                    )
 
-                return dp[n]
+            if i < 2:
+                #return max(nums[:2])
+                return nums[i]
 
-        dp0: list[None | int] = [None] * len(nums)
-        dp1: list[None | int] = [None] * len(nums)
+            if i not in dp:
+                dp[i] = nums[i] + max(
+                    dfs(i - 2),
+                    dfs(i - 3)
+                )
 
-        dfs0 = dfs(0, dp0)
-        dfs1 = dfs(1, dp1)
+            return dp[i]
 
-        return max(dfs0, dfs1)
-
-
-
-if __name__ == '__main__':
-    cases = [
-        ([2, 1, 1, 2], 4, "Example X"),
-        ([1, 1, 3, 3], 4, "Example 1"),
-        ([2, 9, 8, 3, 6], 16, "Example 2"),
-    ]
-
-    s = Solution()
-
-    for incoming, expected_outcome, case_id in cases:
-        actual_outcome = s.rob(incoming)
-
-        assert actual_outcome == expected_outcome, "case '" + case_id + "' failed: '" + str(actual_outcome) + "'"
-        print()
-
-    print("--------- SUCCESS ---------")
+        res_1 = dfs(len(nums) - 1)
+        res_2 = dfs(len(nums) - 2)
+        return max(res_1, res_2)

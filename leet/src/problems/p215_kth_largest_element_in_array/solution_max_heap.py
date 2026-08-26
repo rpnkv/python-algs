@@ -4,7 +4,7 @@ class Solution:
         import heapq
 
         nlargest = heapq.nlargest(k, nums)
-
+        return nlargest[-1]
         res = heapq.heappop_max(nlargest)
         while nlargest:
             res = heapq.heappop_max(nlargest)

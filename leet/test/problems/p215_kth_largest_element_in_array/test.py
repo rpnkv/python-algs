@@ -4,9 +4,9 @@ from typing import List
 
 
 TEST_CASES = [
-    #pytest.param([*range(0, 6)], 3, 3, id="My case 1"),
     pytest.param([3, 2, 1, 5, 4], 2, 4, id="Example 1"),
     pytest.param([3, 2, 3, 1, 2, 4, 5, 5, 6], 4, 4, id="Example 2"),
+    pytest.param([1], 1, 1, id="Case 5"),
 ]
 
 
@@ -20,3 +20,12 @@ def test_min_heap(incoming_list: List[int], k: int, expected_outcome: int):
     from problems.p215_kth_largest_element_in_array.solution_min_heap import Solution
     assert Solution().findKthLargest(incoming_list, k) == expected_outcome
 
+@pytest.mark.parametrize(["incoming_list","k", "expected_outcome"], TEST_CASES)
+def test_max_heap(incoming_list: List[int], k: int, expected_outcome: int):
+    from problems.p215_kth_largest_element_in_array.solution_max_heap import Solution
+    assert Solution().findKthLargest(incoming_list, k) == expected_outcome
+
+@pytest.mark.parametrize(["incoming_list","k", "expected_outcome"], TEST_CASES)
+def test_max_heap_manual(incoming_list: List[int], k: int, expected_outcome: int):
+    from problems.p215_kth_largest_element_in_array.solution_max_heap_manual import Solution
+    assert Solution().findKthLargest(incoming_list, k) == expected_outcome

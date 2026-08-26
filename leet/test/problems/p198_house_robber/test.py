@@ -1,6 +1,14 @@
 import pytest
 
 TEST_CASES = [
+    pytest.param([1], 1, id="base 1"),
+    pytest.param([1, 2], 2, id="base 2"),
+    pytest.param([2, 1], 2, id="base 3"),
+    pytest.param([2, 1, 3], 5, id="base 4"),
+    pytest.param([1, 2, 3], 4, id="base 5"),
+    pytest.param([1, 2, 3, 4], 6, id="base 6"),
+    pytest.param([3, 1, 3, 4], 7, id="base 7"),
+    #
     pytest.param([1,2,3,1], 4, id="Example 1"),
     pytest.param([2,7,9,3,1], 12, id="Example 2"),
     pytest.param([2, 1, 1, 2], 4, id="Case 40"),
