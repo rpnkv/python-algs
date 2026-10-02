@@ -13,19 +13,18 @@ import pytest
 
 def split(input_nums: list[int]) -> str:
     s = set(input_nums)
-    res = []
 
-    for n in input_nums:
-        if n - 1 in s:
-            continue
+    ranges = []
+
+    for n in s:
+        if (n - 1) not in s:
+            ranges.append([n,n])
         else:
-            start, end = n, n
-            while end + 1 in s:
-                end += 1
+            ranges[-1][1] = n
 
-            res.append((start, end, end != start))
+    ranges = [f"{n[0]}" if n[0] == n[1] else f"{n[0]}-{n[1]}" for n in ranges]
 
-    return ",".join(f"{t[0]}-{t[1]}" if t[2] else f"{t[0]}" for t in res)
+    return ",".join(ranges)
 
 
 TEST_CASES = [
